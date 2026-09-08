@@ -3,645 +3,478 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PulseMatrix AV — Enterprise AVoIP Video Distribution for Commercial Venues</title>
-  <meta name="description" content="PulseMatrix AV is an enterprise AVoIP video matrix engineered for sports bars, entertainment facilities and commercial hospitality venues. Distribute live sports across dozens of screens over a single Cat6 PoE cable, controlled from a tablet." />
+  <title>PulseMatrix AV — Commercial AV Systems Integrator for Venues</title>
+  <meta name="description" content="PulseMatrix AV designs, installs and manages complete audio-visual systems for hotels, bars, restaurants and entertainment venues — multi-TV video distribution, zoned audio, cameras and one-tablet control. Canadian integrator." />
   <meta name="theme-color" content="#0f172a" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="PulseMatrix AV — Enterprise AVoIP Video Distribution" />
-  <meta property="og:description" content="Distribute live sports across 100+ synced displays over a single Cat6 PoE cable. Tablet-controlled, zero-server, sub-frame latency." />
+  <meta property="og:title" content="PulseMatrix AV — Commercial AV Systems Integrator" />
+  <meta property="og:description" content="From a handful of TVs to 100+, we design, install and run the video, audio and control for your venue — all on one tablet. Integrated &amp; supported in Canada." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://pulsematrix.ca" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com/3.4.16"></script>
   <script>
     tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-            display: ['Montserrat', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-          },
-          colors: {
-            brand: {
-              50: '#ecfeff', 100: '#cffafe', 200: '#a5f3fc', 300: '#67e8f9',
-              400: '#22d3ee', 500: '#06b6d4', 600: '#0891b2', 700: '#0e7490',
-            },
-          },
-          keyframes: {
-            pulseGlow: {
-              '0%,100%': { opacity: '0.35' },
-              '50%': { opacity: '0.75' },
-            },
-            floaty: {
-              '0%,100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-8px)' },
-            },
-          },
-          animation: {
-            pulseGlow: 'pulseGlow 4s ease-in-out infinite',
-            floaty: 'floaty 6s ease-in-out infinite',
-          },
+      theme: { extend: {
+        fontFamily: {
+          sans: ['Inter','ui-sans-serif','system-ui','sans-serif'],
+          display: ['Montserrat','Inter','ui-sans-serif','system-ui','sans-serif'],
         },
-      },
+        colors: { brand: {50:'#ecfeff',100:'#cffafe',200:'#a5f3fc',300:'#67e8f9',400:'#22d3ee',500:'#06b6d4',600:'#0891b2',700:'#0e7490'} },
+        keyframes: {
+          pulseGlow: {'0%,100%':{opacity:'0.35'},'50%':{opacity:'0.7'}},
+          floaty: {'0%,100%':{transform:'translateY(0)'},'50%':{transform:'translateY(-8px)'}},
+        },
+        animation: { pulseGlow:'pulseGlow 5s ease-in-out infinite', floaty:'floaty 6s ease-in-out infinite' },
+      } },
     };
   </script>
 
-  <!-- Lucide Icons -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.469.0/lucide.min.js"></script>
-
   <style>
     html { -webkit-text-size-adjust: 100%; }
-    body { font-family: 'Inter', sans-serif; background-color: #020617; }
-    h1,h2,h3,h4,.font-display { font-family: 'Montserrat', 'Inter', sans-serif; }
-    ::selection { background: #22d3ee; color: #020617; }
-
-    /* Subtle grid backdrop */
+    body { font-family:'Inter',sans-serif; background-color:#020617; }
+    h1,h2,h3,h4,.font-display { font-family:'Montserrat','Inter',sans-serif; }
+    ::selection { background:#22d3ee; color:#020617; }
     .grid-bg {
       background-image:
         linear-gradient(to right, rgba(148,163,184,0.06) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(148,163,184,0.06) 1px, transparent 1px);
-      background-size: 46px 46px;
+      background-size:46px 46px;
     }
     .radial-fade {
-      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 55%, transparent 100%);
-      mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 55%, transparent 100%);
+      -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 0%, #000 55%, transparent 100%);
+      mask-image:radial-gradient(ellipse 70% 60% at 50% 0%, #000 55%, transparent 100%);
     }
-    /* Cable line pulse in hero mock */
-    @keyframes dashflow { to { stroke-dashoffset: -18; } }
-    .cable-flow { stroke-dasharray: 6 6; animation: dashflow 1s linear infinite; }
-
-    /* nav underline */
-    .nav-link { position: relative; }
-    .nav-link::after {
-      content: ''; position: absolute; left: 0; bottom: -4px; height: 2px; width: 0;
-      background: #22d3ee; transition: width .25s ease;
-    }
-    .nav-link:hover::after { width: 100%; }
-
-    /* Screen tile in hero */
-    .screen-tile { background: linear-gradient(145deg, #0b1220 0%, #0f1b2e 100%); }
+    .nav-link::after { content:''; position:absolute; left:0; bottom:-4px; height:2px; width:0; background:#22d3ee; transition:width .25s ease; }
+    .nav-link:hover::after { width:100%; }
   </style>
 </head>
 
-<body class="bg-slate-950 text-slate-300 antialiased selection:bg-brand-400">
+<body class="bg-slate-950 text-slate-300 antialiased">
 
-  <!-- ============ HEADER / NAV ============ -->
+  <!-- ============ HEADER ============ -->
   <header id="top" class="fixed top-0 inset-x-0 z-50 transition-all duration-300" data-nav>
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="flex h-16 items-center justify-between rounded-b-xl">
-        <!-- Logo -->
-        <a href="#top" class="flex items-center gap-2.5 group">
-          <span class="relative inline-flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-brand-400 to-brand-600 shadow-lg shadow-brand-500/30">
-            <i data-lucide="grid-2x2" class="h-5 w-5 text-slate-950"></i>
+      <div class="flex h-16 items-center justify-between">
+        <a href="#top" class="flex items-center gap-2.5">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-brand-400 to-brand-600 shadow-lg shadow-brand-500/30">
+            <svg class="h-5 w-5 text-slate-950" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M12 3v18" /> <path d="M3 12h18" /> <rect x="3" y="3" width="18" height="18" rx="2" /> </svg>
           </span>
-          <span class="font-display text-lg font-bold tracking-tight text-white">
-            Pulse<span class="text-brand-400">Matrix</span>
-            <span class="ml-0.5 align-top text-[10px] font-semibold tracking-widest text-slate-400">AV</span>
-          </span>
+          <span class="font-display text-lg font-bold tracking-tight text-white">Pulse<span class="text-brand-400">Matrix</span> <span class="align-top text-[10px] font-semibold tracking-widest text-slate-400">AV</span></span>
         </a>
 
-        <!-- Desktop nav -->
         <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-          <a href="#features" class="nav-link hover:text-white transition-colors">Features</a>
-          <a href="#how" class="nav-link hover:text-white transition-colors">How It Works</a>
-          <a href="#specs" class="nav-link hover:text-white transition-colors">System Specs</a>
-          <a href="#contact" class="nav-link hover:text-white transition-colors">Contact</a>
+          <a href="#solutions" class="nav-link relative hover:text-white transition-colors" data-i18n="nav.solutions">Solutions</a>
+          <a href="#process" class="nav-link relative hover:text-white transition-colors" data-i18n="nav.process">How We Work</a>
+          <a href="#products" class="nav-link relative hover:text-white transition-colors" data-i18n="nav.products">Products</a>
+          <a href="#specs" class="nav-link relative hover:text-white transition-colors" data-i18n="nav.estimator">Estimator</a>
+          <a href="#contact" class="nav-link relative hover:text-white transition-colors" data-i18n="nav.contact">Contact</a>
         </nav>
 
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2 sm:gap-3">
+          <!-- Language toggle -->
+          <div class="inline-flex items-center rounded-lg border border-slate-700 bg-slate-900/60 p-0.5 text-xs font-semibold" role="group" aria-label="Language">
+            <button type="button" data-lang-btn="en" class="rounded-md px-2 py-1 text-slate-300 transition-colors" aria-label="English">EN</button>
+            <button type="button" data-lang-btn="fr" class="rounded-md px-2 py-1 text-slate-300 transition-colors" aria-label="Français">FR</button>
+          </div>
           <a href="#contact" class="hidden sm:inline-flex items-center gap-2 rounded-lg bg-brand-400 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-brand-500/25 hover:bg-brand-300 transition-colors">
-            <i data-lucide="file-text" class="h-4 w-4"></i> Request Quote
+            <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /> <path d="M14 2v4a2 2 0 0 0 2 2h4" /> <path d="M10 9H8" /> <path d="M16 13H8" /> <path d="M16 17H8" /> </svg> <span data-i18n="cta.quote">Request Quote</span>
           </a>
-          <!-- Mobile toggle -->
           <button id="menuBtn" class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-700 text-slate-200 hover:bg-slate-800" aria-label="Open menu" aria-expanded="false">
-            <i data-lucide="menu" class="h-5 w-5" id="menuIcon"></i>
+            <svg class="h-5 w-5" aria-hidden="true" id="iconMenu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <line x1="4" x2="20" y1="12" y2="12" /> <line x1="4" x2="20" y1="6" y2="6" /> <line x1="4" x2="20" y1="18" y2="18" /> </svg>
+            <svg class="h-5 w-5 hidden" aria-hidden="true" id="iconX" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M18 6 6 18" /> <path d="m6 6 12 12" /> </svg>
           </button>
         </div>
       </div>
     </div>
-
-    <!-- Mobile menu -->
     <div id="mobileMenu" class="md:hidden hidden border-t border-slate-800 bg-slate-950/95 backdrop-blur">
       <nav class="mx-auto max-w-7xl px-4 py-4 flex flex-col gap-1 text-sm font-medium">
-        <a href="#features" class="rounded-lg px-3 py-2.5 text-slate-200 hover:bg-slate-800">Features</a>
-        <a href="#how" class="rounded-lg px-3 py-2.5 text-slate-200 hover:bg-slate-800">How It Works</a>
-        <a href="#specs" class="rounded-lg px-3 py-2.5 text-slate-200 hover:bg-slate-800">System Specs</a>
-        <a href="#contact" class="rounded-lg px-3 py-2.5 text-slate-200 hover:bg-slate-800">Contact</a>
-        <a href="#contact" class="mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-brand-400 px-4 py-2.5 font-semibold text-slate-950">
-          <i data-lucide="file-text" class="h-4 w-4"></i> Request Quote
-        </a>
+        <a href="#solutions" class="rounded-lg px-3 py-2.5 text-slate-200 hover:bg-slate-800" data-i18n="nav.solutions">Solutions</a>
+        <a href="#process" class="rounded-lg px-3 py-2.5 text-slate-200 hover:bg-slate-800" data-i18n="nav.process">How We Work</a>
+        <a href="#products" class="rounded-lg px-3 py-2.5 text-slate-200 hover:bg-slate-800" data-i18n="nav.products">Products</a>
+        <a href="#specs" class="rounded-lg px-3 py-2.5 text-slate-200 hover:bg-slate-800" data-i18n="nav.estimator">Estimator</a>
+        <a href="#contact" class="rounded-lg px-3 py-2.5 text-slate-200 hover:bg-slate-800" data-i18n="nav.contact">Contact</a>
+        <a href="#contact" class="mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-brand-400 px-4 py-2.5 font-semibold text-slate-950"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /> <path d="M14 2v4a2 2 0 0 0 2 2h4" /> <path d="M10 9H8" /> <path d="M16 13H8" /> <path d="M16 17H8" /> </svg> <span data-i18n="cta.quote">Request Quote</span></a>
       </nav>
     </div>
   </header>
 
   <!-- ============ HERO ============ -->
-  <section class="relative overflow-hidden pt-28 pb-20 sm:pt-36 lg:pt-40">
-    <!-- backdrop -->
+  <section class="relative overflow-hidden pt-28 pb-16 sm:pt-36 lg:pt-40">
     <div class="pointer-events-none absolute inset-0 grid-bg radial-fade"></div>
     <div class="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[520px] w-[820px] rounded-full bg-brand-500/20 blur-[120px] animate-pulseGlow"></div>
-    <div class="pointer-events-none absolute top-40 right-0 h-72 w-72 rounded-full bg-teal-500/10 blur-[100px]"></div>
 
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid items-center gap-14 lg:grid-cols-2">
-        <!-- Copy -->
+      <div class="grid items-center gap-12 lg:grid-cols-2">
         <div>
           <span class="inline-flex items-center gap-2 rounded-full border border-brand-400/30 bg-brand-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-300">
-            <span class="h-1.5 w-1.5 rounded-full bg-brand-400 animate-pulse"></span>
-            Distributed AVoIP · Made in Canada
+            <span class="h-1.5 w-1.5 rounded-full bg-brand-400 animate-pulse"></span> <span data-i18n="hero.badge">AV Systems Integrator · Canadian</span>
           </span>
 
           <h1 class="mt-6 font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Enterprise AVoIP Video<br class="hidden sm:block" />
-            Distribution for
-            <span class="bg-gradient-to-r from-brand-300 via-brand-400 to-teal-300 bg-clip-text text-transparent">Commercial Venues</span>
+            <span data-i18n="hero.h1a">Commercial AV systems </span><span class="bg-gradient-to-r from-brand-300 via-brand-400 to-teal-300 bg-clip-text text-transparent" data-i18n="hero.h1b">that just work.</span>
           </h1>
 
-          <p class="mt-6 max-w-xl text-lg leading-relaxed text-slate-400">
-            Route any source to any screen across your venue over a single Cat6 PoE cable.
-            PulseMatrix distributes live sports to <span class="font-semibold text-slate-200">100+ synced displays</span>
-            with sub-frame latency — controlled entirely from a tablet. No matrix switcher. No server. No cable clutter behind the TVs.
+          <p class="mt-5 max-w-lg text-lg leading-relaxed text-slate-400" data-i18n="hero.sub">
+            Hotels, bars, restaurants and entertainment venues trust us to design, install and run their screens, sound and control — from a handful of TVs to 100+, all from one tablet.
           </p>
 
-          <div class="mt-8 flex flex-wrap items-center gap-4">
+          <div class="mt-8 flex flex-wrap items-center gap-3">
             <a href="#contact" class="inline-flex items-center gap-2 rounded-lg bg-brand-400 px-6 py-3.5 text-sm font-semibold text-slate-950 shadow-lg shadow-brand-500/30 hover:bg-brand-300 hover:-translate-y-0.5 transition-all">
-              <i data-lucide="file-text" class="h-4.5 w-4.5"></i> Request a Quote
+              <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /> <path d="M14 2v4a2 2 0 0 0 2 2h4" /> <path d="M10 9H8" /> <path d="M16 13H8" /> <path d="M16 17H8" /> </svg> <span data-i18n="cta.quote2">Request a Quote</span>
             </a>
-            <a href="#specs" class="inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-900/60 px-6 py-3.5 text-sm font-semibold text-slate-200 hover:border-brand-400/50 hover:text-white transition-colors">
-              <i data-lucide="calculator" class="h-4.5 w-4.5 text-brand-400"></i> Estimate My System
+            <a href="#solutions" class="inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-900/60 px-6 py-3.5 text-sm font-semibold text-slate-200 hover:border-brand-400/50 hover:text-white transition-colors">
+              <svg class="h-4 w-4 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg> <span data-i18n="cta.see">See What We Do</span>
             </a>
           </div>
 
-          <!-- trust stats -->
-          <dl class="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-slate-800 pt-8">
-            <div>
-              <dt class="text-2xl font-bold text-white font-display">100+</dt>
-              <dd class="mt-1 text-xs uppercase tracking-wide text-slate-500">Displays per system</dd>
-            </div>
-            <div>
-              <dt class="text-2xl font-bold text-white font-display">1080p<span class="text-brand-400">@60</span></dt>
-              <dd class="mt-1 text-xs uppercase tracking-wide text-slate-500">Sports-tuned playback</dd>
-            </div>
-            <div>
-              <dt class="text-2xl font-bold text-white font-display">1 Cable</dt>
-              <dd class="mt-1 text-xs uppercase tracking-wide text-slate-500">PoE per endpoint</dd>
-            </div>
+          <dl class="mt-10 grid max-w-md grid-cols-3 gap-6 border-t border-slate-800 pt-7">
+            <div><dt class="font-display text-2xl font-bold text-white">100+</dt><dd class="mt-1 text-xs uppercase tracking-wide text-slate-500" data-i18n="stat.screens">Screens / system</dd></div>
+            <div><dt class="font-display text-2xl font-bold text-white" data-i18n="stat.zone">Multi-Zone</dt><dd class="mt-1 text-xs uppercase tracking-wide text-slate-500" data-i18n="stat.zoneSub">Audio &amp; video</dd></div>
+            <div><dt class="font-display text-2xl font-bold text-white" data-i18n="stat.tablet">1 Tablet</dt><dd class="mt-1 text-xs uppercase tracking-wide text-slate-500" data-i18n="stat.tabletSub">Runs it all</dd></div>
           </dl>
         </div>
 
-        <!-- iPad mock UI -->
         <div class="relative animate-floaty">
           <div class="absolute -inset-6 rounded-[2.2rem] bg-gradient-to-tr from-brand-500/20 to-teal-500/10 blur-2xl"></div>
-
-          <!-- Tablet frame -->
-          <div class="relative mx-auto max-w-[520px] rounded-[2rem] border border-slate-700 bg-slate-900 p-3 shadow-2xl shadow-black/60 ring-1 ring-white/5">
-            <div class="relative overflow-hidden rounded-[1.5rem] bg-slate-950 p-4">
-              <!-- app top bar -->
-              <div class="mb-3 flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                  <span class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-brand-400/20">
-                    <i data-lucide="grid-2x2" class="h-3.5 w-3.5 text-brand-300"></i>
-                  </span>
-                  <span class="text-xs font-semibold text-slate-200">Matrix Control</span>
-                </div>
-                <div class="flex items-center gap-1.5 text-[10px] font-medium text-emerald-400">
-                  <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span> LIVE · 6 sources
-                </div>
-              </div>
-
-              <!-- sources row -->
-              <div class="mb-3 grid grid-cols-6 gap-1.5" id="hero-sources">
-                <!-- filled by JS, with static fallback -->
-                <div class="rounded-md bg-slate-800/80 px-1 py-1.5 text-center text-[9px] font-medium text-slate-300 ring-1 ring-white/5">SRC 1</div>
-                <div class="rounded-md bg-slate-800/80 px-1 py-1.5 text-center text-[9px] font-medium text-slate-300 ring-1 ring-white/5">SRC 2</div>
-                <div class="rounded-md bg-brand-400/20 px-1 py-1.5 text-center text-[9px] font-semibold text-brand-200 ring-1 ring-brand-400/40">SRC 3</div>
-                <div class="rounded-md bg-slate-800/80 px-1 py-1.5 text-center text-[9px] font-medium text-slate-300 ring-1 ring-white/5">SRC 4</div>
-                <div class="rounded-md bg-slate-800/80 px-1 py-1.5 text-center text-[9px] font-medium text-slate-300 ring-1 ring-white/5">SRC 5</div>
-                <div class="rounded-md bg-slate-800/80 px-1 py-1.5 text-center text-[9px] font-medium text-slate-300 ring-1 ring-white/5">SRC 6</div>
-              </div>
-
-              <!-- display grid -->
-              <div class="grid grid-cols-4 gap-1.5" id="hero-grid"></div>
-
-              <!-- footer bar -->
-              <div class="mt-3 flex items-center justify-between rounded-lg bg-slate-900/80 px-3 py-2 ring-1 ring-white/5">
-                <span class="text-[10px] text-slate-400"><i data-lucide="mouse-pointer-click" class="inline h-3 w-3 -mt-0.5 text-brand-400"></i> Drag a source onto any screen</span>
-                <span class="text-[10px] font-semibold text-slate-300">Zone: Main Floor</span>
-              </div>
+          <div class="relative mx-auto max-w-[540px] rounded-[2rem] border border-slate-700 bg-slate-900 p-3 shadow-2xl shadow-black/60 ring-1 ring-white/5">
+            <div class="overflow-hidden rounded-[1.4rem] ring-1 ring-white/10">
+              <img src="assets/control-app.png" alt="Tablet control app showing live video panels, signal groups and multi-zone volume control" class="block w-full" loading="eager" width="1003" height="780" />
             </div>
           </div>
-
-          <!-- floating spec chips -->
-          <div class="absolute -left-4 top-16 hidden sm:flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-900/90 px-3 py-2 shadow-xl backdrop-blur">
-            <i data-lucide="zap" class="h-4 w-4 text-brand-400"></i>
-            <span class="text-xs font-semibold text-slate-200">~30 Mbps / feed</span>
+          <div class="absolute -left-3 top-14 hidden sm:flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-900/90 px-3 py-2 shadow-xl backdrop-blur">
+            <svg class="h-4 w-4 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="10" height="14" x="3" y="8" rx="2" /> <path d="M5 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2h-2.4" /> <path d="M8 18h.01" /> </svg><span class="text-xs font-semibold text-slate-200" data-i18n="chip.tablet">One-tablet control</span>
           </div>
-          <div class="absolute -right-3 bottom-14 hidden sm:flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-900/90 px-3 py-2 shadow-xl backdrop-blur">
-            <i data-lucide="ethernet-port" class="h-4 w-4 text-teal-300"></i>
-            <span class="text-xs font-semibold text-slate-200">Single Cat6 PoE</span>
+          <div class="absolute -right-2 bottom-12 hidden sm:flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-900/90 px-3 py-2 shadow-xl backdrop-blur">
+            <svg class="h-4 w-4 text-teal-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /> <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /> <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /> </svg><span class="text-xs font-semibold text-slate-200" data-i18n="chip.vac">Video · Audio · Control</span>
           </div>
         </div>
       </div>
 
-      <!-- logo/assurance strip -->
-      <div class="mt-16 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs font-medium uppercase tracking-widest text-slate-600">
-        <span class="flex items-center gap-2"><i data-lucide="shield-check" class="h-4 w-4 text-slate-500"></i> H.264 / H.265</span>
-        <span class="flex items-center gap-2"><i data-lucide="network" class="h-4 w-4 text-slate-500"></i> Managed Gigabit PoE</span>
-        <span class="flex items-center gap-2"><i data-lucide="tablet-smartphone" class="h-4 w-4 text-slate-500"></i> iOS / Android Control</span>
-        <span class="flex items-center gap-2"><i data-lucide="server-off" class="h-4 w-4 text-slate-500"></i> Zero-Server</span>
-        <span class="flex items-center gap-2"><i data-lucide="tv" class="h-4 w-4 text-slate-500"></i> 4K@30 In · 1080p@60 Out</span>
+      <div class="mt-14 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-xs font-semibold uppercase tracking-widest text-slate-500">
+        <span class="flex items-center gap-2"><svg class="h-4 w-4 text-brand-400/70" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="11" cy="11" r="8" /> <path d="m21 21-4.3-4.3" /> </svg> <span data-i18n="chain.design">Design</span></span>
+        <span class="text-slate-700">/</span>
+        <span class="flex items-center gap-2"><svg class="h-4 w-4 text-brand-400/70" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" /> <path d="M12 22V12" /> <path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7" /> <path d="m7.5 4.27 9 5.15" /> </svg> <span data-i18n="chain.supply">Supply</span></span>
+        <span class="text-slate-700">/</span>
+        <span class="flex items-center gap-2"><svg class="h-4 w-4 text-brand-400/70" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5" /> <path d="M14 6a6 6 0 0 1 6 6v3" /> <path d="M4 15v-3a6 6 0 0 1 6-6" /> <rect x="2" y="15" width="20" height="4" rx="1" /> </svg> <span data-i18n="chain.install">Install</span></span>
+        <span class="text-slate-700">/</span>
+        <span class="flex items-center gap-2"><svg class="h-4 w-4 text-brand-400/70" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="10" /> <path d="m4.93 4.93 4.24 4.24" /> <path d="m14.83 9.17 4.24-4.24" /> <path d="m14.83 14.83 4.24 4.24" /> <path d="m9.17 14.83-4.24 4.24" /> <circle cx="12" cy="12" r="4" /> </svg> <span data-i18n="chain.support">Support</span></span>
       </div>
     </div>
   </section>
 
-  <!-- ============ FEATURES ============ -->
-  <section id="features" class="relative py-24">
+  <!-- ============ WHO WE SERVE ============ -->
+  <section class="relative py-8">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/40 px-6 py-6">
+        <p class="text-center text-xs font-semibold uppercase tracking-widest text-slate-500" data-i18n="builtfor">Built for</p>
+        <div class="mt-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm font-semibold text-slate-300">
+          <span class="flex items-center gap-2"><svg class="h-5 w-5 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M8 22h8" /> <path d="M7 10h10" /> <path d="M12 15v7" /> <path d="M12 15a5 5 0 0 0 5-5c0-2-.5-4-2-8H9c-1.5 4-2 6-2 8a5 5 0 0 0 5 5Z" /> </svg> <span data-i18n="bf.bars">Sports Bars &amp; Pubs</span></span>
+          <span class="flex items-center gap-2"><svg class="h-5 w-5 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M10 22v-6.57" /> <path d="M12 11h.01" /> <path d="M12 7h.01" /> <path d="M14 15.43V22" /> <path d="M15 16a5 5 0 0 0-6 0" /> <path d="M16 11h.01" /> <path d="M16 7h.01" /> <path d="M8 11h.01" /> <path d="M8 7h.01" /> <rect x="4" y="2" width="16" height="20" rx="2" /> </svg> <span data-i18n="bf.hotels">Hotels &amp; Resorts</span></span>
+          <span class="flex items-center gap-2"><svg class="h-5 w-5 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" /> <path d="M7 2v20" /> <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" /> </svg> <span data-i18n="bf.rest">Restaurants</span></span>
+          <span class="flex items-center gap-2"><svg class="h-5 w-5 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M14.4 14.4 9.6 9.6" /> <path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z" /> <path d="m21.5 21.5-1.4-1.4" /> <path d="M3.9 3.9 2.5 2.5" /> <path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z" /> </svg> <span data-i18n="bf.gyms">Gyms &amp; Rec</span></span>
+          <span class="flex items-center gap-2"><svg class="h-5 w-5 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" /> <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" /> <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" /> <path d="M10 6h4" /> <path d="M10 10h4" /> <path d="M10 14h4" /> <path d="M10 18h4" /> </svg> <span data-i18n="bf.ent">Entertainment Venues</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOLUTIONS ============ -->
+  <section id="solutions" class="relative py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-2xl text-center">
-        <span class="text-xs font-semibold uppercase tracking-widest text-brand-400">Core Capabilities</span>
-        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">Built for venues that can't afford lag</h2>
-        <p class="mt-4 text-slate-400">Every component is engineered for the reliability, scale and cable-simplicity a working commercial floor demands.</p>
+        <span class="text-xs font-semibold uppercase tracking-widest text-brand-400" data-i18n="sol.eyebrow">What We Do</span>
+        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl" data-i18n="sol.h2">One team for the whole venue</h2>
+        <p class="mt-4 text-slate-400" data-i18n="sol.sub">You don't need to know the tech. Tell us the space and what you want it to do — we handle the rest.</p>
       </div>
 
-      <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <!-- card -->
-        <div class="group relative rounded-2xl border border-slate-800 bg-slate-900/50 p-7 transition-all hover:border-brand-400/40 hover:bg-slate-900">
-          <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20 group-hover:bg-brand-400/20 transition-colors">
-            <i data-lucide="ethernet-port" class="h-6 w-6 text-brand-300"></i>
-          </div>
-          <h3 class="font-display text-lg font-bold text-white">Single Cat6 PoE Delivery</h3>
-          <p class="mt-2 text-sm leading-relaxed text-slate-400">One structured cable carries video and power to every encoder and decoder node. No HDMI runs, no power bricks, no wall warts behind the TV.</p>
+      <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-6 transition-colors hover:border-brand-400/40">
+          <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="20" height="15" x="2" y="7" rx="2" ry="2" /> <polyline points="17 2 12 7 7 2" /> </svg></div>
+          <h3 class="mt-4 font-display text-lg font-bold text-white" data-i18n="sol.1.t">Multi-TV Video &amp; Sports</h3>
+          <p class="mt-1.5 text-sm text-slate-400" data-i18n="sol.1.d">Any game on any screen, video walls, and multiple games on one TV — switch the whole floor from a tablet.</p>
         </div>
-
-        <div class="group relative rounded-2xl border border-slate-800 bg-slate-900/50 p-7 transition-all hover:border-brand-400/40 hover:bg-slate-900">
-          <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20 group-hover:bg-brand-400/20 transition-colors">
-            <i data-lucide="hand" class="h-6 w-6 text-brand-300"></i>
-          </div>
-          <h3 class="font-display text-lg font-bold text-white">Tablet Drag-and-Drop Control</h3>
-          <p class="mt-2 text-sm leading-relaxed text-slate-400">Staff route any source to any screen from an iPad or Android tablet, with live video preview thumbnails. Reassign the whole floor between games in seconds.</p>
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-6 transition-colors hover:border-brand-400/40">
+          <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M2 10v3" /> <path d="M6 6v11" /> <path d="M10 3v18" /> <path d="M14 8v7" /> <path d="M18 5v13" /> <path d="M22 10v3" /> </svg></div>
+          <h3 class="mt-4 font-display text-lg font-bold text-white" data-i18n="sol.2.t">Zoned &amp; Event Audio</h3>
+          <p class="mt-1.5 text-sm text-slate-400" data-i18n="sol.2.d">Different music in the bar, patio and dining room — plus paging and event sound, all independently controlled.</p>
         </div>
-
-        <div class="group relative rounded-2xl border border-slate-800 bg-slate-900/50 p-7 transition-all hover:border-brand-400/40 hover:bg-slate-900">
-          <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20 group-hover:bg-brand-400/20 transition-colors">
-            <i data-lucide="server-off" class="h-6 w-6 text-brand-300"></i>
-          </div>
-          <h3 class="font-display text-lg font-bold text-white">Zero-Server Reliability</h3>
-          <p class="mt-2 text-sm leading-relaxed text-slate-400">A distributed architecture with no central controller to fail. Each node runs independently over the network, so there's no single point of failure to take the venue dark.</p>
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-6 transition-colors hover:border-brand-400/40">
+          <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="18" height="18" x="3" y="3" rx="2" /> <path d="M12 3v18" /> </svg></div>
+          <h3 class="mt-4 font-display text-lg font-bold text-white" data-i18n="sol.3.t">Divisible Rooms</h3>
+          <p class="mt-1.5 text-sm text-slate-400" data-i18n="sol.3.d">Split a 10,000 sq ft hall into separate rooms — audio and video follow the partitions, combine at the touch of a button.</p>
         </div>
-
-        <div class="group relative rounded-2xl border border-slate-800 bg-slate-900/50 p-7 transition-all hover:border-brand-400/40 hover:bg-slate-900">
-          <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20 group-hover:bg-brand-400/20 transition-colors">
-            <i data-lucide="gauge" class="h-6 w-6 text-brand-300"></i>
-          </div>
-          <h3 class="font-display text-lg font-bold text-white">Sub-Frame Latency for Live Sports</h3>
-          <p class="mt-2 text-sm leading-relaxed text-slate-400">Tuned H.264/H.265 pipelines keep every screen in lock-step. No echo between TVs when the crowd reacts — the goal lands on all of them at once.</p>
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-6 transition-colors hover:border-brand-400/40">
+          <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M16.75 12h3.632a1 1 0 0 1 .894 1.447l-2.034 4.069a1 1 0 0 1-1.708.134l-2.124-2.97" /> <path d="M17.106 9.053a1 1 0 0 1 .447 1.341l-3.106 6.211a1 1 0 0 1-1.342.447L3.61 12.3a2.92 2.92 0 0 1-1.3-3.91L3.69 5.6a2.92 2.92 0 0 1 3.92-1.3z" /> <path d="M2 19h3.76a2 2 0 0 0 1.8-1.1L9 15" /> <path d="M2 21v-4" /> <path d="M7 9h.01" /> </svg></div>
+          <h3 class="mt-4 font-display text-lg font-bold text-white" data-i18n="sol.4.t">Cameras &amp; Surveillance</h3>
+          <p class="mt-1.5 text-sm text-slate-400" data-i18n="sol.4.d">PoE IP cameras and recording on the same managed network as your AV — one system, one contractor.</p>
         </div>
-
-        <div class="group relative rounded-2xl border border-slate-800 bg-slate-900/50 p-7 transition-all hover:border-brand-400/40 hover:bg-slate-900">
-          <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20 group-hover:bg-brand-400/20 transition-colors">
-            <i data-lucide="layout-grid" class="h-6 w-6 text-brand-300"></i>
-          </div>
-          <h3 class="font-display text-lg font-bold text-white">Multi-Screen Matrix &amp; Video Wall</h3>
-          <p class="mt-2 text-sm leading-relaxed text-slate-400">Mirror one source to dozens of displays, or split a bank of screens into a single tiled video wall. Any-to-any switching scales from 1:1 up past 100 endpoints.</p>
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-6 transition-colors hover:border-brand-400/40">
+          <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M2 3h20" /> <path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3" /> <path d="m7 21 5-5 5 5" /> </svg></div>
+          <h3 class="mt-4 font-display text-lg font-bold text-white" data-i18n="sol.5.t">Conferencing &amp; Meeting Rooms</h3>
+          <p class="mt-1.5 text-sm text-slate-400" data-i18n="sol.5.d">PTZ cameras, mics and displays for boardrooms and function spaces — join a call with one touch.</p>
         </div>
-
-        <div class="group relative rounded-2xl border border-slate-800 bg-slate-900/50 p-7 transition-all hover:border-brand-400/40 hover:bg-slate-900">
-          <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20 group-hover:bg-brand-400/20 transition-colors">
-            <i data-lucide="shield-check" class="h-6 w-6 text-brand-300"></i>
-          </div>
-          <h3 class="font-display text-lg font-bold text-white">Industrial Hardware Grade</h3>
-          <p class="mt-2 text-sm leading-relaxed text-slate-400">Metal-chassis transceivers built to run 24/7 in a working AV rack. Passive-cooled, always-on nodes rated for continuous commercial duty.</p>
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-6 transition-colors hover:border-brand-400/40">
+          <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <line x1="21" x2="14" y1="4" y2="4" /> <line x1="10" x2="3" y1="4" y2="4" /> <line x1="21" x2="12" y1="12" y2="12" /> <line x1="8" x2="3" y1="12" y2="12" /> <line x1="21" x2="16" y1="20" y2="20" /> <line x1="12" x2="3" y1="20" y2="20" /> <line x1="14" x2="14" y1="2" y2="6" /> <line x1="8" x2="8" y1="10" y2="14" /> <line x1="16" x2="16" y1="18" y2="22" /> </svg></div>
+          <h3 class="mt-4 font-display text-lg font-bold text-white" data-i18n="sol.6.t">Control &amp; Automation</h3>
+          <p class="mt-1.5 text-sm text-slate-400" data-i18n="sol.6.d">Screens, sound, lighting scenes and sources — run the entire venue from a tablet your staff can actually use.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ HOW IT WORKS ============ -->
-  <section id="how" class="relative border-y border-slate-800/70 bg-slate-900/30 py-24">
+  <!-- ============ PROCESS ============ -->
+  <section id="process" class="relative border-y border-slate-800/70 bg-slate-900/30 py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-2xl text-center">
-        <span class="text-xs font-semibold uppercase tracking-widest text-brand-400">How It Works</span>
-        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">Sources in. Screens out. One network in between.</h2>
-        <p class="mt-4 text-slate-400">PulseMatrix replaces the fixed matrix switcher with encoder and decoder nodes that live on a managed Gigabit PoE network.</p>
+        <span class="text-xs font-semibold uppercase tracking-widest text-brand-400" data-i18n="pr.eyebrow">How We Work</span>
+        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl" data-i18n="pr.h2">From walkthrough to working system</h2>
       </div>
-
-      <div class="mt-14 grid gap-8 lg:grid-cols-3">
-        <div class="relative rounded-2xl border border-slate-800 bg-slate-950/60 p-7">
-          <span class="font-display text-5xl font-black text-slate-800">01</span>
-          <h3 class="mt-3 font-display text-lg font-bold text-white flex items-center gap-2"><i data-lucide="plug-zap" class="h-5 w-5 text-brand-400"></i> Encode at the source</h3>
-          <p class="mt-2 text-sm leading-relaxed text-slate-400">An ENC node sits behind each cable box, streaming box or media player — Rogers, Bell, satellite or Apple TV — compressing 4K@30 / 1080p input into a ~30 Mbps H.265 stream.</p>
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="rounded-2xl border border-slate-800 bg-slate-950/60 p-6">
+          <div class="flex items-center justify-between"><span class="font-display text-4xl font-black text-slate-800">01</span><svg class="h-5 w-5 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="11" cy="11" r="8" /> <path d="m21 21-4.3-4.3" /> </svg></div>
+          <h3 class="mt-2 font-display text-base font-bold text-white" data-i18n="pr.1.t">Site assessment</h3>
+          <p class="mt-1.5 text-sm text-slate-400" data-i18n="pr.1.d">We walk the space, count screens and zones, and learn how you actually use the room.</p>
         </div>
-        <div class="relative rounded-2xl border border-slate-800 bg-slate-950/60 p-7">
-          <span class="font-display text-5xl font-black text-slate-800">02</span>
-          <h3 class="mt-3 font-display text-lg font-bold text-white flex items-center gap-2"><i data-lucide="network" class="h-5 w-5 text-brand-400"></i> Transport over PoE</h3>
-          <p class="mt-2 text-sm leading-relaxed text-slate-400">A managed Gigabit PoE switch carries every stream as multicast traffic and powers each node down the same Cat6 cable. Add screens by adding ports — not by rewiring.</p>
+        <div class="rounded-2xl border border-slate-800 bg-slate-950/60 p-6">
+          <div class="flex items-center justify-between"><span class="font-display text-4xl font-black text-slate-800">02</span><svg class="h-5 w-5 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M13 7 8.7 2.7a2.41 2.41 0 0 0-3.4 0L2.7 5.3a2.41 2.41 0 0 0 0 3.4L7 13" /> <path d="m8 6 2-2" /> <path d="m18 16 2-2" /> <path d="m17 11 4.3 4.3c.94.94.94 2.46 0 3.4l-2.6 2.6c-.94.94-2.46.94-3.4 0L11 17" /> <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" /> <path d="m15 5 4 4" /> </svg></div>
+          <h3 class="mt-2 font-display text-base font-bold text-white" data-i18n="pr.2.t">System design</h3>
+          <p class="mt-1.5 text-sm text-slate-400" data-i18n="pr.2.d">A clear plan and fixed quote — gear, layout, cabling and control, sized to your budget.</p>
         </div>
-        <div class="relative rounded-2xl border border-slate-800 bg-slate-950/60 p-7">
-          <span class="font-display text-5xl font-black text-slate-800">03</span>
-          <h3 class="mt-3 font-display text-lg font-bold text-white flex items-center gap-2"><i data-lucide="monitor-play" class="h-5 w-5 text-brand-400"></i> Decode at the screen</h3>
-          <p class="mt-2 text-sm leading-relaxed text-slate-400">A DEC node behind each TV subscribes to whichever source the tablet assigns and drives the panel over HDMI — instantly re-routable from the control app.</p>
+        <div class="rounded-2xl border border-slate-800 bg-slate-950/60 p-6">
+          <div class="flex items-center justify-between"><span class="font-display text-4xl font-black text-slate-800">03</span><svg class="h-5 w-5 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5" /> <path d="M14 6a6 6 0 0 1 6 6v3" /> <path d="M4 15v-3a6 6 0 0 1 6-6" /> <rect x="2" y="15" width="20" height="4" rx="1" /> </svg></div>
+          <h3 class="mt-2 font-display text-base font-bold text-white" data-i18n="pr.3.t">Professional install</h3>
+          <p class="mt-1.5 text-sm text-slate-400" data-i18n="pr.3.d">Clean cabling, tidy rack, mounted displays — done right, with minimal disruption to business.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-800 bg-slate-950/60 p-6">
+          <div class="flex items-center justify-between"><span class="font-display text-4xl font-black text-slate-800">04</span><svg class="h-5 w-5 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="10" /> <path d="m4.93 4.93 4.24 4.24" /> <path d="m14.83 9.17 4.24-4.24" /> <path d="m14.83 14.83 4.24 4.24" /> <path d="m9.17 14.83-4.24 4.24" /> <circle cx="12" cy="12" r="4" /> </svg></div>
+          <h3 class="mt-2 font-display text-base font-bold text-white" data-i18n="pr.4.t">Train &amp; support</h3>
+          <p class="mt-1.5 text-sm text-slate-400" data-i18n="pr.4.d">We show your staff the tablet, then stay on call — remote help and service when you need it.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ ARCHITECTURE COMPARISON ============ -->
-  <section class="relative py-24">
+  <!-- ============ PRODUCTS CATALOG ============ -->
+  <section id="products" class="relative py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-2xl text-center">
-        <span class="text-xs font-semibold uppercase tracking-widest text-brand-400">Architecture</span>
-        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">Why distributed AVoIP wins the floor</h2>
-        <p class="mt-4 text-slate-400">A fixed HDMI matrix locks you into its port count and a spider's web of home-run cable. AVoIP scales on the network you already understand.</p>
+        <span class="text-xs font-semibold uppercase tracking-widest text-brand-400" data-i18n="pd.eyebrow">Products We Supply</span>
+        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl" data-i18n="pd.h2">The right gear for the job</h2>
+        <p class="mt-4 text-slate-400" data-i18n="pd.sub">We spec from proven commercial brands and pass import pricing on to you. A sample of what we deploy:</p>
       </div>
 
-      <div class="mt-14 overflow-x-auto rounded-2xl border border-slate-800">
-        <table class="min-w-full text-left text-sm">
-          <thead>
-            <tr class="border-b border-slate-800 bg-slate-900/60">
-              <th class="px-5 py-4 font-semibold text-slate-400">Capability</th>
-              <th class="px-5 py-4 font-display font-bold text-slate-300">
-                <span class="flex items-center gap-2"><i data-lucide="cable" class="h-4 w-4 text-slate-500"></i> Legacy HDMI Matrix + Extenders</span>
-              </th>
-              <th class="px-5 py-4 font-display font-bold text-brand-300">
-                <span class="flex items-center gap-2"><i data-lucide="grid-2x2" class="h-4 w-4 text-brand-400"></i> PulseMatrix Distributed AVoIP</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-800/70">
-            <tr class="hover:bg-slate-900/40">
-              <td class="px-5 py-4 font-medium text-slate-300">Scalability</td>
-              <td class="px-5 py-4 text-slate-400">Fixed to chassis ports (e.g. 8×8, 16×16); replace the whole unit to grow.</td>
-              <td class="px-5 py-4 text-slate-200">1:1 to 100+ endpoints — add a node and a switch port at a time.</td>
-            </tr>
-            <tr class="hover:bg-slate-900/40">
-              <td class="px-5 py-4 font-medium text-slate-300">Cabling</td>
-              <td class="px-5 py-4 text-slate-400">Every display home-runs back to the rack; separate power at each TV.</td>
-              <td class="px-5 py-4 text-slate-200">Single Cat6 to the nearest switch; power and video over PoE.</td>
-            </tr>
-            <tr class="hover:bg-slate-900/40">
-              <td class="px-5 py-4 font-medium text-slate-300">Point of failure</td>
-              <td class="px-5 py-4 text-slate-400">Central matrix chassis — if it fails, every screen goes dark.</td>
-              <td class="px-5 py-4 text-slate-200">Distributed, zero-server; a single node fault never takes down the floor.</td>
-            </tr>
-            <tr class="hover:bg-slate-900/40">
-              <td class="px-5 py-4 font-medium text-slate-300">Video walls</td>
-              <td class="px-5 py-4 text-slate-400">Needs a separate video-wall processor and dedicated wiring.</td>
-              <td class="px-5 py-4 text-slate-200">Native tiling and splitting across any group of decoder nodes.</td>
-            </tr>
-            <tr class="hover:bg-slate-900/40">
-              <td class="px-5 py-4 font-medium text-slate-300">Control</td>
-              <td class="px-5 py-4 text-slate-400">Proprietary remote or wall panel; limited live preview.</td>
-              <td class="px-5 py-4 text-slate-200">iOS / Android tablet, drag-and-drop with live video thumbnails.</td>
-            </tr>
-            <tr class="hover:bg-slate-900/40">
-              <td class="px-5 py-4 font-medium text-slate-300">Distance</td>
-              <td class="px-5 py-4 text-slate-400">Extender-limited; long runs need boosters or fibre.</td>
-              <td class="px-5 py-4 text-slate-200">Anywhere the network reaches — across floors, patios and buildings.</td>
-            </tr>
-            <tr class="hover:bg-slate-900/40">
-              <td class="px-5 py-4 font-medium text-slate-300">Expansion cost</td>
-              <td class="px-5 py-4 text-slate-400">Step-function: outgrow the chassis, buy a bigger one.</td>
-              <td class="px-5 py-4 text-slate-200">Linear: pay per node as the venue grows.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ LIVE SPORTS SHOWCASE ============ -->
-  <section class="relative overflow-hidden border-y border-slate-800/70 bg-slate-900/30 py-24">
-    <div class="pointer-events-none absolute -right-20 top-10 h-72 w-72 rounded-full bg-brand-500/10 blur-[110px]"></div>
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid items-center gap-14 lg:grid-cols-2">
-        <div>
-          <span class="text-xs font-semibold uppercase tracking-widest text-brand-400">Live Sports &amp; Venue Showcase</span>
-          <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">Every screen. Every game. Perfectly in sync.</h2>
-          <p class="mt-4 text-slate-400">When the room erupts, it should erupt together. PulseMatrix keeps NHL, NBA, NFL, UFC and soccer feeds locked frame-for-frame across dozens of TVs — no straggler screen showing the replay a beat late.</p>
-
-          <ul class="mt-8 space-y-4">
-            <li class="flex items-start gap-3">
-              <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-md bg-brand-400/15 ring-1 ring-brand-400/25"><i data-lucide="check" class="h-3.5 w-3.5 text-brand-300"></i></span>
-              <p class="text-sm text-slate-300"><span class="font-semibold text-white">Game-day floor changes in seconds.</span> Push the marquee game to the whole bar, then peel off a corner for a second matchup — from the tablet, mid-shift.</p>
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-md bg-brand-400/15 ring-1 ring-brand-400/25"><i data-lucide="check" class="h-3.5 w-3.5 text-brand-300"></i></span>
-              <p class="text-sm text-slate-300"><span class="font-semibold text-white">Fluid 1080p@60Hz motion.</span> Fast puck and ball tracking stays crisp — no smearing, no judder on the plays that matter.</p>
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-md bg-brand-400/15 ring-1 ring-brand-400/25"><i data-lucide="check" class="h-3.5 w-3.5 text-brand-300"></i></span>
-              <p class="text-sm text-slate-300"><span class="font-semibold text-white">Zone the venue.</span> Main floor, patio, private rooms and the bar back can each run their own source, or all mirror the big game.</p>
-            </li>
+      <div class="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Displays -->
+        <div class="flex flex-col rounded-2xl border border-slate-800 bg-slate-900/50 p-6">
+          <div class="flex items-center gap-3"><span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="20" height="14" x="2" y="3" rx="2" /> <line x1="8" x2="16" y1="21" y2="21" /> <line x1="12" x2="12" y1="17" y2="21" /> </svg></span><h3 class="font-display text-lg font-bold text-white" data-i18n="cat.displays.t">Commercial Displays</h3></div>
+          <p class="mt-3 text-sm text-slate-400" data-i18n="cat.displays.d">Commercial-grade panels rated for all-day operation — 43" to 98", 4K, high brightness.</p>
+          <ul class="mt-4 space-y-2 text-sm text-slate-300">
+            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> Samsung QMC Series (QM65C / QM75C)</li>
+            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> LG UL3 / UL3Q signage</li>
+            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> Sony Bravia commercial</li>
           </ul>
-
-          <div class="mt-8 flex flex-wrap gap-3">
-            <span class="rounded-full border border-slate-700 bg-slate-950/60 px-3.5 py-1.5 text-xs font-semibold text-slate-300">Sports Bars</span>
-            <span class="rounded-full border border-slate-700 bg-slate-950/60 px-3.5 py-1.5 text-xs font-semibold text-slate-300">Entertainment Facilities</span>
-            <span class="rounded-full border border-slate-700 bg-slate-950/60 px-3.5 py-1.5 text-xs font-semibold text-slate-300">Hospitality &amp; Hotels</span>
-            <span class="rounded-full border border-slate-700 bg-slate-950/60 px-3.5 py-1.5 text-xs font-semibold text-slate-300">Stadium Concourses</span>
+          <div class="mt-4 flex flex-wrap gap-1.5 text-[11px] text-slate-400">
+            <span class="rounded-full bg-slate-800/70 px-2 py-0.5">4K UHD</span><span class="rounded-full bg-slate-800/70 px-2 py-0.5" data-i18n="chip.rated">16/7–24/7 rated</span><span class="rounded-full bg-slate-800/70 px-2 py-0.5" data-i18n="chip.bezel">Slim bezel</span>
           </div>
+          <a href="#contact" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-300 hover:text-brand-200"><span data-i18n="req">Request a quote</span> <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></a>
         </div>
 
-        <!-- Video wall mock -->
-        <div class="relative">
-          <div class="rounded-2xl border border-slate-800 bg-slate-950 p-4 shadow-2xl shadow-black/50">
-            <div class="mb-3 flex items-center justify-between">
-              <span class="text-xs font-semibold text-slate-300 flex items-center gap-2"><i data-lucide="radio" class="h-4 w-4 text-red-400"></i> Main Floor · 12 displays</span>
-              <span class="text-[10px] font-medium text-emerald-400 flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span> All synced</span>
-            </div>
-            <div class="grid grid-cols-4 gap-2" id="showcase-grid"></div>
-            <div class="mt-3 grid grid-cols-3 gap-2 text-center">
-              <div class="rounded-lg bg-slate-900/70 py-2 ring-1 ring-white/5"><p class="font-display text-sm font-bold text-white">3</p><p class="text-[9px] uppercase tracking-wide text-slate-500">Live games</p></div>
-              <div class="rounded-lg bg-slate-900/70 py-2 ring-1 ring-white/5"><p class="font-display text-sm font-bold text-brand-300">0</p><p class="text-[9px] uppercase tracking-wide text-slate-500">Dropped frames</p></div>
-              <div class="rounded-lg bg-slate-900/70 py-2 ring-1 ring-white/5"><p class="font-display text-sm font-bold text-white">60<span class="text-[10px]">Hz</span></p><p class="text-[9px] uppercase tracking-wide text-slate-500">Refresh</p></div>
-            </div>
+        <!-- Video distribution -->
+        <div class="flex flex-col rounded-2xl border border-brand-400/25 bg-slate-900/50 p-6">
+          <div class="flex items-center gap-3"><span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M12 3v18" /> <path d="M3 12h18" /> <rect x="3" y="3" width="18" height="18" rx="2" /> </svg></span><h3 class="font-display text-lg font-bold text-white" data-i18n="cat.video.t">Video Distribution (AVoIP)</h3></div>
+          <p class="mt-3 text-sm text-slate-400" data-i18n="cat.video.d">Route any source to any screen over one Cat6 PoE cable — 1:1 up to 100+ displays, tablet controlled.</p>
+          <ul class="mt-4 space-y-2 text-sm text-slate-300">
+            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> <span data-i18n="cat.video.li1">PulseMatrix distributed ENC/DEC nodes</span></li>
+            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> WyreStorm NetworkHD (MultiView)</li>
+            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> ZeeVee ZyPer</li>
+          </ul>
+          <div class="mt-4 flex flex-wrap gap-1.5 text-[11px] text-slate-400">
+            <span class="rounded-full bg-slate-800/70 px-2 py-0.5">H.264/H.265</span><span class="rounded-full bg-slate-800/70 px-2 py-0.5" data-i18n="chip.feed">~30 Mbps/feed</span><span class="rounded-full bg-slate-800/70 px-2 py-0.5" data-i18n="chip.multigame">Multi-game-on-one-TV</span>
           </div>
+          <a href="#contact" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-300 hover:text-brand-200"><span data-i18n="req">Request a quote</span> <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></a>
+        </div>
+
+        <!-- Speakers -->
+        <div class="flex flex-col rounded-2xl border border-slate-800 bg-slate-900/50 p-6">
+          <div class="flex items-center gap-3"><span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="16" height="20" x="4" y="2" rx="2" /> <path d="M12 6h.01" /> <circle cx="12" cy="14" r="4" /> <path d="M12 14h.01" /> </svg></span><h3 class="font-display text-lg font-bold text-white" data-i18n="cat.speakers.t">Speakers &amp; Audio</h3></div>
+          <p class="mt-3 text-sm text-slate-400" data-i18n="cat.speakers.d">In-ceiling, surface and pendant speakers on 70/100V lines for even, multi-zone coverage.</p>
+          <ul class="mt-4 space-y-2 text-sm text-slate-300">
+            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> JBL Control 24CT (4", 70/100V)</li>
+            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> Bose DesignMax</li>
+            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> Yamaha VXC / VXS series</li>
+          </ul>
+          <div class="mt-4 flex flex-wrap gap-1.5 text-[11px] text-slate-400">
+            <span class="rounded-full bg-slate-800/70 px-2 py-0.5">70/100V</span><span class="rounded-full bg-slate-800/70 px-2 py-0.5" data-i18n="chip.inceiling">In-ceiling &amp; surface</span><span class="rounded-full bg-slate-800/70 px-2 py-0.5" data-i18n="chip.multizone">Multi-zone</span>
+          </div>
+          <a href="#contact" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-300 hover:text-brand-200"><span data-i18n="req">Request a quote</span> <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></a>
+        </div>
+
+        <!-- Amps & DSP -->
+        <div class="flex flex-col rounded-2xl border border-slate-800 bg-slate-900/50 p-6">
+          <div class="flex items-center gap-3"><span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M20 7h-9" /> <path d="M14 17H5" /> <circle cx="17" cy="17" r="3" /> <circle cx="7" cy="7" r="3" /> </svg></span><h3 class="font-display text-lg font-bold text-white" data-i18n="cat.amps.t">Amplifiers &amp; DSP</h3></div>
+          <p class="mt-3 text-sm text-slate-400" data-i18n="cat.amps.d">Mixer-amps and processors that split the venue into zones, with source EQ and priority paging.</p>
+          <ul class="mt-4 space-y-2 text-sm text-slate-300">
+            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> Yamaha MA2030a / MA2120</li>
+            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> QSC Q-SYS platform</li>
+            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> Biamp Tesira</li>
+          </ul>
+          <div class="mt-4 flex flex-wrap gap-1.5 text-[11px] text-slate-400">
+            <span class="rounded-full bg-slate-800/70 px-2 py-0.5" data-i18n="chip.dualzone">Dual/multi-zone</span><span class="rounded-full bg-slate-800/70 px-2 py-0.5" data-i18n="chip.srceq">Source EQ</span><span class="rounded-full bg-slate-800/70 px-2 py-0.5" data-i18n="chip.pagingpri">Paging priority</span>
+          </div>
+          <a href="#contact" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-300 hover:text-brand-200"><span data-i18n="req">Request a quote</span> <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></a>
+        </div>
+
+        <!-- Cameras -->
+        <div class="flex flex-col rounded-2xl border border-slate-800 bg-slate-900/50 p-6">
+          <div class="flex items-center gap-3"><span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5" /> <rect x="2" y="6" width="14" height="12" rx="2" /> </svg></span><h3 class="font-display text-lg font-bold text-white" data-i18n="cat.cams.t">Cameras &amp; Conferencing</h3></div>
+          <p class="mt-3 text-sm text-slate-400" data-i18n="cat.cams.d">PTZ cameras with optical zoom and auto-tracking for streaming, events and meeting rooms.</p>
+          <ul class="mt-4 space-y-2 text-sm text-slate-300">
+            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> Logitech Rally (4K, 15× zoom)</li>
+            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> PTZOptics Move 4K (auto-track)</li>
+            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> AVer / Sony BRC</li>
+          </ul>
+          <div class="mt-4 flex flex-wrap gap-1.5 text-[11px] text-slate-400">
+            <span class="rounded-full bg-slate-800/70 px-2 py-0.5">4K PTZ</span><span class="rounded-full bg-slate-800/70 px-2 py-0.5" data-i18n="chip.autotrack">Auto-tracking</span><span class="rounded-full bg-slate-800/70 px-2 py-0.5">USB/HDMI/IP</span>
+          </div>
+          <a href="#contact" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-300 hover:text-brand-200"><span data-i18n="req">Request a quote</span> <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></a>
+        </div>
+
+        <!-- Control & Networking -->
+        <div class="flex flex-col rounded-2xl border border-slate-800 bg-slate-900/50 p-6">
+          <div class="flex items-center gap-3"><span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect x="16" y="16" width="6" height="6" rx="1" /> <rect x="2" y="16" width="6" height="6" rx="1" /> <rect x="9" y="2" width="6" height="6" rx="1" /> <path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3" /> <path d="M12 12V8" /> </svg></span><h3 class="font-display text-lg font-bold text-white" data-i18n="cat.net.t">Control &amp; Networking</h3></div>
+          <p class="mt-3 text-sm text-slate-400" data-i18n="cat.net.d">The managed PoE backbone and control that tie every system together — one tablet to run it.</p>
+          <div class="mt-4 overflow-hidden rounded-lg ring-1 ring-white/5">
+            <img src="assets/poe-switch.png" alt="24-port managed Gigabit PoE switch" class="block w-full bg-slate-950" loading="lazy" width="1700" height="413" />
+          </div>
+          <ul class="mt-4 space-y-2 text-sm text-slate-300">
+            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> <span data-i18n="cat.net.li1">Managed L2+ PoE switches (24+4, 56 Gbps, ≤300W)</span></li>
+            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> <span data-i18n="cat.net.li2">Tablet control app · QSC Q-SYS</span></li>
+          </ul>
+          <a href="#contact" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-300 hover:text-brand-200"><span data-i18n="req">Request a quote</span> <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></a>
+        </div>
+      </div>
+
+      <!-- Brands strip -->
+      <div class="mt-14">
+        <p class="text-center text-xs font-semibold uppercase tracking-widest text-slate-500" data-i18n="brands.title">Brands we design with</p>
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-semibold tracking-wide text-slate-400">
+          <span>Samsung</span><span class="text-slate-700">·</span>
+          <span>LG</span><span class="text-slate-700">·</span>
+          <span>Sony</span><span class="text-slate-700">·</span>
+          <span>Yamaha</span><span class="text-slate-700">·</span>
+          <span>JBL</span><span class="text-slate-700">·</span>
+          <span>Bose Pro</span><span class="text-slate-700">·</span>
+          <span>QSC</span><span class="text-slate-700">·</span>
+          <span>Biamp</span><span class="text-slate-700">·</span>
+          <span>WyreStorm</span><span class="text-slate-700">·</span>
+          <span>Logitech</span><span class="text-slate-700">·</span>
+          <span>PTZOptics</span><span class="text-slate-700">·</span>
+          <span>Shure</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ SPEC CALCULATOR ============ -->
-  <section id="specs" class="relative py-24">
+  <!-- ============ HOW MULTI-SCREEN WORKS ============ -->
+  <section class="relative border-y border-slate-800/70 bg-slate-900/30 py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-2xl text-center">
-        <span class="text-xs font-semibold uppercase tracking-widest text-brand-400">System Specs</span>
-        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">Size your system in seconds</h2>
-        <p class="mt-4 text-slate-400">Set your source and display counts. We'll estimate the node count, switch ports and PoE budget your venue needs. Use it as a starting point — our team confirms the final design.</p>
+        <span class="text-xs font-semibold uppercase tracking-widest text-brand-400" data-i18n="hm.eyebrow">Under The Hood</span>
+        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl" data-i18n="hm.h2">How multi-screen distribution works</h2>
+        <p class="mt-4 text-slate-400" data-i18n="hm.sub">Sources in, screens out, one managed network between — the same backbone carries video, audio and control.</p>
+      </div>
+      <div class="mt-10 grid gap-4 sm:grid-cols-3">
+        <div class="rounded-2xl border border-slate-800 bg-slate-950/60 p-6"><h3 class="font-display text-base font-bold text-white flex items-center gap-2"><svg class="h-5 w-5 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M6.3 20.3a2.4 2.4 0 0 0 3.4 0L12 18l-6-6-2.3 2.3a2.4 2.4 0 0 0 0 3.4Z" /> <path d="m2 22 3-3" /> <path d="M7.5 13.5 10 11" /> <path d="M10.5 16.5 13 14" /> <path d="m18 3-4 4h6l-4 4" /> </svg> <span data-i18n="hm.1.t">1 · Encode</span></h3><p class="mt-2 text-sm text-slate-400" data-i18n="hm.1.d">A node at each source compresses the feed to ~30 Mbps.</p></div>
+        <div class="rounded-2xl border border-slate-800 bg-slate-950/60 p-6"><h3 class="font-display text-base font-bold text-white flex items-center gap-2"><svg class="h-5 w-5 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect x="16" y="16" width="6" height="6" rx="1" /> <rect x="2" y="16" width="6" height="6" rx="1" /> <rect x="9" y="2" width="6" height="6" rx="1" /> <path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3" /> <path d="M12 12V8" /> </svg> <span data-i18n="hm.2.t">2 · Transport</span></h3><p class="mt-2 text-sm text-slate-400" data-i18n="hm.2.d">The PoE switch carries every stream and powers each node over Cat6.</p></div>
+        <div class="rounded-2xl border border-slate-800 bg-slate-950/60 p-6"><h3 class="font-display text-base font-bold text-white flex items-center gap-2"><svg class="h-5 w-5 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M10 7.75a.75.75 0 0 1 1.142-.638l3.664 2.249a.75.75 0 0 1 0 1.278l-3.664 2.25a.75.75 0 0 1-1.142-.64z" /> <path d="M12 17v4" /> <path d="M8 21h8" /> <rect x="2" y="3" width="20" height="14" rx="2" /> </svg> <span data-i18n="hm.3.t">3 · Decode</span></h3><p class="mt-2 text-sm text-slate-400" data-i18n="hm.3.d">A node at each screen shows whatever the tablet assigns — instantly.</p></div>
+      </div>
+      <div class="mt-8 rounded-2xl border border-slate-800 bg-slate-100 p-4 shadow-xl sm:p-6">
+        <img src="assets/system-diagram.png" alt="System connection diagram: input and output nodes driving displays, speakers, lighting and control gear over a Gigabit PoE switch" class="mx-auto block w-full max-w-4xl" loading="lazy" width="1700" height="1366" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ESTIMATOR ============ -->
+  <section id="specs" class="relative py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <span class="text-xs font-semibold uppercase tracking-widest text-brand-400" data-i18n="es.eyebrow">Quick Estimator</span>
+        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl" data-i18n="es.h2">Ballpark your video system</h2>
+        <p class="mt-4 text-slate-400" data-i18n="es.sub">A rough starting point for a multi-TV distribution system — we confirm the full design on-site.</p>
       </div>
 
-      <div class="mt-14 grid gap-8 lg:grid-cols-5">
-        <!-- Controls -->
+      <div class="mt-12 grid gap-8 lg:grid-cols-5">
         <div class="lg:col-span-2 rounded-2xl border border-slate-800 bg-slate-900/50 p-7">
-          <div class="flex items-center gap-2 text-brand-300">
-            <i data-lucide="calculator" class="h-5 w-5"></i>
-            <h3 class="font-display text-lg font-bold text-white">Estimator</h3>
-          </div>
-
-          <!-- Inputs slider -->
+          <div class="flex items-center gap-2 text-brand-300"><svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="16" height="20" x="4" y="2" rx="2" /> <line x1="8" x2="16" y1="6" y2="6" /> <line x1="16" x2="16" y1="14" y2="18" /> <path d="M16 10h.01" /> <path d="M12 10h.01" /> <path d="M8 10h.01" /> <path d="M12 14h.01" /> <path d="M8 14h.01" /> <path d="M12 18h.01" /> <path d="M8 18h.01" /> </svg><h3 class="font-display text-lg font-bold text-white" data-i18n="es.title">Estimator</h3></div>
           <div class="mt-7">
-            <div class="flex items-center justify-between">
-              <label for="inputs" class="text-sm font-medium text-slate-300 flex items-center gap-2"><i data-lucide="plug-zap" class="h-4 w-4 text-slate-500"></i> Video Inputs (sources)</label>
-              <span id="inputsVal" class="font-display text-lg font-bold text-brand-300">6</span>
-            </div>
-            <input id="inputs" type="range" min="1" max="16" value="6" step="1"
-              class="mt-3 w-full cursor-pointer accent-brand-400" />
+            <div class="flex items-center justify-between"><label for="inputs" class="text-sm font-medium text-slate-300 flex items-center gap-2"><svg class="h-4 w-4 text-slate-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M6.3 20.3a2.4 2.4 0 0 0 3.4 0L12 18l-6-6-2.3 2.3a2.4 2.4 0 0 0 0 3.4Z" /> <path d="m2 22 3-3" /> <path d="M7.5 13.5 10 11" /> <path d="M10.5 16.5 13 14" /> <path d="m18 3-4 4h6l-4 4" /> </svg> <span data-i18n="es.sources">Video sources</span></label><span id="inputsVal" class="font-display text-lg font-bold text-brand-300">6</span></div>
+            <input id="inputs" type="range" min="1" max="16" value="6" step="1" class="mt-3 w-full cursor-pointer accent-brand-400" />
             <div class="mt-1 flex justify-between text-[10px] text-slate-600"><span>1</span><span>16</span></div>
           </div>
-
-          <!-- Displays slider -->
           <div class="mt-7">
-            <div class="flex items-center justify-between">
-              <label for="displays" class="text-sm font-medium text-slate-300 flex items-center gap-2"><i data-lucide="tv" class="h-4 w-4 text-slate-500"></i> Displays (screens)</label>
-              <span id="displaysVal" class="font-display text-lg font-bold text-brand-300">24</span>
-            </div>
-            <input id="displays" type="range" min="2" max="100" value="24" step="1"
-              class="mt-3 w-full cursor-pointer accent-brand-400" />
+            <div class="flex items-center justify-between"><label for="displays" class="text-sm font-medium text-slate-300 flex items-center gap-2"><svg class="h-4 w-4 text-slate-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="20" height="15" x="2" y="7" rx="2" ry="2" /> <polyline points="17 2 12 7 7 2" /> </svg> <span data-i18n="es.displays">Displays</span></label><span id="displaysVal" class="font-display text-lg font-bold text-brand-300">24</span></div>
+            <input id="displays" type="range" min="2" max="100" value="24" step="1" class="mt-3 w-full cursor-pointer accent-brand-400" />
             <div class="mt-1 flex justify-between text-[10px] text-slate-600"><span>2</span><span>100</span></div>
           </div>
-
-          <div class="mt-7 rounded-xl border border-slate-800 bg-slate-950/60 p-4 text-xs leading-relaxed text-slate-400">
-            <i data-lucide="info" class="inline h-3.5 w-3.5 -mt-0.5 text-brand-400"></i>
-            Estimate assumes one ENC node per source, one DEC node per display, ~30 Mbps H.265 per feed and PoE+ headroom per node.
-          </div>
-
-          <a href="#contact" class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand-400 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-brand-300 transition-colors">
-            <i data-lucide="file-text" class="h-4 w-4"></i> Send this to our team
-          </a>
+          <div class="mt-7 rounded-xl border border-slate-800 bg-slate-950/60 p-4 text-xs leading-relaxed text-slate-400"><svg class="inline h-3.5 w-3.5 -mt-0.5 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="10" /> <path d="M12 16v-4" /> <path d="M12 8h.01" /> </svg> <span data-i18n="es.note">One node per source, one per display, ~30 Mbps per feed, PoE+ headroom per node.</span></div>
+          <a href="#contact" class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand-400 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-brand-300 transition-colors"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /> <path d="M14 2v4a2 2 0 0 0 2 2h4" /> <path d="M10 9H8" /> <path d="M16 13H8" /> <path d="M16 17H8" /> </svg> <span data-i18n="es.send">Send this to our team</span></a>
         </div>
 
-        <!-- Results -->
         <div class="lg:col-span-3 rounded-2xl border border-brand-400/20 bg-gradient-to-br from-slate-900/70 to-slate-900/30 p-7">
-          <h3 class="font-display text-lg font-bold text-white">Recommended Configuration</h3>
+          <h3 class="font-display text-lg font-bold text-white" data-i18n="es.recTitle">Recommended configuration</h3>
           <p class="mt-1 text-sm text-slate-400" id="configSummary">A 6-source, 24-display matrix.</p>
-
           <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3">
-            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4">
-              <div class="flex items-center gap-2 text-slate-500"><i data-lucide="upload" class="h-4 w-4"></i><span class="text-[11px] uppercase tracking-wide">Encoder nodes</span></div>
-              <p class="mt-2 font-display text-3xl font-bold text-white" id="rEnc">6</p>
-            </div>
-            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4">
-              <div class="flex items-center gap-2 text-slate-500"><i data-lucide="download" class="h-4 w-4"></i><span class="text-[11px] uppercase tracking-wide">Decoder nodes</span></div>
-              <p class="mt-2 font-display text-3xl font-bold text-white" id="rDec">24</p>
-            </div>
-            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4">
-              <div class="flex items-center gap-2 text-slate-500"><i data-lucide="boxes" class="h-4 w-4"></i><span class="text-[11px] uppercase tracking-wide">Total nodes</span></div>
-              <p class="mt-2 font-display text-3xl font-bold text-brand-300" id="rNodes">30</p>
-            </div>
-            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4">
-              <div class="flex items-center gap-2 text-slate-500"><i data-lucide="ethernet-port" class="h-4 w-4"></i><span class="text-[11px] uppercase tracking-wide">Switch ports (PoE)</span></div>
-              <p class="mt-2 font-display text-3xl font-bold text-white" id="rPorts">32</p>
-              <p class="text-[11px] text-slate-500" id="rSwitches">1 × managed switch</p>
-            </div>
-            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4">
-              <div class="flex items-center gap-2 text-slate-500"><i data-lucide="zap" class="h-4 w-4"></i><span class="text-[11px] uppercase tracking-wide">PoE budget</span></div>
-              <p class="mt-2 font-display text-3xl font-bold text-white" id="rPoe">240<span class="text-base font-semibold text-slate-400">W</span></p>
-            </div>
-            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4">
-              <div class="flex items-center gap-2 text-slate-500"><i data-lucide="activity" class="h-4 w-4"></i><span class="text-[11px] uppercase tracking-wide">Peak backbone</span></div>
-              <p class="mt-2 font-display text-3xl font-bold text-white" id="rBw">180<span class="text-base font-semibold text-slate-400"> Mbps</span></p>
-            </div>
+            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4"><div class="flex items-center gap-2 text-slate-500"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /> <polyline points="17 8 12 3 7 8" /> <line x1="12" x2="12" y1="3" y2="15" /> </svg><span class="text-[11px] uppercase tracking-wide" data-i18n="lbl.enc">Encoder nodes</span></div><p class="mt-2 font-display text-3xl font-bold text-white" id="rEnc">6</p></div>
+            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4"><div class="flex items-center gap-2 text-slate-500"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /> <polyline points="7 10 12 15 17 10" /> <line x1="12" x2="12" y1="15" y2="3" /> </svg><span class="text-[11px] uppercase tracking-wide" data-i18n="lbl.dec">Decoder nodes</span></div><p class="mt-2 font-display text-3xl font-bold text-white" id="rDec">24</p></div>
+            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4"><div class="flex items-center gap-2 text-slate-500"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z" /> <path d="m7 16.5-4.74-2.85" /> <path d="m7 16.5 5-3" /> <path d="M7 16.5v5.17" /> <path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z" /> <path d="m17 16.5-5-3" /> <path d="m17 16.5 4.74-2.85" /> <path d="M17 16.5v5.17" /> <path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z" /> <path d="M12 8 7.26 5.15" /> <path d="m12 8 4.74-2.85" /> <path d="M12 13.5V8" /> </svg><span class="text-[11px] uppercase tracking-wide" data-i18n="lbl.nodes">Total nodes</span></div><p class="mt-2 font-display text-3xl font-bold text-brand-300" id="rNodes">30</p></div>
+            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4"><div class="flex items-center gap-2 text-slate-500"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m15 20 3-3h2a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h2l3 3z" /> <path d="M6 8v1" /> <path d="M10 8v1" /> <path d="M14 8v1" /> <path d="M18 8v1" /> </svg><span class="text-[11px] uppercase tracking-wide" data-i18n="lbl.ports">Switch ports</span></div><p class="mt-2 font-display text-3xl font-bold text-white" id="rPorts">32</p><p class="text-[11px] text-slate-500" id="rSwitches">1 × managed switch</p></div>
+            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4"><div class="flex items-center gap-2 text-slate-500"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" /> </svg><span class="text-[11px] uppercase tracking-wide" data-i18n="lbl.poe">PoE budget</span></div><p class="mt-2 font-display text-3xl font-bold text-white" id="rPoe">240<span class="text-base font-semibold text-slate-400">W</span></p></div>
+            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4"><div class="flex items-center gap-2 text-slate-500"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2" /> </svg><span class="text-[11px] uppercase tracking-wide" data-i18n="lbl.bw">Peak backbone</span></div><p class="mt-2 font-display text-3xl font-bold text-white" id="rBw">180<span class="text-base font-semibold text-slate-400"> Mbps</span></p></div>
           </div>
-
-          <div id="uplinkNote" class="mt-5 hidden items-start gap-2 rounded-xl border border-amber-400/25 bg-amber-400/5 p-4 text-xs text-amber-200/90">
-            <i data-lucide="triangle-alert" class="h-4 w-4 flex-none"></i>
-            <span>At this scale we recommend a switch with a <span class="font-semibold">10 Gigabit uplink / backbone</span> and IGMP snooping enabled for clean multicast.</span>
-          </div>
-          <div class="mt-5 flex items-start gap-2 rounded-xl border border-slate-800 bg-slate-950/40 p-4 text-xs text-slate-400">
-            <i data-lucide="badge-check" class="h-4 w-4 flex-none text-brand-400"></i>
-            <span>Ballpark planning figures for a managed Gigabit PoE deployment. A PulseMatrix integrator validates switch model, VLAN and PoE class against your exact venue before quoting.</span>
-          </div>
+          <div id="uplinkNote" class="mt-5 hidden items-start gap-2 rounded-xl border border-amber-400/25 bg-amber-400/5 p-4 text-xs text-amber-200/90"><svg class="h-4 w-4 flex-none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" /> <path d="M12 9v4" /> <path d="M12 17h.01" /> </svg><span data-i18n="es.uplink">At this scale we recommend a 10 Gigabit uplink / backbone with IGMP snooping for clean multicast.</span></div>
+          <div class="mt-5 flex items-start gap-2 rounded-xl border border-slate-800 bg-slate-950/40 p-4 text-xs text-slate-400"><svg class="h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" /> <path d="m9 12 2 2 4-4" /> </svg><span data-i18n="es.disclaimer">Ballpark planning figures. We validate every system on-site before quoting.</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ CONTACT / RFP FORM ============ -->
-  <section id="contact" class="relative overflow-hidden border-t border-slate-800/70 py-24">
+  <!-- ============ CONTACT / RFP ============ -->
+  <section id="contact" class="relative overflow-hidden border-t border-slate-800/70 py-20">
     <div class="pointer-events-none absolute -left-20 -bottom-10 h-72 w-72 rounded-full bg-teal-500/10 blur-[110px]"></div>
     <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <div class="grid gap-12 lg:grid-cols-5">
         <div class="lg:col-span-2">
-          <span class="text-xs font-semibold uppercase tracking-widest text-brand-400">Request For Proposal</span>
-          <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">Let's design your matrix</h2>
-          <p class="mt-4 text-slate-400">Tell us about your venue and we'll come back with a tailored system design and quote. No obligation.</p>
-
+          <span class="text-xs font-semibold uppercase tracking-widest text-brand-400" data-i18n="ct.eyebrow">Get Started</span>
+          <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl" data-i18n="ct.h2">Tell us about your space</h2>
+          <p class="mt-4 text-slate-400" data-i18n="ct.sub">Send us the basics and we'll come back with a tailored design and quote. No obligation.</p>
           <div class="mt-8 space-y-4 text-sm">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-slate-900 ring-1 ring-slate-800"><i data-lucide="mail" class="h-4 w-4 text-brand-300"></i></span>
-              <a href="mailto:sales@pulsematrix.ca" class="text-slate-300 hover:text-white">sales@pulsematrix.ca</a>
-            </div>
-            <div class="flex items-center gap-3">
-              <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-slate-900 ring-1 ring-slate-800"><i data-lucide="map-pin" class="h-4 w-4 text-brand-300"></i></span>
-              <span class="text-slate-300">Engineered &amp; integrated in Canada</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-slate-900 ring-1 ring-slate-800"><i data-lucide="clock" class="h-4 w-4 text-brand-300"></i></span>
-              <span class="text-slate-300">Response within 1 business day</span>
-            </div>
+            <div class="flex items-center gap-3"><span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-slate-900 ring-1 ring-slate-800"><svg class="h-4 w-4 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="20" height="16" x="2" y="4" rx="2" /> <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /> </svg></span><a href="mailto:sales@pulsematrix.ca" class="text-slate-300 hover:text-white">sales@pulsematrix.ca</a></div>
+            <div class="flex items-center gap-3"><span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-slate-900 ring-1 ring-slate-800"><svg class="h-4 w-4 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /> <circle cx="12" cy="10" r="3" /> </svg></span><span class="text-slate-300" data-i18n="ct.loc">Winnipeg, Manitoba · service Canada-wide</span></div>
+            <div class="flex items-center gap-3"><span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-slate-900 ring-1 ring-slate-800"><svg class="h-4 w-4 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="10" /> <polyline points="12 6 12 12 16 14" /> </svg></span><span class="text-slate-300" data-i18n="ct.responds">Response within 1 business day</span></div>
           </div>
         </div>
 
-        <!-- Form -->
         <div class="lg:col-span-3">
           <form id="rfpForm" class="rounded-2xl border border-slate-800 bg-slate-900/50 p-6 sm:p-8">
             <div class="grid gap-5 sm:grid-cols-2">
-              <div class="sm:col-span-1">
-                <label for="name" class="mb-1.5 block text-sm font-medium text-slate-300">Name</label>
-                <input id="name" name="name" type="text" required placeholder="Jordan Smith"
-                  class="w-full rounded-lg border border-slate-700 bg-slate-950/70 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20" />
+              <div><label for="name" class="mb-1.5 block text-sm font-medium text-slate-300" data-i18n="f.name">Name</label><input id="name" type="text" required placeholder="Jordan Smith" data-i18n-ph="ph.name" class="w-full rounded-lg border border-slate-700 bg-slate-950/70 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20" /></div>
+              <div><label for="venue" class="mb-1.5 block text-sm font-medium text-slate-300" data-i18n="f.venue">Venue name</label><input id="venue" type="text" required placeholder="The Overtime Sports Bar" data-i18n-ph="ph.venue" class="w-full rounded-lg border border-slate-700 bg-slate-950/70 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20" /></div>
+              <div><label for="city" class="mb-1.5 block text-sm font-medium text-slate-300" data-i18n="f.city">City / Province</label><input id="city" type="text" required placeholder="Winnipeg, MB" class="w-full rounded-lg border border-slate-700 bg-slate-950/70 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20" /></div>
+              <div><label for="email" class="mb-1.5 block text-sm font-medium text-slate-300" data-i18n="f.email">Email</label><input id="email" type="email" required placeholder="you@venue.com" data-i18n-ph="ph.email" class="w-full rounded-lg border border-slate-700 bg-slate-950/70 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20" /></div>
+              <div><label for="displayCount" class="mb-1.5 block text-sm font-medium text-slate-300" data-i18n="f.displays">Approx. displays</label><input id="displayCount" type="number" min="1" max="500" placeholder="24" class="w-full rounded-lg border border-slate-700 bg-slate-950/70 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20" /></div>
+              <div><label for="interest" class="mb-1.5 block text-sm font-medium text-slate-300" data-i18n="f.interest">Interested in</label>
+                <select id="interest" class="w-full rounded-lg border border-slate-700 bg-slate-950/70 px-3.5 py-2.5 text-sm text-white outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20">
+                  <option data-i18n="opt.full">Full AV system</option><option data-i18n="opt.video">Video distribution / TVs</option><option data-i18n="opt.audio">Audio &amp; speakers</option><option data-i18n="opt.cams">Cameras / surveillance</option><option data-i18n="opt.conf">Conferencing</option><option data-i18n="opt.unsure">Not sure — need advice</option>
+                </select>
               </div>
-              <div class="sm:col-span-1">
-                <label for="venue" class="mb-1.5 block text-sm font-medium text-slate-300">Venue name</label>
-                <input id="venue" name="venue" type="text" required placeholder="The Overtime Sports Bar"
-                  class="w-full rounded-lg border border-slate-700 bg-slate-950/70 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20" />
-              </div>
-              <div class="sm:col-span-1">
-                <label for="city" class="mb-1.5 block text-sm font-medium text-slate-300">City / Province</label>
-                <input id="city" name="city" type="text" required placeholder="Winnipeg, MB"
-                  class="w-full rounded-lg border border-slate-700 bg-slate-950/70 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20" />
-              </div>
-              <div class="sm:col-span-1">
-                <label for="email" class="mb-1.5 block text-sm font-medium text-slate-300">Email</label>
-                <input id="email" name="email" type="email" required placeholder="you@venue.com"
-                  class="w-full rounded-lg border border-slate-700 bg-slate-950/70 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20" />
-              </div>
-              <div class="sm:col-span-1">
-                <label for="displayCount" class="mb-1.5 block text-sm font-medium text-slate-300">Approx. display count</label>
-                <input id="displayCount" name="displayCount" type="number" min="1" max="500" placeholder="24"
-                  class="w-full rounded-lg border border-slate-700 bg-slate-950/70 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20" />
-              </div>
-              <div class="sm:col-span-1">
-                <label for="sourceCount" class="mb-1.5 block text-sm font-medium text-slate-300">Approx. source count</label>
-                <input id="sourceCount" name="sourceCount" type="number" min="1" max="100" placeholder="6"
-                  class="w-full rounded-lg border border-slate-700 bg-slate-950/70 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20" />
-              </div>
-              <div class="sm:col-span-2">
-                <label for="message" class="mb-1.5 block text-sm font-medium text-slate-300">Project details</label>
-                <textarea id="message" name="message" rows="4" placeholder="Number of zones, existing cabling, timeline, anything else we should know…"
-                  class="w-full rounded-lg border border-slate-700 bg-slate-950/70 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20"></textarea>
-              </div>
+              <div class="sm:col-span-2"><label for="message" class="mb-1.5 block text-sm font-medium text-slate-300" data-i18n="f.details">Project details</label><textarea id="message" rows="4" placeholder="Size of the space, number of rooms/zones, timeline, what you want it to do…" data-i18n-ph="ph.details" class="w-full rounded-lg border border-slate-700 bg-slate-950/70 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20"></textarea></div>
             </div>
-
-            <button type="submit"
-              class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand-400 px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-brand-500/25 hover:bg-brand-300 transition-colors sm:w-auto">
-              <i data-lucide="send" class="h-4 w-4"></i> Submit RFP
-            </button>
-
-            <!-- confirmation -->
-            <div id="formSuccess" class="mt-5 hidden items-start gap-3 rounded-xl border border-emerald-400/30 bg-emerald-400/10 p-4 text-sm text-emerald-200">
-              <i data-lucide="check-circle-2" class="h-5 w-5 flex-none"></i>
-              <div>
-                <p class="font-semibold">Thanks — your RFP is ready to send.</p>
-                <p class="mt-1 text-emerald-200/80">Your email app should have opened with the details filled in. If it didn't, email us directly at <a href="mailto:sales@pulsematrix.ca" class="underline">sales@pulsematrix.ca</a>.</p>
-              </div>
-            </div>
+            <button type="submit" class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand-400 px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-brand-500/25 hover:bg-brand-300 transition-colors sm:w-auto"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" /> <path d="m21.854 2.147-10.94 10.939" /> </svg> <span data-i18n="f.submit">Request a Quote</span></button>
+            <div id="formSuccess" class="mt-5 hidden items-start gap-3 rounded-xl border border-emerald-400/30 bg-emerald-400/10 p-4 text-sm text-emerald-200"><svg class="h-5 w-5 flex-none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="10" /> <path d="m9 12 2 2 4-4" /> </svg><div><p class="font-semibold" data-i18n="ok.title">Thanks — your request is ready to send.</p><p class="mt-1 text-emerald-200/80" data-i18n="ok.body">Your email app should have opened with the details filled in. If not, email sales@pulsematrix.ca.</p></div></div>
           </form>
         </div>
       </div>
@@ -654,245 +487,249 @@
       <div class="grid gap-10 md:grid-cols-4">
         <div class="md:col-span-2">
           <a href="#top" class="flex items-center gap-2.5">
-            <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-brand-400 to-brand-600">
-              <i data-lucide="grid-2x2" class="h-5 w-5 text-slate-950"></i>
-            </span>
+            <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-brand-400 to-brand-600"><svg class="h-5 w-5 text-slate-950" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M12 3v18" /> <path d="M3 12h18" /> <rect x="3" y="3" width="18" height="18" rx="2" /> </svg></span>
             <span class="font-display text-lg font-bold tracking-tight text-white">Pulse<span class="text-brand-400">Matrix</span> <span class="align-top text-[10px] tracking-widest text-slate-400">AV</span></span>
           </a>
-          <p class="mt-4 max-w-sm text-sm leading-relaxed text-slate-400">Enterprise AVoIP video distribution for sports bars, entertainment facilities and commercial hospitality venues.</p>
-          <div class="mt-5 inline-flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900/60 px-3.5 py-1.5 text-xs font-semibold text-slate-300">
-            <i data-lucide="maple-leaf" class="h-4 w-4 text-red-400"></i> Engineered &amp; Integrated in Canada
-          </div>
+          <p class="mt-4 max-w-sm text-sm leading-relaxed text-slate-400" data-i18n="ft.desc">Commercial AV systems integrator — design, supply, installation and support for hotels, bars, restaurants and entertainment venues.</p>
+          <div class="mt-5 inline-flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900/60 px-3.5 py-1.5 text-xs font-semibold text-slate-300"><svg class="h-4 w-4 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /> <circle cx="12" cy="10" r="3" /> </svg> <span data-i18n="ft.canada">Integrated &amp; supported in Canada</span></div>
         </div>
-
         <div>
-          <h4 class="font-display text-sm font-bold uppercase tracking-wide text-slate-200">Explore</h4>
+          <h4 class="font-display text-sm font-bold uppercase tracking-wide text-slate-200" data-i18n="ft.explore">Explore</h4>
           <ul class="mt-4 space-y-2.5 text-sm">
-            <li><a href="#features" class="text-slate-400 hover:text-brand-300">Features</a></li>
-            <li><a href="#how" class="text-slate-400 hover:text-brand-300">How It Works</a></li>
-            <li><a href="#specs" class="text-slate-400 hover:text-brand-300">System Specs</a></li>
-            <li><a href="#contact" class="text-slate-400 hover:text-brand-300">Contact</a></li>
+            <li><a href="#solutions" class="text-slate-400 hover:text-brand-300" data-i18n="nav.solutions">Solutions</a></li>
+            <li><a href="#process" class="text-slate-400 hover:text-brand-300" data-i18n="nav.process">How We Work</a></li>
+            <li><a href="#products" class="text-slate-400 hover:text-brand-300" data-i18n="nav.products">Products</a></li>
+            <li><a href="#specs" class="text-slate-400 hover:text-brand-300" data-i18n="nav.estimator">Estimator</a></li>
           </ul>
         </div>
-
         <div>
-          <h4 class="font-display text-sm font-bold uppercase tracking-wide text-slate-200">Get in touch</h4>
+          <h4 class="font-display text-sm font-bold uppercase tracking-wide text-slate-200" data-i18n="ft.getintouch">Get in touch</h4>
           <ul class="mt-4 space-y-2.5 text-sm">
             <li><a href="mailto:sales@pulsematrix.ca" class="text-slate-400 hover:text-brand-300">sales@pulsematrix.ca</a></li>
-            <li><a href="#contact" class="text-slate-400 hover:text-brand-300">Request a Quote</a></li>
+            <li><a href="#contact" class="text-slate-400 hover:text-brand-300" data-i18n="cta.quote2">Request a Quote</a></li>
             <li><span class="text-slate-500">pulsematrix.ca</span></li>
           </ul>
         </div>
       </div>
-
       <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-800 pt-6 text-xs text-slate-500 sm:flex-row">
-        <p>© <span id="year">2026</span> PulseMatrix AV. All rights reserved.</p>
-        <p class="flex items-center gap-4">
-          <a href="#top" class="hover:text-slate-300">Back to top ↑</a>
-        </p>
+        <p>© <span id="year">2026</span> <span data-i18n="ft.rights">PulseMatrix AV. All rights reserved.</span></p>
+        <p><a href="#top" class="hover:text-slate-300" data-i18n="ft.backtop">Back to top ↑</a></p>
       </div>
     </div>
   </footer>
 
-  <!-- ============ SCRIPTS ============ -->
   <script>
-    // Safe icon render — never let a CDN hiccup abort the rest of the script
-    function renderIcons() {
-      try { if (window.lucide) lucide.createIcons(); } catch (e) { /* noop */ }
-    }
-    renderIcons();
-
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    /* ---------- Sticky header style on scroll ---------- */
-    const nav = document.querySelector('[data-nav]');
-    const onScroll = () => {
-      if (window.scrollY > 20) {
-        nav.classList.add('bg-slate-950/80', 'backdrop-blur', 'border-b', 'border-slate-800', 'shadow-lg', 'shadow-black/20');
-      } else {
-        nav.classList.remove('bg-slate-950/80', 'backdrop-blur', 'border-b', 'border-slate-800', 'shadow-lg', 'shadow-black/20');
+    /* ---------- i18n dictionary ---------- */
+    const I18N = {
+      en: {
+        'nav.solutions':'Solutions','nav.process':'How We Work','nav.products':'Products','nav.estimator':'Estimator','nav.contact':'Contact',
+        'cta.quote':'Request Quote','cta.quote2':'Request a Quote','cta.see':'See What We Do',
+        'hero.badge':'AV Systems Integrator · Canadian','hero.h1a':'Commercial AV systems ','hero.h1b':'that just work.',
+        'hero.sub':"Hotels, bars, restaurants and entertainment venues trust us to design, install and run their screens, sound and control — from a handful of TVs to 100+, all from one tablet.",
+        'stat.screens':'Screens / system','stat.zone':'Multi-Zone','stat.zoneSub':'Audio & video','stat.tablet':'1 Tablet','stat.tabletSub':'Runs it all',
+        'chip.tablet':'One-tablet control','chip.vac':'Video · Audio · Control',
+        'chain.design':'Design','chain.supply':'Supply','chain.install':'Install','chain.support':'Support',
+        'builtfor':'Built for','bf.bars':'Sports Bars & Pubs','bf.hotels':'Hotels & Resorts','bf.rest':'Restaurants','bf.gyms':'Gyms & Rec','bf.ent':'Entertainment Venues',
+        'sol.eyebrow':'What We Do','sol.h2':'One team for the whole venue','sol.sub':"You don't need to know the tech. Tell us the space and what you want it to do — we handle the rest.",
+        'sol.1.t':'Multi-TV Video & Sports','sol.1.d':'Any game on any screen, video walls, and multiple games on one TV — switch the whole floor from a tablet.',
+        'sol.2.t':'Zoned & Event Audio','sol.2.d':'Different music in the bar, patio and dining room — plus paging and event sound, all independently controlled.',
+        'sol.3.t':'Divisible Rooms','sol.3.d':'Split a 10,000 sq ft hall into separate rooms — audio and video follow the partitions, combine at the touch of a button.',
+        'sol.4.t':'Cameras & Surveillance','sol.4.d':'PoE IP cameras and recording on the same managed network as your AV — one system, one contractor.',
+        'sol.5.t':'Conferencing & Meeting Rooms','sol.5.d':'PTZ cameras, mics and displays for boardrooms and function spaces — join a call with one touch.',
+        'sol.6.t':'Control & Automation','sol.6.d':'Screens, sound, lighting scenes and sources — run the entire venue from a tablet your staff can actually use.',
+        'pr.eyebrow':'How We Work','pr.h2':'From walkthrough to working system',
+        'pr.1.t':'Site assessment','pr.1.d':'We walk the space, count screens and zones, and learn how you actually use the room.',
+        'pr.2.t':'System design','pr.2.d':'A clear plan and fixed quote — gear, layout, cabling and control, sized to your budget.',
+        'pr.3.t':'Professional install','pr.3.d':'Clean cabling, tidy rack, mounted displays — done right, with minimal disruption to business.',
+        'pr.4.t':'Train & support','pr.4.d':'We show your staff the tablet, then stay on call — remote help and service when you need it.',
+        'pd.eyebrow':'Products We Supply','pd.h2':'The right gear for the job','pd.sub':'We spec from proven commercial brands and pass import pricing on to you. A sample of what we deploy:',
+        'cat.displays.t':'Commercial Displays','cat.displays.d':'Commercial-grade panels rated for all-day operation — 43" to 98", 4K, high brightness.',
+        'chip.rated':'16/7–24/7 rated','chip.bezel':'Slim bezel','req':'Request a quote',
+        'cat.video.t':'Video Distribution (AVoIP)','cat.video.d':'Route any source to any screen over one Cat6 PoE cable — 1:1 up to 100+ displays, tablet controlled.',
+        'cat.video.li1':'PulseMatrix distributed ENC/DEC nodes','chip.feed':'~30 Mbps/feed','chip.multigame':'Multi-game-on-one-TV',
+        'cat.speakers.t':'Speakers & Audio','cat.speakers.d':'In-ceiling, surface and pendant speakers on 70/100V lines for even, multi-zone coverage.',
+        'chip.inceiling':'In-ceiling & surface','chip.multizone':'Multi-zone',
+        'cat.amps.t':'Amplifiers & DSP','cat.amps.d':'Mixer-amps and processors that split the venue into zones, with source EQ and priority paging.',
+        'chip.dualzone':'Dual/multi-zone','chip.srceq':'Source EQ','chip.pagingpri':'Paging priority',
+        'cat.cams.t':'Cameras & Conferencing','cat.cams.d':'PTZ cameras with optical zoom and auto-tracking for streaming, events and meeting rooms.',
+        'chip.autotrack':'Auto-tracking',
+        'cat.net.t':'Control & Networking','cat.net.d':'The managed PoE backbone and control that tie every system together — one tablet to run it.',
+        'cat.net.li1':'Managed L2+ PoE switches (24+4, 56 Gbps, ≤300W)','cat.net.li2':'Tablet control app · QSC Q-SYS',
+        'brands.title':'Brands we design with',
+        'hm.eyebrow':'Under The Hood','hm.h2':'How multi-screen distribution works','hm.sub':'Sources in, screens out, one managed network between — the same backbone carries video, audio and control.',
+        'hm.1.t':'1 · Encode','hm.1.d':'A node at each source compresses the feed to ~30 Mbps.',
+        'hm.2.t':'2 · Transport','hm.2.d':'The PoE switch carries every stream and powers each node over Cat6.',
+        'hm.3.t':'3 · Decode','hm.3.d':'A node at each screen shows whatever the tablet assigns — instantly.',
+        'es.eyebrow':'Quick Estimator','es.h2':'Ballpark your video system','es.sub':'A rough starting point for a multi-TV distribution system — we confirm the full design on-site.',
+        'es.title':'Estimator','es.sources':'Video sources','es.displays':'Displays','es.note':'One node per source, one per display, ~30 Mbps per feed, PoE+ headroom per node.','es.send':'Send this to our team',
+        'es.recTitle':'Recommended configuration','es.summary':'A {i}-source, {d}-display matrix.',
+        'lbl.enc':'Encoder nodes','lbl.dec':'Decoder nodes','lbl.nodes':'Total nodes','lbl.ports':'Switch ports','lbl.poe':'PoE budget','lbl.bw':'Peak backbone',
+        'es.sw.one':'1 × managed PoE switch','es.sw.multi':'{n} × 48-port switches (stacked)',
+        'es.uplink':'At this scale we recommend a 10 Gigabit uplink / backbone with IGMP snooping for clean multicast.',
+        'es.disclaimer':'Ballpark planning figures. We validate every system on-site before quoting.',
+        'ct.eyebrow':'Get Started','ct.h2':'Tell us about your space','ct.sub':"Send us the basics and we'll come back with a tailored design and quote. No obligation.",
+        'ct.loc':'Winnipeg, Manitoba · service Canada-wide','ct.responds':'Response within 1 business day',
+        'f.name':'Name','f.venue':'Venue name','f.city':'City / Province','f.email':'Email','f.displays':'Approx. displays','f.interest':'Interested in','f.details':'Project details','f.submit':'Request a Quote',
+        'opt.full':'Full AV system','opt.video':'Video distribution / TVs','opt.audio':'Audio & speakers','opt.cams':'Cameras / surveillance','opt.conf':'Conferencing','opt.unsure':'Not sure — need advice',
+        'ph.name':'Jordan Smith','ph.venue':'The Overtime Sports Bar','ph.email':'you@venue.com','ph.details':'Size of the space, number of rooms/zones, timeline, what you want it to do…',
+        'ok.title':'Thanks — your request is ready to send.','ok.body':'Your email app should have opened with the details filled in. If not, email sales@pulsematrix.ca.',
+        'ft.desc':'Commercial AV systems integrator — design, supply, installation and support for hotels, bars, restaurants and entertainment venues.',
+        'ft.explore':'Explore','ft.getintouch':'Get in touch','ft.canada':'Integrated & supported in Canada','ft.rights':'PulseMatrix AV. All rights reserved.','ft.backtop':'Back to top ↑',
+      },
+      fr: {
+        'nav.solutions':'Solutions','nav.process':'Notre méthode','nav.products':'Produits','nav.estimator':'Estimateur','nav.contact':'Contact',
+        'cta.quote':'Demander un devis','cta.quote2':'Demander un devis','cta.see':'Voir nos services',
+        'hero.badge':'Intégrateur de systèmes AV · Canadien','hero.h1a':'Des systèmes AV commerciaux ','hero.h1b':'qui fonctionnent, tout simplement.',
+        'hero.sub':"Hôtels, bars, restaurants et lieux de divertissement nous confient la conception, l'installation et la gestion de leurs écrans, de leur son et de leurs commandes — de quelques téléviseurs à plus de 100, le tout depuis une seule tablette.",
+        'stat.screens':'Écrans / système','stat.zone':'Multizone','stat.zoneSub':'Audio et vidéo','stat.tablet':'1 tablette','stat.tabletSub':'Contrôle tout',
+        'chip.tablet':'Contrôle sur tablette','chip.vac':'Vidéo · Audio · Contrôle',
+        'chain.design':'Conception','chain.supply':'Fourniture','chain.install':'Installation','chain.support':'Soutien',
+        'builtfor':'Conçu pour','bf.bars':'Bars sportifs et pubs','bf.hotels':'Hôtels et complexes','bf.rest':'Restaurants','bf.gyms':'Gyms et loisirs','bf.ent':'Lieux de divertissement',
+        'sol.eyebrow':'Ce que nous faisons','sol.h2':"Une seule équipe pour tout l'établissement",'sol.sub':"Pas besoin de connaître la technologie. Décrivez-nous l'espace et vos objectifs — nous nous occupons du reste.",
+        'sol.1.t':'Vidéo multi-écrans et sports','sol.1.d':"N'importe quel match sur n'importe quel écran, murs vidéo et plusieurs matchs sur un même téléviseur — changez toute la salle depuis une tablette.",
+        'sol.2.t':'Audio par zones et événementiel','sol.2.d':"Une musique différente au bar, sur la terrasse et dans la salle à manger — plus l'appel et le son événementiel, contrôlés indépendamment.",
+        'sol.3.t':'Salles divisibles','sol.3.d':"Divisez une salle de 10 000 pi² en pièces distinctes — l'audio et la vidéo suivent les cloisons et se regroupent d'une simple touche.",
+        'sol.4.t':'Caméras et surveillance','sol.4.d':"Caméras IP PoE et enregistrement sur le même réseau géré que votre AV — un seul système, un seul fournisseur.",
+        'sol.5.t':'Conférence et salles de réunion','sol.5.d':"Caméras PTZ, micros et écrans pour salles de conseil et espaces événementiels — rejoignez un appel d'une seule touche.",
+        'sol.6.t':'Contrôle et automatisation','sol.6.d':"Écrans, son, scènes d'éclairage et sources — gérez tout l'établissement depuis une tablette que votre personnel saura utiliser.",
+        'pr.eyebrow':'Notre méthode','pr.h2':'De la visite au système fonctionnel',
+        'pr.1.t':'Évaluation du site','pr.1.d':"Nous visitons les lieux, comptons les écrans et les zones, et comprenons votre utilisation réelle de l'espace.",
+        'pr.2.t':'Conception du système','pr.2.d':'Un plan clair et un devis ferme — équipement, disposition, câblage et contrôle, adaptés à votre budget.',
+        'pr.3.t':'Installation professionnelle','pr.3.d':"Câblage soigné, baie ordonnée, écrans installés — du travail bien fait, avec un minimum d'interruption.",
+        'pr.4.t':'Formation et soutien','pr.4.d':'Nous formons votre personnel à la tablette, puis restons disponibles — aide à distance et service au besoin.',
+        'pd.eyebrow':'Produits que nous fournissons','pd.h2':"L'équipement adapté à chaque projet",'pd.sub':"Nous sélectionnons des marques commerciales éprouvées et vous faisons profiter de prix d'importation. Un aperçu de ce que nous déployons :",
+        'cat.displays.t':'Écrans commerciaux','cat.displays.d':'Écrans de qualité commerciale conçus pour un fonctionnement continu — 43 à 98 po, 4K, haute luminosité.',
+        'chip.rated':'Certifié 16/7–24/7','chip.bezel':'Cadre mince','req':'Demander un devis',
+        'cat.video.t':'Distribution vidéo (AVoIP)','cat.video.d':"Acheminez n'importe quelle source vers n'importe quel écran sur un seul câble Cat6 PoE — de 1:1 à plus de 100 écrans, contrôlé par tablette.",
+        'cat.video.li1':'Nœuds ENC/DEC distribués PulseMatrix','chip.feed':'~30 Mbps/flux','chip.multigame':'Plusieurs matchs sur un écran',
+        'cat.speakers.t':'Haut-parleurs et audio','cat.speakers.d':'Haut-parleurs encastrés, en surface et suspendus sur lignes 70/100 V pour une couverture uniforme et multizone.',
+        'chip.inceiling':'Encastrés et en surface','chip.multizone':'Multizone',
+        'cat.amps.t':'Amplificateurs et DSP','cat.amps.d':"Amplis-mélangeurs et processeurs qui divisent l'établissement en zones, avec égalisation par source et appel prioritaire.",
+        'chip.dualzone':'Bi/multizone','chip.srceq':'Égalisation par source','chip.pagingpri':'Appel prioritaire',
+        'cat.cams.t':'Caméras et conférence','cat.cams.d':'Caméras PTZ à zoom optique et suivi automatique pour diffusion, événements et salles de réunion.',
+        'chip.autotrack':'Suivi automatique',
+        'cat.net.t':'Contrôle et réseau','cat.net.d':"La dorsale PoE gérée et le contrôle qui relient tous les systèmes — une seule tablette pour tout gérer.",
+        'cat.net.li1':'Commutateurs PoE gérés L2+ (24+4, 56 Gbps, ≤300 W)','cat.net.li2':'Application de contrôle sur tablette · QSC Q-SYS',
+        'brands.title':'Marques avec lesquelles nous concevons',
+        'hm.eyebrow':'Sous le capot','hm.h2':'Comment fonctionne la distribution multi-écrans','hm.sub':'Les sources entrent, les écrans sortent, un seul réseau géré au centre — la même dorsale transporte vidéo, audio et contrôle.',
+        'hm.1.t':'1 · Encodage','hm.1.d':'Un nœud à chaque source compresse le flux à ~30 Mbps.',
+        'hm.2.t':'2 · Transport','hm.2.d':'Le commutateur PoE transporte chaque flux et alimente chaque nœud via Cat6.',
+        'hm.3.t':'3 · Décodage','hm.3.d':'Un nœud à chaque écran affiche ce que la tablette lui attribue — instantanément.',
+        'es.eyebrow':'Estimateur rapide','es.h2':'Estimez votre système vidéo','es.sub':'Un point de départ approximatif pour un système de distribution multi-écrans — nous confirmons la conception complète sur place.',
+        'es.title':'Estimateur','es.sources':'Sources vidéo','es.displays':'Écrans','es.note':'Un nœud par source, un par écran, ~30 Mbps par flux, marge PoE+ par nœud.','es.send':'Envoyer à notre équipe',
+        'es.recTitle':'Configuration recommandée','es.summary':'Une matrice de {i} sources et {d} écrans.',
+        'lbl.enc':'Nœuds encodeurs','lbl.dec':'Nœuds décodeurs','lbl.nodes':'Nœuds au total','lbl.ports':'Ports du commutateur','lbl.poe':'Budget PoE','lbl.bw':'Débit dorsale max',
+        'es.sw.one':'1 × commutateur PoE géré','es.sw.multi':'{n} × commutateurs 48 ports (empilés)',
+        'es.uplink':'À cette échelle, nous recommandons une liaison montante / dorsale 10 Gigabit avec IGMP snooping pour un multicast propre.',
+        'es.disclaimer':'Chiffres de planification approximatifs. Nous validons chaque système sur place avant de faire un devis.',
+        'ct.eyebrow':'Commencer','ct.h2':'Parlez-nous de votre espace','ct.sub':'Envoyez-nous les grandes lignes et nous reviendrons avec une conception et un devis sur mesure. Sans engagement.',
+        'ct.loc':'Winnipeg, Manitoba · service partout au Canada','ct.responds':'Réponse sous 1 jour ouvrable',
+        'f.name':'Nom','f.venue':"Nom de l'établissement",'f.city':'Ville / Province','f.email':'Courriel','f.displays':"Nombre d'écrans (approx.)",'f.interest':'Intérêt pour','f.details':'Détails du projet','f.submit':'Demander un devis',
+        'opt.full':'Système AV complet','opt.video':'Distribution vidéo / téléviseurs','opt.audio':'Audio et haut-parleurs','opt.cams':'Caméras / surveillance','opt.conf':'Conférence','opt.unsure':'Incertain — besoin de conseils',
+        'ph.name':'Jean Tremblay','ph.venue':'Bar sportif Le Prolongation','ph.email':'vous@etablissement.com','ph.details':"Superficie de l'espace, nombre de pièces/zones, échéancier, objectifs…",
+        'ok.title':'Merci — votre demande est prête à envoyer.','ok.body':"Votre application de courriel devrait s'être ouverte avec les détails remplis. Sinon, écrivez à sales@pulsematrix.ca.",
+        'ft.desc':'Intégrateur de systèmes AV commerciaux — conception, fourniture, installation et soutien pour hôtels, bars, restaurants et lieux de divertissement.',
+        'ft.explore':'Explorer','ft.getintouch':'Nous joindre','ft.canada':'Intégré et soutenu au Canada','ft.rights':'PulseMatrix AV. Tous droits réservés.','ft.backtop':'Haut de page ↑',
       }
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    let lang = 'en';
+    function t(k){ return (I18N[lang] && I18N[lang][k] != null) ? I18N[lang][k] : (I18N.en[k] != null ? I18N.en[k] : ''); }
+    function applyLang(l) {
+      lang = (l === 'fr') ? 'fr' : 'en';
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach(el => { const v = t(el.getAttribute('data-i18n')); if (v) el.textContent = v; });
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => { const v = t(el.getAttribute('data-i18n-ph')); if (v) el.setAttribute('placeholder', v); });
+      document.querySelectorAll('[data-lang-btn]').forEach(b => {
+        const on = b.getAttribute('data-lang-btn') === lang;
+        b.classList.toggle('bg-brand-400', on);
+        b.classList.toggle('text-slate-950', on);
+        b.classList.toggle('text-slate-300', !on);
+      });
+      try { localStorage.setItem('pmav-lang', lang); } catch (e) {}
+      if (window.__estUpdate) window.__estUpdate();
+    }
 
-    /* ---------- Mobile menu ---------- */
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const nav = document.querySelector('[data-nav]');
+    const onScroll = () => {
+      const on = window.scrollY > 20;
+      nav.classList.toggle('bg-slate-950/80', on);
+      nav.classList.toggle('backdrop-blur', on);
+      nav.classList.toggle('border-b', on);
+      nav.classList.toggle('border-slate-800', on);
+      nav.classList.toggle('shadow-lg', on);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
-    const menuIcon = document.getElementById('menuIcon');
+    const iconMenu = document.getElementById('iconMenu');
+    const iconX = document.getElementById('iconX');
+    function setMenu(open) {
+      mobileMenu.classList.toggle('hidden', !open);
+      menuBtn.setAttribute('aria-expanded', String(open));
+      iconMenu.classList.toggle('hidden', open);
+      iconX.classList.toggle('hidden', !open);
+    }
     let menuOpen = false;
-    menuBtn.addEventListener('click', () => {
-      menuOpen = !menuOpen;
-      mobileMenu.classList.toggle('hidden', !menuOpen);
-      menuBtn.setAttribute('aria-expanded', String(menuOpen));
-      menuIcon.setAttribute('data-lucide', menuOpen ? 'x' : 'menu');
-      renderIcons();
-    });
-    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      menuOpen = false;
-      mobileMenu.classList.add('hidden');
-      menuBtn.setAttribute('aria-expanded', 'false');
-      menuIcon.setAttribute('data-lucide', 'menu');
-      renderIcons();
-    }));
+    menuBtn.addEventListener('click', () => { menuOpen = !menuOpen; setMenu(menuOpen); });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { menuOpen = false; setMenu(false); }));
 
-    /* ---------- Hero mock UI: build source thumbnails + display grid ---------- */
-    (function buildHeroMock() {
-      const grid = document.getElementById('hero-grid');
-      if (!grid) return;
-      // A 4x3 grid of 12 screens, each tuned to one of 6 sources
-      const sourceColors = ['#22d3ee', '#2dd4bf', '#38bdf8', '#f59e0b', '#a78bfa', '#f472b6'];
-      const labels = ['NHL', 'NBA', 'NFL', 'UFC', 'SOCCER', 'MENU'];
-      const layout = [3, 3, 1, 1, 2, 3, 3, 1, 5, 4, 3, 3]; // which source each screen shows (1-indexed)
-      layout.forEach((s, i) => {
-        const idx = s - 1;
-        const cell = document.createElement('div');
-        cell.className = 'screen-tile relative aspect-video overflow-hidden rounded-md ring-1 ring-white/5';
-        cell.innerHTML = `
-          <div class="absolute inset-0 opacity-25" style="background: radial-gradient(circle at 30% 20%, ${sourceColors[idx]}, transparent 70%);"></div>
-          <div class="absolute left-1 top-1 rounded-sm px-1 py-px text-[7px] font-bold tracking-wide" style="background:${sourceColors[idx]}22;color:${sourceColors[idx]};">${labels[idx]}</div>
-          <div class="absolute bottom-1 right-1 h-1 w-1 rounded-full bg-emerald-400"></div>
-        `;
-        grid.appendChild(cell);
-      });
-    })();
-
-    /* ---------- Showcase video wall mock ---------- */
-    (function buildShowcase() {
-      const grid = document.getElementById('showcase-grid');
-      if (!grid) return;
-      const palette = ['#22d3ee', '#2dd4bf', '#38bdf8'];
-      const tags = ['NHL', 'NBA', 'NFL'];
-      for (let i = 0; i < 12; i++) {
-        const c = i % 3;
-        const cell = document.createElement('div');
-        cell.className = 'screen-tile relative aspect-video overflow-hidden rounded-lg ring-1 ring-white/5';
-        cell.innerHTML = `
-          <div class="absolute inset-0 opacity-30" style="background: linear-gradient(135deg, ${palette[c]}33, transparent 65%);"></div>
-          <div class="absolute left-1.5 top-1.5 rounded px-1 py-px text-[8px] font-bold" style="background:${palette[c]}22;color:${palette[c]};">${tags[c]}</div>
-          <div class="absolute bottom-1.5 right-1.5 flex items-center gap-1 text-[7px] text-emerald-300"><span class="h-1 w-1 rounded-full bg-emerald-400"></span>LIVE</div>
-        `;
-        grid.appendChild(cell);
-      }
-    })();
-
-    /* ---------- Spec calculator ---------- */
-    (function calculator() {
-      const inputsEl = document.getElementById('inputs');
-      const displaysEl = document.getElementById('displays');
-      const inputsVal = document.getElementById('inputsVal');
-      const displaysVal = document.getElementById('displaysVal');
-
-      const rEnc = document.getElementById('rEnc');
-      const rDec = document.getElementById('rDec');
-      const rNodes = document.getElementById('rNodes');
-      const rPorts = document.getElementById('rPorts');
-      const rSwitches = document.getElementById('rSwitches');
-      const rPoe = document.getElementById('rPoe');
-      const rBw = document.getElementById('rBw');
-      const configSummary = document.getElementById('configSummary');
-      const uplinkNote = document.getElementById('uplinkNote');
-
-      const WATTS_PER_NODE = 7.5;   // PoE+ headroom per transceiver
-      const MBPS_PER_FEED = 30;     // H.265 ~30 Mbps
-      const PORTS_PER_SWITCH = 48;  // managed PoE switch density
-
-      function nextSwitchSize(ports) {
-        const sizes = [8, 16, 24, 48];
-        for (const s of sizes) if (ports <= s) return s;
-        return Math.ceil(ports / PORTS_PER_SWITCH) * PORTS_PER_SWITCH;
-      }
-
+    // Estimator
+    (function () {
+      const $ = id => document.getElementById(id);
+      const inputsEl = $('inputs'), displaysEl = $('displays');
+      const WATTS = 7.5, MBPS = 30, MAXPORTS = 48;
+      const nextSize = p => { for (const s of [8,16,24,48]) if (p <= s) return s; return Math.ceil(p/MAXPORTS)*MAXPORTS; };
       function update() {
-        const inputs = parseInt(inputsEl.value, 10);
-        const displays = parseInt(displaysEl.value, 10);
-
-        inputsVal.textContent = inputs;
-        displaysVal.textContent = displays;
-
-        const enc = inputs;
-        const dec = displays;
-        const nodes = enc + dec;
-
-        // ports: one per node + one uplink, then round to a real switch size
+        const inputs = +inputsEl.value, displays = +displaysEl.value;
+        $('inputsVal').textContent = inputs; $('displaysVal').textContent = displays;
+        const nodes = inputs + displays;
         const portsNeeded = nodes + 1;
-        const switchesCount = Math.ceil(portsNeeded / PORTS_PER_SWITCH);
-        const recommendedPorts = switchesCount === 1 ? nextSwitchSize(portsNeeded) : switchesCount * PORTS_PER_SWITCH;
-
-        // PoE budget with headroom, rounded up to nearest 10 W
-        const poe = Math.ceil((nodes * WATTS_PER_NODE) / 10) * 10;
-
-        // Peak backbone = simultaneous unique encoded streams (bounded by inputs)
-        const bw = inputs * MBPS_PER_FEED;
-
-        rEnc.textContent = enc;
-        rDec.textContent = dec;
-        rNodes.textContent = nodes;
-        rPorts.textContent = recommendedPorts;
-        rSwitches.textContent = switchesCount === 1
-          ? '1 × managed PoE switch'
-          : switchesCount + ' × 48-port PoE switches (stacked)';
-        rPoe.innerHTML = poe + '<span class="text-base font-semibold text-slate-400">W</span>';
-        rBw.innerHTML = bw + '<span class="text-base font-semibold text-slate-400"> Mbps</span>';
-
-        configSummary.textContent = `A ${inputs}-source, ${displays}-display matrix.`;
-
-        // Recommend 10G backbone once we're stacking switches or past ~40 displays
-        const needsUplink = displays >= 40 || switchesCount > 1;
-        uplinkNote.classList.toggle('hidden', !needsUplink);
-        uplinkNote.classList.toggle('flex', needsUplink);
+        const switches = Math.ceil(portsNeeded / MAXPORTS);
+        const ports = switches === 1 ? nextSize(portsNeeded) : switches * MAXPORTS;
+        const poe = Math.ceil((nodes * WATTS) / 10) * 10;
+        const bw = inputs * MBPS;
+        $('rEnc').textContent = inputs; $('rDec').textContent = displays; $('rNodes').textContent = nodes;
+        $('rPorts').textContent = ports;
+        $('rSwitches').textContent = switches === 1 ? t('es.sw.one') : t('es.sw.multi').replace('{n}', switches);
+        $('rPoe').innerHTML = poe + '<span class="text-base font-semibold text-slate-400">W</span>';
+        $('rBw').innerHTML = bw + '<span class="text-base font-semibold text-slate-400"> Mbps</span>';
+        $('configSummary').textContent = t('es.summary').replace('{i}', inputs).replace('{d}', displays);
+        const needs = displays >= 40 || switches > 1;
+        $('uplinkNote').classList.toggle('hidden', !needs);
+        $('uplinkNote').classList.toggle('flex', needs);
       }
-
-      inputsEl.addEventListener('input', update);
-      displaysEl.addEventListener('input', update);
-      update();
+      window.__estUpdate = update;
+      inputsEl.addEventListener('input', update); displaysEl.addEventListener('input', update); update();
     })();
 
-    /* ---------- RFP form → mailto + confirmation ---------- */
-    (function rfp() {
-      const form = document.getElementById('rfpForm');
-      const success = document.getElementById('formSuccess');
+    // RFP form → mailto + confirmation
+    (function () {
+      const form = document.getElementById('rfpForm'), success = document.getElementById('formSuccess');
       if (!form) return;
-
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        if (!form.reportValidity()) return;
-
-        const g = (id) => (document.getElementById(id).value || '').trim();
-        const name = g('name');
+      form.addEventListener('submit', e => {
+        e.preventDefault(); if (!form.reportValidity()) return;
+        const g = id => (document.getElementById(id).value || '').trim();
         const venue = g('venue');
-        const city = g('city');
-        const email = g('email');
-        const displays = g('displayCount');
-        const sources = g('sourceCount');
-        const message = g('message');
-
-        const subject = `RFP — PulseMatrix AV — ${venue || 'New venue'}`;
-        const bodyLines = [
-          `Name: ${name}`,
-          `Venue: ${venue}`,
-          `City / Province: ${city}`,
-          `Email: ${email}`,
-          `Display count: ${displays || '—'}`,
-          `Source count: ${sources || '—'}`,
-          '',
-          'Project details:',
-          message || '—',
-          '',
-          '— Sent from pulsematrix.ca',
-        ];
-        const href = `mailto:sales@pulsematrix.ca?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
-
-        // Open the user's mail client
-        window.location.href = href;
-
-        // Show client-side confirmation
-        success.classList.remove('hidden');
-        success.classList.add('flex');
+        const subject = `Quote request — PulseMatrix AV — ${venue || 'New venue'}`;
+        const body = [
+          `Name: ${g('name')}`, `Venue: ${venue}`, `City / Province: ${g('city')}`,
+          `Email: ${g('email')}`, `Displays: ${g('displayCount') || '—'}`, `Interested in: ${g('interest')}`,
+          '', 'Project details:', g('message') || '—', '', '— Sent from pulsematrix.ca'
+        ].join('\n');
+        window.location.href = `mailto:sales@pulsematrix.ca?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        success.classList.remove('hidden'); success.classList.add('flex');
         success.scrollIntoView({ behavior: 'smooth', block: 'center' });
       });
     })();
+
+    // Language init + wiring
+    document.querySelectorAll('[data-lang-btn]').forEach(b => b.addEventListener('click', () => applyLang(b.getAttribute('data-lang-btn'))));
+    let savedLang = 'en';
+    try { savedLang = localStorage.getItem('pmav-lang') || (navigator.language && navigator.language.toLowerCase().startsWith('fr') ? 'fr' : 'en'); } catch (e) {}
+    applyLang(savedLang);
   </script>
 </body>
 </html>
