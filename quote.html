@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PulseMatrix AV — Quote Builder</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.4/jspdf.plugin.autotable.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        fontFamily: {
+          sans: ['Inter','ui-sans-serif','system-ui','sans-serif'],
+          display: ['Montserrat','Inter','ui-sans-serif','system-ui','sans-serif'],
+        },
+        colors: {
+          base: '#020617',
+          brand: {50:'#ecfeff',100:'#cffafe',200:'#a5f3fc',300:'#67e8f9',400:'#22d3ee',500:'#06b6d4',600:'#0891b2',700:'#0e7490'},
+          ink: {900:'#020617',800:'#0b1326',700:'#0f172a',600:'#131b2e',500:'#1e293b',400:'#222a3d'},
+        },
+      }},
+    };
+  </script>
+  <style>
+    body { font-family:'Inter',sans-serif; background:#020617; }
+    h1,h2,h3,.font-display { font-family:'Montserrat','Inter',sans-serif; }
+    ::selection { background:#22d3ee; color:#020617; }
+    input, textarea, select {
+      background: #0f172a !important;
+      border: 1px solid rgba(148,163,184,0.2);
+      color: #e2e8f0;
+      border-radius: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+      transition: border-color 0.2s;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: #22d3ee;
+      box-shadow: 0 0 0 2px rgba(34,211,238,0.15);
+    }
+    input::placeholder { color: #64748b; }
+    @media print { body { background: white; } }
+  </style>
+</head>
+<body class="bg-base text-slate-300 antialiased min-h-screen">
+
+  <!-- ===== PASSWORD GATE ===== -->
+  <div id="gate" class="flex items-center justify-center min-h-screen px-4">
+    <div class="w-full max-w-sm">
+      <div class="text-center mb-8">
+        <span class="font-display text-2xl font-bold text-white">Pulse<span class="text-brand-400">Matrix</span> <span class="text-xs font-semibold text-slate-400 align-top tracking-widest">AV</span></span>
+        <p class="mt-2 text-sm text-slate-400">Quote Builder — Authorized Access Only</p>
+      </div>
+      <div class="rounded-xl border border-white/10 bg-ink-700/60 p-6 backdrop-blur">
+        <label class="block text-sm font-medium text-slate-300 mb-2">Password</label>
+        <input type="password" id="gatePw" class="w-full mb-4" placeholder="Enter access password" onkeydown="if(event.key==='Enter')checkPw()" />
+        <button onclick="checkPw()" class="w-full rounded-lg bg-brand-500 py-2.5 text-sm font-semibold text-slate-950 hover:bg-brand-400 transition-colors">Unlock</button>
+        <p id="gateErr" class="mt-3 text-xs text-red-400 hidden">Incorrect password.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== QUOTE BUILDER ===== -->
+  <div id="builder" class="hidden">
+    <!-- Top bar -->
+    <header class="sticky top-0 z-40 border-b border-white/10 bg-ink-800/90 backdrop-blur">
+      <div class="mx-auto max-w-5xl px-4 py-3 flex items-center justify-between">
+        <span class="font-display text-lg font-bold text-white">Pulse<span class="text-brand-400">Matrix</span> <span class="text-[10px] font-semibold text-slate-400 align-top tracking-widest">AV</span> <span class="text-sm font-normal text-slate-400 ml-2">/ Quote Builder</span></span>
+        <div class="flex gap-2">
+          <button onclick="resetAll()" class="rounded-lg border border-slate-600 px-3 py-1.5 text-xs font-medium text-slate-300 hover:bg-slate-800 transition-colors">New Quote</button>
+          <button onclick="generatePDF()" class="rounded-lg bg-brand-500 px-4 py-1.5 text-xs font-semibold text-slate-950 hover:bg-brand-400 transition-colors flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download PDF
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-5xl px-4 py-8 space-y-8">
+
+      <!-- Quote Meta -->
+      <section class="grid sm:grid-cols-2 gap-6">
+        <div class="rounded-xl border border-white/10 bg-ink-700/60 p-5 space-y-4">
+          <h2 class="font-display text-base font-bold text-white">Quote Details</h2>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium text-slate-400 mb-1">Quote #</label>
+              <input type="text" id="quoteNum" placeholder="PM-0001" class="w-full" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-400 mb-1">Date</label>
+              <input type="date" id="quoteDate" class="w-full" />
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-400 mb-1">Valid For</label>
+            <select id="validFor" class="w-full">
+              <option value="30 days">30 days</option>
+              <option value="60 days">60 days</option>
+              <option value="90 days">90 days</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-white/10 bg-ink-700/60 p-5 space-y-4">
+          <h2 class="font-display text-base font-bold text-white">Customer</h2>
+          <div>
+            <label class="block text-xs font-medium text-slate-400 mb-1">Customer / Company Name</label>
+            <input type="text" id="custName" placeholder="Acme Sports Bar" class="w-full" />
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium text-slate-400 mb-1">Contact Name</label>
+              <input type="text" id="custContact" placeholder="John Smith" class="w-full" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-400 mb-1">Email</label>
+              <input type="email" id="custEmail" placeholder="john@acme.com" class="w-full" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Products Section -->
+      <section class="rounded-xl border border-white/10 bg-ink-700/60 p-5">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="font-display text-base font-bold text-white">Products &amp; Equipment</h2>
+          <button onclick="addRow('products')" class="rounded-lg border border-brand-500/40 bg-brand-500/10 px-3 py-1.5 text-xs font-semibold text-brand-300 hover:bg-brand-500/20 transition-colors flex items-center gap-1">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Item
+          </button>
+        </div>
+        <!-- Table header -->
+        <div class="grid grid-cols-[1fr_70px_110px_110px_40px] gap-2 mb-2 px-1 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+          <span>Description</span>
+          <span class="text-center">Qty</span>
+          <span class="text-right">Unit Price</span>
+          <span class="text-right">Total</span>
+          <span></span>
+        </div>
+        <div id="products" class="space-y-2"></div>
+        <div class="mt-3 flex justify-end pr-12">
+          <div class="text-sm font-semibold text-slate-300">Subtotal: <span class="text-white ml-2" id="productSubtotal">$0.00</span></div>
+        </div>
+      </section>
+
+      <!-- Installation Section -->
+      <section class="rounded-xl border border-white/10 bg-ink-700/60 p-5">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="font-display text-base font-bold text-white">Installation &amp; Services</h2>
+          <button onclick="addRow('services')" class="rounded-lg border border-brand-500/40 bg-brand-500/10 px-3 py-1.5 text-xs font-semibold text-brand-300 hover:bg-brand-500/20 transition-colors flex items-center gap-1">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Item
+          </button>
+        </div>
+        <div class="grid grid-cols-[1fr_70px_110px_110px_40px] gap-2 mb-2 px-1 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+          <span>Description</span>
+          <span class="text-center">Qty</span>
+          <span class="text-right">Unit Price</span>
+          <span class="text-right">Total</span>
+          <span></span>
+        </div>
+        <div id="services" class="space-y-2"></div>
+        <div class="mt-3 flex justify-end pr-12">
+          <div class="text-sm font-semibold text-slate-300">Subtotal: <span class="text-white ml-2" id="serviceSubtotal">$0.00</span></div>
+        </div>
+      </section>
+
+      <!-- Notes -->
+      <section class="rounded-xl border border-white/10 bg-ink-700/60 p-5">
+        <h2 class="font-display text-base font-bold text-white mb-3">Notes / Terms</h2>
+        <textarea id="quoteNotes" rows="3" class="w-full" placeholder="Any additional notes, terms, or conditions for this quote..."></textarea>
+      </section>
+
+      <!-- Grand Total -->
+      <section class="rounded-xl border border-brand-400/30 bg-brand-500/5 p-5 flex items-center justify-between">
+        <span class="font-display text-lg font-bold text-white">Grand Total</span>
+        <span class="font-display text-2xl font-bold text-brand-400" id="grandTotal">$0.00</span>
+      </section>
+
+      <!-- PDF Download -->
+      <div class="flex justify-center pb-8">
+        <button onclick="generatePDF()" class="rounded-xl bg-brand-500 px-8 py-3.5 text-sm font-bold text-slate-950 shadow-lg shadow-brand-500/30 hover:bg-brand-400 hover:-translate-y-0.5 transition-all flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Quote as PDF
+        </button>
+      </div>
+    </main>
+  </div>
+
+<script>
+// ─── PASSWORD GATE ───
+// Change this password to whatever you want
+const ACCESS_PASSWORD = 'pulse2024';
+
+function checkPw() {
+  const pw = document.getElementById('gatePw').value;
+  if (pw === ACCESS_PASSWORD) {
+    document.getElementById('gate').classList.add('hidden');
+    document.getElementById('builder').classList.remove('hidden');
+    initDefaults();
+  } else {
+    document.getElementById('gateErr').classList.remove('hidden');
+    document.getElementById('gatePw').value = '';
+    document.getElementById('gatePw').focus();
+  }
+}
+
+function initDefaults() {
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('quoteDate').value = today;
+  const num = 'PM-' + String(Date.now()).slice(-4);
+  document.getElementById('quoteNum').value = num;
+  addRow('products');
+  addRow('services');
+}
+
+// ─── LINE ITEM ROWS ───
+let rowCounter = 0;
+
+function addRow(section) {
+  rowCounter++;
+  const id = 'row-' + rowCounter;
+  const container = document.getElementById(section);
+  const row = document.createElement('div');
+  row.id = id;
+  row.className = 'grid grid-cols-[1fr_70px_110px_110px_40px] gap-2 items-center';
+  row.innerHTML = `
+    <input type="text" placeholder="e.g. Samsung 65&quot; 4K Commercial Display, 16/7 rated" class="w-full row-desc" />
+    <input type="number" min="1" value="1" class="w-full text-center row-qty" oninput="recalc()" />
+    <input type="number" min="0" step="0.01" placeholder="0.00" class="w-full text-right row-price" oninput="recalc()" />
+    <div class="text-right text-sm font-medium text-white row-total pr-1">$0.00</div>
+    <button onclick="removeRow('${id}','${section}')" class="inline-flex items-center justify-center h-8 w-8 rounded-lg text-slate-500 hover:text-red-400 hover:bg-red-400/10 transition-colors" title="Remove">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  `;
+  container.appendChild(row);
+}
+
+function removeRow(id, section) {
+  const el = document.getElementById(id);
+  if (el) el.remove();
+  recalc();
+}
+
+function recalc() {
+  let productTotal = calcSection('products');
+  let serviceTotal = calcSection('services');
+  document.getElementById('productSubtotal').textContent = fmt(productTotal);
+  document.getElementById('serviceSubtotal').textContent = fmt(serviceTotal);
+  document.getElementById('grandTotal').textContent = fmt(productTotal + serviceTotal);
+}
+
+function calcSection(sectionId) {
+  let total = 0;
+  const rows = document.querySelectorAll('#' + sectionId + ' > div');
+  rows.forEach(row => {
+    const qty = parseFloat(row.querySelector('.row-qty')?.value) || 0;
+    const price = parseFloat(row.querySelector('.row-price')?.value) || 0;
+    const lineTotal = qty * price;
+    total += lineTotal;
+    const td = row.querySelector('.row-total');
+    if (td) td.textContent = fmt(lineTotal);
+  });
+  return total;
+}
+
+function fmt(n) {
+  return '$' + n.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function resetAll() {
+  if (!confirm('Start a new quote? This will clear everything.')) return;
+  document.getElementById('quoteNum').value = 'PM-' + String(Date.now()).slice(-4);
+  document.getElementById('quoteDate').value = new Date().toISOString().split('T')[0];
+  document.getElementById('custName').value = '';
+  document.getElementById('custContact').value = '';
+  document.getElementById('custEmail').value = '';
+  document.getElementById('quoteNotes').value = '';
+  document.getElementById('products').innerHTML = '';
+  document.getElementById('services').innerHTML = '';
+  addRow('products');
+  addRow('services');
+  recalc();
+}
+
+// ─── PDF GENERATION ───
+function getRows(sectionId) {
+  const items = [];
+  const rows = document.querySelectorAll('#' + sectionId + ' > div');
+  rows.forEach(row => {
+    const desc = row.querySelector('.row-desc')?.value?.trim();
+    const qty = parseFloat(row.querySelector('.row-qty')?.value) || 0;
+    const price = parseFloat(row.querySelector('.row-price')?.value) || 0;
+    if (desc && qty > 0 && price > 0) {
+      items.push({ desc, qty, price, total: qty * price });
+    }
+  });
+  return items;
+}
+
+function generatePDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'mm', format: 'letter' });
+  const pageW = doc.internal.pageSize.getWidth();
+  const pageH = doc.internal.pageSize.getHeight();
+  const margin = 18;
+  let y = 0;
+
+  // ── Brand colors
+  const cyan = [6, 182, 212];
+  const darkBg = [2, 6, 23];
+  const darkCard = [15, 23, 42];
+
+  // ── Header band
+  doc.setFillColor(...darkBg);
+  doc.rect(0, 0, pageW, 42, 'F');
+
+  // Accent line
+  doc.setFillColor(...cyan);
+  doc.rect(0, 42, pageW, 1.2, 'F');
+
+  // Company name
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(22);
+  doc.setTextColor(255, 255, 255);
+  doc.text('PulseMatrix AV', margin, 18);
+
+  // Tagline
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9);
+  doc.setTextColor(148, 163, 184);
+  doc.text('Commercial AV Systems Integrator', margin, 25);
+  doc.text('www.pulsematrix.ca  |  info@pulsematrix.ca', margin, 31);
+
+  // QUOTE label on right
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(28);
+  doc.setTextColor(...cyan);
+  doc.text('QUOTE', pageW - margin, 20, { align: 'right' });
+
+  // Quote # and date under QUOTE
+  doc.setFontSize(9);
+  doc.setTextColor(148, 163, 184);
+  const qNum = document.getElementById('quoteNum').value || '—';
+  const qDate = document.getElementById('quoteDate').value || '—';
+  const validFor = document.getElementById('validFor').value || '30 days';
+  doc.text(`#${qNum}  |  ${qDate}`, pageW - margin, 28, { align: 'right' });
+  doc.text(`Valid for ${validFor}`, pageW - margin, 34, { align: 'right' });
+
+  y = 52;
+
+  // ── Customer info
+  const custName = document.getElementById('custName').value || '';
+  const custContact = document.getElementById('custContact').value || '';
+  const custEmail = document.getElementById('custEmail').value || '';
+  if (custName || custContact || custEmail) {
+    doc.setFillColor(245, 247, 250);
+    doc.roundedRect(margin, y, pageW - 2 * margin, 22, 2, 2, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.setTextColor(100, 116, 139);
+    doc.text('PREPARED FOR', margin + 5, y + 6);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11);
+    doc.setTextColor(15, 23, 42);
+    doc.text(custName || 'Customer', margin + 5, y + 13);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(71, 85, 105);
+    const contactLine = [custContact, custEmail].filter(Boolean).join('  |  ');
+    if (contactLine) doc.text(contactLine, margin + 5, y + 18);
+    y += 30;
+  }
+
+  // ── Products table
+  const products = getRows('products');
+  if (products.length > 0) {
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11);
+    doc.setTextColor(15, 23, 42);
+    doc.text('Products & Equipment', margin, y + 5);
+    y += 8;
+
+    const pData = products.map((item, i) => [
+      i + 1,
+      item.desc,
+      item.qty,
+      fmt(item.price),
+      fmt(item.total)
+    ]);
+    const pSubtotal = products.reduce((s, r) => s + r.total, 0);
+
+    doc.autoTable({
+      startY: y,
+      head: [['#', 'Description', 'Qty', 'Unit Price', 'Total']],
+      body: pData,
+      foot: [['', '', '', 'Subtotal', fmt(pSubtotal)]],
+      margin: { left: margin, right: margin },
+      theme: 'grid',
+      headStyles: {
+        fillColor: darkBg,
+        textColor: [255, 255, 255],
+        fontStyle: 'bold',
+        fontSize: 8,
+        cellPadding: 3,
+      },
+      bodyStyles: {
+        fontSize: 9,
+        cellPadding: 3,
+        textColor: [30, 41, 59],
+      },
+      footStyles: {
+        fillColor: [241, 245, 249],
+        textColor: [15, 23, 42],
+        fontStyle: 'bold',
+        fontSize: 9,
+      },
+      columnStyles: {
+        0: { cellWidth: 10, halign: 'center' },
+        1: { cellWidth: 'auto' },
+        2: { cellWidth: 18, halign: 'center' },
+        3: { cellWidth: 28, halign: 'right' },
+        4: { cellWidth: 28, halign: 'right' },
+      },
+      alternateRowStyles: { fillColor: [248, 250, 252] },
+    });
+    y = doc.lastAutoTable.finalY + 10;
+  }
+
+  // ── Services table
+  const services = getRows('services');
+  if (services.length > 0) {
+    // Check if we need a new page
+    if (y > pageH - 80) { doc.addPage(); y = 20; }
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11);
+    doc.setTextColor(15, 23, 42);
+    doc.text('Installation & Services', margin, y + 5);
+    y += 8;
+
+    const sData = services.map((item, i) => [
+      i + 1,
+      item.desc,
+      item.qty,
+      fmt(item.price),
+      fmt(item.total)
+    ]);
+    const sSubtotal = services.reduce((s, r) => s + r.total, 0);
+
+    doc.autoTable({
+      startY: y,
+      head: [['#', 'Description', 'Qty', 'Unit Price', 'Total']],
+      body: sData,
+      foot: [['', '', '', 'Subtotal', fmt(sSubtotal)]],
+      margin: { left: margin, right: margin },
+      theme: 'grid',
+      headStyles: {
+        fillColor: darkBg,
+        textColor: [255, 255, 255],
+        fontStyle: 'bold',
+        fontSize: 8,
+        cellPadding: 3,
+      },
+      bodyStyles: {
+        fontSize: 9,
+        cellPadding: 3,
+        textColor: [30, 41, 59],
+      },
+      footStyles: {
+        fillColor: [241, 245, 249],
+        textColor: [15, 23, 42],
+        fontStyle: 'bold',
+        fontSize: 9,
+      },
+      columnStyles: {
+        0: { cellWidth: 10, halign: 'center' },
+        1: { cellWidth: 'auto' },
+        2: { cellWidth: 18, halign: 'center' },
+        3: { cellWidth: 28, halign: 'right' },
+        4: { cellWidth: 28, halign: 'right' },
+      },
+      alternateRowStyles: { fillColor: [248, 250, 252] },
+    });
+    y = doc.lastAutoTable.finalY + 10;
+  }
+
+  // ── Grand Total box
+  const grandTotal = (products.reduce((s, r) => s + r.total, 0)) + (services.reduce((s, r) => s + r.total, 0));
+  if (y > pageH - 50) { doc.addPage(); y = 20; }
+
+  doc.setFillColor(...darkBg);
+  doc.roundedRect(pageW - margin - 70, y, 70, 16, 2, 2, 'F');
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(9);
+  doc.setTextColor(148, 163, 184);
+  doc.text('GRAND TOTAL', pageW - margin - 65, y + 6);
+  doc.setFontSize(14);
+  doc.setTextColor(...cyan);
+  doc.text(fmt(grandTotal), pageW - margin - 5, y + 13, { align: 'right' });
+  y += 24;
+
+  // ── Notes
+  const notes = document.getElementById('quoteNotes').value?.trim();
+  if (notes) {
+    if (y > pageH - 50) { doc.addPage(); y = 20; }
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+    doc.setTextColor(100, 116, 139);
+    doc.text('NOTES & TERMS', margin, y + 4);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(51, 65, 85);
+    const noteLines = doc.splitTextToSize(notes, pageW - 2 * margin);
+    doc.text(noteLines, margin, y + 10);
+    y += 12 + noteLines.length * 4;
+  }
+
+  // ── Footer on every page
+  const totalPages = doc.internal.getNumberOfPages();
+  for (let p = 1; p <= totalPages; p++) {
+    doc.setPage(p);
+    doc.setFillColor(...cyan);
+    doc.rect(0, pageH - 12, pageW, 12, 'F');
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7.5);
+    doc.setTextColor(2, 6, 23);
+    doc.text('PulseMatrix AV  |  www.pulsematrix.ca  |  Commercial AV Systems Integrator — Winnipeg & Canada-wide', pageW / 2, pageH - 5, { align: 'center' });
+    doc.setTextColor(2, 6, 23);
+    doc.text(`Page ${p} of ${totalPages}`, pageW - margin, pageH - 5, { align: 'right' });
+  }
+
+  // ── Save
+  const fileName = `PulseMatrix_Quote_${qNum}_${qDate}.pdf`;
+  doc.save(fileName);
+}
+</script>
+
+</body>
+</html>
