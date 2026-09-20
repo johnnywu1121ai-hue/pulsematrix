@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PulseMatrix AV — Commercial AV Systems Integrator for Venues</title>
-  <meta name="description" content="PulseMatrix AV designs, installs and manages complete audio-visual systems for hotels, bars, restaurants and entertainment venues — multi-TV video distribution, zoned audio, cameras and one-tablet control. Canadian integrator." />
-  <meta name="theme-color" content="#0f172a" />
+  <title>PulseMatrix AV — Commercial AV Systems Integrator</title>
+  <meta name="description" content="PulseMatrix AV engineers, installs and supports multi-display video, zoned sound and automated control for commercial venues across Canada — from 6 screens to 100+, run from one tablet." />
+  <meta name="theme-color" content="#0b1326" />
   <meta property="og:title" content="PulseMatrix AV — Commercial AV Systems Integrator" />
-  <meta property="og:description" content="From a handful of TVs to 100+, we design, install and run the video, audio and control for your venue — all on one tablet. Integrated &amp; supported in Canada." />
+  <meta property="og:description" content="Multi-display video, zoned audio and one-tablet control for bars, hotels and venues. Designed, installed and supported in Canada." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://pulsematrix.ca" />
 
@@ -23,12 +23,16 @@
           sans: ['Inter','ui-sans-serif','system-ui','sans-serif'],
           display: ['Montserrat','Inter','ui-sans-serif','system-ui','sans-serif'],
         },
-        colors: { brand: {50:'#ecfeff',100:'#cffafe',200:'#a5f3fc',300:'#67e8f9',400:'#22d3ee',500:'#06b6d4',600:'#0891b2',700:'#0e7490'} },
-        keyframes: {
-          pulseGlow: {'0%,100%':{opacity:'0.35'},'50%':{opacity:'0.7'}},
-          floaty: {'0%,100%':{transform:'translateY(0)'},'50%':{transform:'translateY(-8px)'}},
+        colors: {
+          base: '#020617',
+          brand: {50:'#ecfeff',100:'#cffafe',200:'#a5f3fc',300:'#67e8f9',400:'#22d3ee',500:'#06b6d4',600:'#0891b2',700:'#0e7490'},
+          ink: {900:'#020617',800:'#0b1326',700:'#0f172a',600:'#131b2e',500:'#1e293b',400:'#222a3d'},
         },
-        animation: { pulseGlow:'pulseGlow 5s ease-in-out infinite', floaty:'floaty 6s ease-in-out infinite' },
+        keyframes: {
+          pulseGlow: {'0%,100%':{opacity:'0.3'},'50%':{opacity:'0.65'}},
+          ping2: {'75%,100%':{transform:'scale(2)',opacity:'0'}},
+        },
+        animation: { pulseGlow:'pulseGlow 5s ease-in-out infinite' },
       } },
     };
   </script>
@@ -42,18 +46,22 @@
       background-image:
         linear-gradient(to right, rgba(148,163,184,0.06) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(148,163,184,0.06) 1px, transparent 1px);
-      background-size:46px 46px;
+      background-size:48px 48px;
     }
-    .radial-fade {
-      -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 0%, #000 55%, transparent 100%);
-      mask-image:radial-gradient(ellipse 70% 60% at 50% 0%, #000 55%, transparent 100%);
-    }
+    .radial-fade { -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 0%, #000 55%, transparent 100%); mask-image:radial-gradient(ellipse 70% 60% at 50% 0%, #000 55%, transparent 100%); }
     .nav-link::after { content:''; position:absolute; left:0; bottom:-4px; height:2px; width:0; background:#22d3ee; transition:width .25s ease; }
     .nav-link:hover::after { width:100%; }
+    .card-hover { transition:border-color .2s ease, background-color .2s ease, transform .2s ease; }
+    .card-hover:hover { border-color:rgba(34,211,238,0.45); transform:translateY(-2px); }
+    details > summary { list-style:none; cursor:pointer; }
+    details > summary::-webkit-details-marker { display:none; }
+    details[open] .faq-chev { transform:rotate(180deg); }
+    .faq-chev { transition:transform .2s ease; }
+    .label-code { font-size:11px; font-weight:700; letter-spacing:0.08em; }
   </style>
 </head>
 
-<body class="bg-slate-950 text-slate-300 antialiased">
+<body class="bg-base text-slate-300 antialiased">
 
   <!-- ============ HEADER ============ -->
   <header id="top" class="fixed top-0 inset-x-0 z-50 transition-all duration-300" data-nav>
@@ -66,415 +74,435 @@
           <span class="font-display text-lg font-bold tracking-tight text-white">Pulse<span class="text-brand-400">Matrix</span> <span class="align-top text-[10px] font-semibold tracking-widest text-slate-400">AV</span></span>
         </a>
 
-        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-300">
           <a href="#solutions" class="nav-link relative hover:text-white transition-colors" data-i18n="nav.solutions">Solutions</a>
           <a href="#process" class="nav-link relative hover:text-white transition-colors" data-i18n="nav.process">How We Work</a>
+          <a href="#zones" class="nav-link relative hover:text-white transition-colors" data-i18n="nav.zones">Plan by Zone</a>
           <a href="#products" class="nav-link relative hover:text-white transition-colors" data-i18n="nav.products">Products</a>
-          <a href="#specs" class="nav-link relative hover:text-white transition-colors" data-i18n="nav.estimator">Estimator</a>
           <a href="#contact" class="nav-link relative hover:text-white transition-colors" data-i18n="nav.contact">Contact</a>
         </nav>
 
         <div class="flex items-center gap-2 sm:gap-3">
-          <!-- Language toggle -->
+          <a href="tel:+12045550100" class="hidden xl:flex items-center gap-2 text-sm font-semibold text-slate-200 hover:text-white">
+            <svg class="h-4 w-4 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /> </svg> (204) 555-0100
+          </a>
           <div class="inline-flex items-center rounded-lg border border-slate-700 bg-slate-900/60 p-0.5 text-xs font-semibold" role="group" aria-label="Language">
             <button type="button" data-lang-btn="en" class="rounded-md px-2 py-1 text-slate-300 transition-colors" aria-label="English">EN</button>
             <button type="button" data-lang-btn="fr" class="rounded-md px-2 py-1 text-slate-300 transition-colors" aria-label="Français">FR</button>
           </div>
-          <a href="#contact" class="hidden sm:inline-flex items-center gap-2 rounded-lg bg-brand-400 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-brand-500/25 hover:bg-brand-300 transition-colors">
-            <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /> <path d="M14 2v4a2 2 0 0 0 2 2h4" /> <path d="M10 9H8" /> <path d="M16 13H8" /> <path d="M16 17H8" /> </svg> <span data-i18n="cta.quote">Request Quote</span>
+          <a href="#contact" class="hidden sm:inline-flex items-center gap-2 rounded-lg bg-brand-500 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-brand-500/25 hover:bg-brand-400 transition-colors">
+            <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" /> </svg> <span data-i18n="cta.quote">Request a Quote</span>
           </a>
-          <button id="menuBtn" class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-700 text-slate-200 hover:bg-slate-800" aria-label="Open menu" aria-expanded="false">
+          <button id="menuBtn" class="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-700 text-slate-200 hover:bg-slate-800" aria-label="Open menu" aria-expanded="false">
             <svg class="h-5 w-5" aria-hidden="true" id="iconMenu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <line x1="4" x2="20" y1="12" y2="12" /> <line x1="4" x2="20" y1="6" y2="6" /> <line x1="4" x2="20" y1="18" y2="18" /> </svg>
             <svg class="h-5 w-5 hidden" aria-hidden="true" id="iconX" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M18 6 6 18" /> <path d="m6 6 12 12" /> </svg>
           </button>
         </div>
       </div>
     </div>
-    <div id="mobileMenu" class="md:hidden hidden border-t border-slate-800 bg-slate-950/95 backdrop-blur">
+    <div id="mobileMenu" class="lg:hidden hidden border-t border-slate-800 bg-slate-950/95 backdrop-blur">
       <nav class="mx-auto max-w-7xl px-4 py-4 flex flex-col gap-1 text-sm font-medium">
         <a href="#solutions" class="rounded-lg px-3 py-2.5 text-slate-200 hover:bg-slate-800" data-i18n="nav.solutions">Solutions</a>
         <a href="#process" class="rounded-lg px-3 py-2.5 text-slate-200 hover:bg-slate-800" data-i18n="nav.process">How We Work</a>
+        <a href="#zones" class="rounded-lg px-3 py-2.5 text-slate-200 hover:bg-slate-800" data-i18n="nav.zones">Plan by Zone</a>
         <a href="#products" class="rounded-lg px-3 py-2.5 text-slate-200 hover:bg-slate-800" data-i18n="nav.products">Products</a>
-        <a href="#specs" class="rounded-lg px-3 py-2.5 text-slate-200 hover:bg-slate-800" data-i18n="nav.estimator">Estimator</a>
         <a href="#contact" class="rounded-lg px-3 py-2.5 text-slate-200 hover:bg-slate-800" data-i18n="nav.contact">Contact</a>
-        <a href="#contact" class="mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-brand-400 px-4 py-2.5 font-semibold text-slate-950"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /> <path d="M14 2v4a2 2 0 0 0 2 2h4" /> <path d="M10 9H8" /> <path d="M16 13H8" /> <path d="M16 17H8" /> </svg> <span data-i18n="cta.quote">Request Quote</span></a>
+        <a href="#contact" class="mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-brand-500 px-4 py-2.5 font-semibold text-slate-950"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" /> </svg> <span data-i18n="cta.quote">Request a Quote</span></a>
       </nav>
     </div>
   </header>
 
   <!-- ============ HERO ============ -->
-  <section class="relative overflow-hidden pt-28 pb-16 sm:pt-36 lg:pt-40">
+  <section class="relative overflow-hidden pt-28 pb-14 sm:pt-32 lg:pt-36">
     <div class="pointer-events-none absolute inset-0 grid-bg radial-fade"></div>
-    <div class="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[520px] w-[820px] rounded-full bg-brand-500/20 blur-[120px] animate-pulseGlow"></div>
+    <div class="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[820px] rounded-full bg-brand-500/20 blur-[120px] animate-pulseGlow"></div>
 
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid items-center gap-12 lg:grid-cols-2">
+      <div class="grid items-center gap-10 lg:grid-cols-2">
         <div>
-          <span class="inline-flex items-center gap-2 rounded-full border border-brand-400/30 bg-brand-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-300">
-            <span class="h-1.5 w-1.5 rounded-full bg-brand-400 animate-pulse"></span> <span data-i18n="hero.badge">AV Systems Integrator · Canadian</span>
+          <span class="inline-flex items-center gap-2 rounded-full border border-brand-400/30 bg-brand-400/10 px-3 py-1 label-code uppercase text-brand-300">
+            <span class="relative flex h-1.5 w-1.5"><span class="absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75" style="animation:pulseGlow 3s ease-in-out infinite"></span><span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand-400"></span></span>
+            <span data-i18n="hero.badge">Commercial AV Integration · Winnipeg &amp; Canada-wide</span>
           </span>
 
-          <h1 class="mt-6 font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
+          <h1 class="mt-6 font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[56px] lg:leading-[1.05]">
             <span data-i18n="hero.h1a">Commercial AV systems </span><span class="bg-gradient-to-r from-brand-300 via-brand-400 to-teal-300 bg-clip-text text-transparent" data-i18n="hero.h1b">that just work.</span>
           </h1>
 
-          <p class="mt-5 max-w-lg text-lg leading-relaxed text-slate-400" data-i18n="hero.sub">
-            Hotels, bars, restaurants and entertainment venues trust us to design, install and run their screens, sound and control — from a handful of TVs to 100+, all from one tablet.
+          <p class="mt-5 max-w-xl text-lg leading-relaxed text-slate-400" data-i18n="hero.sub">
+            We engineer, wire, install and support multi-display video, zoned sound and automated control for commercial venues. From 6 screens to 100+ — all run from a single tablet.
           </p>
 
+          <ul class="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium text-slate-300">
+            <li class="flex items-center gap-2"><svg class="h-4 w-4 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M20 6 9 17l-5-5" /> </svg> <span data-i18n="hero.c1">Custom engineering</span></li>
+            <li class="flex items-center gap-2"><svg class="h-4 w-4 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M20 6 9 17l-5-5" /> </svg> <span data-i18n="hero.c2">Supply &amp; staging</span></li>
+            <li class="flex items-center gap-2"><svg class="h-4 w-4 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M20 6 9 17l-5-5" /> </svg> <span data-i18n="hero.c3">Professional install</span></li>
+            <li class="flex items-center gap-2"><svg class="h-4 w-4 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M20 6 9 17l-5-5" /> </svg> <span data-i18n="hero.c4">Ongoing support</span></li>
+          </ul>
+
           <div class="mt-8 flex flex-wrap items-center gap-3">
-            <a href="#contact" class="inline-flex items-center gap-2 rounded-lg bg-brand-400 px-6 py-3.5 text-sm font-semibold text-slate-950 shadow-lg shadow-brand-500/30 hover:bg-brand-300 hover:-translate-y-0.5 transition-all">
-              <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /> <path d="M14 2v4a2 2 0 0 0 2 2h4" /> <path d="M10 9H8" /> <path d="M16 13H8" /> <path d="M16 17H8" /> </svg> <span data-i18n="cta.quote2">Request a Quote</span>
+            <a href="#contact" class="inline-flex items-center gap-2 rounded-lg bg-brand-500 px-6 py-3.5 text-sm font-semibold text-slate-950 shadow-lg shadow-brand-500/30 hover:bg-brand-400 hover:-translate-y-0.5 transition-all">
+              <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" /> </svg> <span data-i18n="cta.quoteConsult">Request a Quote</span>
             </a>
-            <a href="#solutions" class="inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-900/60 px-6 py-3.5 text-sm font-semibold text-slate-200 hover:border-brand-400/50 hover:text-white transition-colors">
-              <svg class="h-4 w-4 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg> <span data-i18n="cta.see">See What We Do</span>
+            <a href="#solutions" class="inline-flex items-center gap-2 rounded-lg border border-brand-600/70 bg-brand-500/5 px-6 py-3.5 text-sm font-semibold text-brand-300 hover:bg-brand-500/10 hover:text-white transition-colors">
+              <span data-i18n="cta.explore">Explore Solutions</span> <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg>
             </a>
           </div>
-
-          <dl class="mt-10 grid max-w-md grid-cols-3 gap-6 border-t border-slate-800 pt-7">
-            <div><dt class="font-display text-2xl font-bold text-white">100+</dt><dd class="mt-1 text-xs uppercase tracking-wide text-slate-500" data-i18n="stat.screens">Screens / system</dd></div>
-            <div><dt class="font-display text-2xl font-bold text-white" data-i18n="stat.zone">Multi-Zone</dt><dd class="mt-1 text-xs uppercase tracking-wide text-slate-500" data-i18n="stat.zoneSub">Audio &amp; video</dd></div>
-            <div><dt class="font-display text-2xl font-bold text-white" data-i18n="stat.tablet">1 Tablet</dt><dd class="mt-1 text-xs uppercase tracking-wide text-slate-500" data-i18n="stat.tabletSub">Runs it all</dd></div>
-          </dl>
         </div>
 
-        <div class="relative animate-floaty">
-          <div class="absolute -inset-6 rounded-[2.2rem] bg-gradient-to-tr from-brand-500/20 to-teal-500/10 blur-2xl"></div>
-          <div class="relative mx-auto max-w-[540px] rounded-[2rem] border border-slate-700 bg-slate-900 p-3 shadow-2xl shadow-black/60 ring-1 ring-white/5">
-            <div class="overflow-hidden rounded-[1.4rem] ring-1 ring-white/10">
-              <img src="assets/control-app.png" alt="Tablet control app showing live video panels, signal groups and multi-zone volume control" class="block w-full" loading="eager" width="1003" height="780" />
+        <!-- Real venue photo -->
+        <div class="relative">
+          <div class="absolute -inset-4 rounded-3xl bg-gradient-to-tr from-brand-500/15 to-teal-500/10 blur-2xl"></div>
+          <div class="relative overflow-hidden rounded-2xl border border-brand-400/20 shadow-2xl shadow-black/60 ring-1 ring-white/5">
+            <img src="assets/venue-hero.jpg" alt="A high-end sports bar with a large multi-screen video wall showing live games" class="block w-full" loading="eager" width="1376" height="768" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/20"></div>
+            <div class="absolute left-3 top-3 flex items-center gap-2 rounded-full bg-slate-950/70 px-3 py-1 ring-1 ring-white/10 backdrop-blur">
+              <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span><span class="label-code uppercase text-emerald-300" data-i18n="hero.tagLive">Live · 16 feeds · 8 audio zones</span>
             </div>
-          </div>
-          <div class="absolute -left-3 top-14 hidden sm:flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-900/90 px-3 py-2 shadow-xl backdrop-blur">
-            <svg class="h-4 w-4 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="10" height="14" x="3" y="8" rx="2" /> <path d="M5 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2h-2.4" /> <path d="M8 18h.01" /> </svg><span class="text-xs font-semibold text-slate-200" data-i18n="chip.tablet">One-tablet control</span>
-          </div>
-          <div class="absolute -right-2 bottom-12 hidden sm:flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-900/90 px-3 py-2 shadow-xl backdrop-blur">
-            <svg class="h-4 w-4 text-teal-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /> <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /> <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /> </svg><span class="text-xs font-semibold text-slate-200" data-i18n="chip.vac">Video · Audio · Control</span>
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between rounded-lg bg-slate-950/70 px-3 py-2 ring-1 ring-white/10 backdrop-blur">
+              <span class="flex items-center gap-2 text-xs font-semibold text-slate-200"><svg class="h-4 w-4 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="10" height="14" x="3" y="8" rx="2" /> <path d="M5 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2h-2.4" /> <path d="M8 18h.01" /> </svg> <span data-i18n="hero.tagCtrl">4K AVoIP matrix · one-tablet control</span></span>
+              <span class="hidden sm:block label-code uppercase text-slate-400" data-i18n="hero.tagVenue">Sports lounge</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="mt-14 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-xs font-semibold uppercase tracking-widest text-slate-500">
-        <span class="flex items-center gap-2"><svg class="h-4 w-4 text-brand-400/70" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="11" cy="11" r="8" /> <path d="m21 21-4.3-4.3" /> </svg> <span data-i18n="chain.design">Design</span></span>
-        <span class="text-slate-700">/</span>
-        <span class="flex items-center gap-2"><svg class="h-4 w-4 text-brand-400/70" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" /> <path d="M12 22V12" /> <path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7" /> <path d="m7.5 4.27 9 5.15" /> </svg> <span data-i18n="chain.supply">Supply</span></span>
-        <span class="text-slate-700">/</span>
-        <span class="flex items-center gap-2"><svg class="h-4 w-4 text-brand-400/70" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5" /> <path d="M14 6a6 6 0 0 1 6 6v3" /> <path d="M4 15v-3a6 6 0 0 1 6-6" /> <rect x="2" y="15" width="20" height="4" rx="1" /> </svg> <span data-i18n="chain.install">Install</span></span>
-        <span class="text-slate-700">/</span>
-        <span class="flex items-center gap-2"><svg class="h-4 w-4 text-brand-400/70" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="10" /> <path d="m4.93 4.93 4.24 4.24" /> <path d="m14.83 9.17 4.24-4.24" /> <path d="m14.83 14.83 4.24 4.24" /> <path d="m9.17 14.83-4.24 4.24" /> <circle cx="12" cy="12" r="4" /> </svg> <span data-i18n="chain.support">Support</span></span>
+      <!-- Stat tiles (capabilities & promises — not historical claims) -->
+      <div class="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+        <div class="rounded-xl border border-white/8 bg-ink-700/60 p-5 backdrop-blur">
+          <p class="font-display text-3xl font-bold text-white">6–100+</p>
+          <p class="mt-1 text-sm text-slate-400" data-i18n="stat.1">Displays per venue</p>
+        </div>
+        <div class="rounded-xl border border-white/8 bg-ink-700/60 p-5 backdrop-blur">
+          <p class="font-display text-3xl font-bold text-white" data-i18n="stat.2v">Multi-zone</p>
+          <p class="mt-1 text-sm text-slate-400" data-i18n="stat.2">Audio &amp; video</p>
+        </div>
+        <div class="rounded-xl border border-white/8 bg-ink-700/60 p-5 backdrop-blur">
+          <p class="font-display text-3xl font-bold text-white" data-i18n="stat.3v">Fixed-price</p>
+          <p class="mt-1 text-sm text-slate-400" data-i18n="stat.3">Quotes, no surprises</p>
+        </div>
+        <div class="rounded-xl border border-white/8 bg-ink-700/60 p-5 backdrop-blur">
+          <p class="font-display text-3xl font-bold text-white">24 h</p>
+          <p class="mt-1 text-sm text-slate-400" data-i18n="stat.4">Response commitment</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ WHO WE SERVE ============ -->
-  <section class="relative py-8">
+  <!-- ============ BUILT FOR ============ -->
+  <section class="relative py-10">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="rounded-2xl border border-slate-800 bg-slate-900/40 px-6 py-6">
-        <p class="text-center text-xs font-semibold uppercase tracking-widest text-slate-500" data-i18n="builtfor">Built for</p>
-        <div class="mt-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm font-semibold text-slate-300">
-          <span class="flex items-center gap-2"><svg class="h-5 w-5 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M8 22h8" /> <path d="M7 10h10" /> <path d="M12 15v7" /> <path d="M12 15a5 5 0 0 0 5-5c0-2-.5-4-2-8H9c-1.5 4-2 6-2 8a5 5 0 0 0 5 5Z" /> </svg> <span data-i18n="bf.bars">Sports Bars &amp; Pubs</span></span>
-          <span class="flex items-center gap-2"><svg class="h-5 w-5 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M10 22v-6.57" /> <path d="M12 11h.01" /> <path d="M12 7h.01" /> <path d="M14 15.43V22" /> <path d="M15 16a5 5 0 0 0-6 0" /> <path d="M16 11h.01" /> <path d="M16 7h.01" /> <path d="M8 11h.01" /> <path d="M8 7h.01" /> <rect x="4" y="2" width="16" height="20" rx="2" /> </svg> <span data-i18n="bf.hotels">Hotels &amp; Resorts</span></span>
-          <span class="flex items-center gap-2"><svg class="h-5 w-5 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" /> <path d="M7 2v20" /> <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" /> </svg> <span data-i18n="bf.rest">Restaurants</span></span>
-          <span class="flex items-center gap-2"><svg class="h-5 w-5 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M14.4 14.4 9.6 9.6" /> <path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z" /> <path d="m21.5 21.5-1.4-1.4" /> <path d="M3.9 3.9 2.5 2.5" /> <path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z" /> </svg> <span data-i18n="bf.gyms">Gyms &amp; Rec</span></span>
-          <span class="flex items-center gap-2"><svg class="h-5 w-5 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" /> <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" /> <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" /> <path d="M10 6h4" /> <path d="M10 10h4" /> <path d="M10 14h4" /> <path d="M10 18h4" /> </svg> <span data-i18n="bf.ent">Entertainment Venues</span></span>
-        </div>
+      <p class="text-center label-code uppercase text-slate-500" data-i18n="bf.title">Engineered for Canadian commercial venues</p>
+      <div class="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+        <div class="flex items-center gap-2.5 rounded-lg border border-white/8 bg-ink-700/50 px-4 py-3"><svg class="h-5 w-5 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="20" height="15" x="2" y="7" rx="2" ry="2" /> <polyline points="17 2 12 7 7 2" /> </svg><span class="text-sm font-semibold text-slate-200" data-i18n="bf.bars">Sports Bars &amp; Taprooms</span></div>
+        <div class="flex items-center gap-2.5 rounded-lg border border-white/8 bg-ink-700/50 px-4 py-3"><svg class="h-5 w-5 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M10 22v-6.57" /> <path d="M12 11h.01" /> <path d="M12 7h.01" /> <path d="M14 15.43V22" /> <path d="M15 16a5 5 0 0 0-6 0" /> <path d="M16 11h.01" /> <path d="M16 7h.01" /> <path d="M8 11h.01" /> <path d="M8 7h.01" /> <rect x="4" y="2" width="16" height="20" rx="2" /> </svg><span class="text-sm font-semibold text-slate-200" data-i18n="bf.hotels">Hotels &amp; Hospitality</span></div>
+        <div class="flex items-center gap-2.5 rounded-lg border border-white/8 bg-ink-700/50 px-4 py-3"><svg class="h-5 w-5 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" /> <path d="M7 2v20" /> <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" /> </svg><span class="text-sm font-semibold text-slate-200" data-i18n="bf.rest">Restaurants &amp; Lounges</span></div>
+        <div class="flex items-center gap-2.5 rounded-lg border border-white/8 bg-ink-700/50 px-4 py-3"><svg class="h-5 w-5 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M14.4 14.4 9.6 9.6" /> <path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z" /> <path d="m21.5 21.5-1.4-1.4" /> <path d="M3.9 3.9 2.5 2.5" /> <path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z" /> </svg><span class="text-sm font-semibold text-slate-200" data-i18n="bf.gyms">Gyms &amp; Athletics</span></div>
+        <div class="flex items-center gap-2.5 rounded-lg border border-white/8 bg-ink-700/50 px-4 py-3"><svg class="h-5 w-5 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" /> <path d="M13 5v2" /> <path d="M13 17v2" /> <path d="M13 11v2" /> </svg><span class="text-sm font-semibold text-slate-200" data-i18n="bf.events">Event Spaces &amp; Arenas</span></div>
       </div>
     </div>
   </section>
 
   <!-- ============ SOLUTIONS ============ -->
-  <section id="solutions" class="relative py-20">
+  <section id="solutions" class="relative py-16 sm:py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-2xl text-center">
-        <span class="text-xs font-semibold uppercase tracking-widest text-brand-400" data-i18n="sol.eyebrow">What We Do</span>
-        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl" data-i18n="sol.h2">One team for the whole venue</h2>
-        <p class="mt-4 text-slate-400" data-i18n="sol.sub">You don't need to know the tech. Tell us the space and what you want it to do — we handle the rest.</p>
+        <span class="label-code uppercase text-brand-400" data-i18n="sol.eyebrow">Turnkey Capabilities</span>
+        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl" data-i18n="sol.h2">Everything engineered to run seamlessly</h2>
+        <p class="mt-4 text-slate-400" data-i18n="sol.sub">No consumer splitters or tangled cords. Every screen, speaker, mic and source is orchestrated from one touchscreen.</p>
       </div>
 
-      <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-6 transition-colors hover:border-brand-400/40">
-          <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="20" height="15" x="2" y="7" rx="2" ry="2" /> <polyline points="17 2 12 7 7 2" /> </svg></div>
+      <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="card-hover rounded-xl border border-white/8 bg-ink-700/60 p-6 backdrop-blur">
+          <div class="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="20" height="15" x="2" y="7" rx="2" ry="2" /> <polyline points="17 2 12 7 7 2" /> </svg></div>
           <h3 class="mt-4 font-display text-lg font-bold text-white" data-i18n="sol.1.t">Multi-TV Video &amp; Sports</h3>
-          <p class="mt-1.5 text-sm text-slate-400" data-i18n="sol.1.d">Any game on any screen, video walls, and multiple games on one TV — switch the whole floor from a tablet.</p>
+          <p class="mt-2 text-sm text-slate-400" data-i18n="sol.1.d">Route any cable box, decoder or camera to any screen or full video wall in 4K, with no perceptible delay.</p>
+          <p class="mt-3 label-code uppercase text-slate-500" data-i18n="sol.1.g">WyreStorm · Crestron NVX · 10GbE core</p>
         </div>
-        <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-6 transition-colors hover:border-brand-400/40">
-          <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M2 10v3" /> <path d="M6 6v11" /> <path d="M10 3v18" /> <path d="M14 8v7" /> <path d="M18 5v13" /> <path d="M22 10v3" /> </svg></div>
-          <h3 class="mt-4 font-display text-lg font-bold text-white" data-i18n="sol.2.t">Zoned &amp; Event Audio</h3>
-          <p class="mt-1.5 text-sm text-slate-400" data-i18n="sol.2.d">Different music in the bar, patio and dining room — plus paging and event sound, all independently controlled.</p>
+        <div class="card-hover rounded-xl border border-white/8 bg-ink-700/60 p-6 backdrop-blur">
+          <div class="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M2 10v3" /> <path d="M6 6v11" /> <path d="M10 3v18" /> <path d="M14 8v7" /> <path d="M18 5v13" /> <path d="M22 10v3" /> </svg></div>
+          <h3 class="mt-4 font-display text-lg font-bold text-white" data-i18n="sol.2.t">Zoned Architectural Sound</h3>
+          <p class="mt-2 text-sm text-slate-400" data-i18n="sol.2.d">Game audio in the bar, quiet music in the dining room, background tracks on the patio — each its own zone.</p>
+          <p class="mt-3 label-code uppercase text-slate-500" data-i18n="sol.2.g">Q-SYS · Dante amps · JBL / Bose</p>
         </div>
-        <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-6 transition-colors hover:border-brand-400/40">
-          <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="18" height="18" x="3" y="3" rx="2" /> <path d="M12 3v18" /> </svg></div>
+        <div class="card-hover rounded-xl border border-white/8 bg-ink-700/60 p-6 backdrop-blur">
+          <div class="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="18" height="18" x="3" y="3" rx="2" /> <path d="M12 3v18" /> </svg></div>
           <h3 class="mt-4 font-display text-lg font-bold text-white" data-i18n="sol.3.t">Divisible Rooms</h3>
-          <p class="mt-1.5 text-sm text-slate-400" data-i18n="sol.3.d">Split a 10,000 sq ft hall into separate rooms — audio and video follow the partitions, combine at the touch of a button.</p>
+          <p class="mt-2 text-sm text-slate-400" data-i18n="sol.3.d">Close the partition and audio and screens split into separate rooms; open it and the system merges automatically.</p>
+          <p class="mt-3 label-code uppercase text-slate-500" data-i18n="sol.3.g">Air-wall logic · Biamp Tesira · Shure</p>
         </div>
-        <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-6 transition-colors hover:border-brand-400/40">
-          <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M16.75 12h3.632a1 1 0 0 1 .894 1.447l-2.034 4.069a1 1 0 0 1-1.708.134l-2.124-2.97" /> <path d="M17.106 9.053a1 1 0 0 1 .447 1.341l-3.106 6.211a1 1 0 0 1-1.342.447L3.61 12.3a2.92 2.92 0 0 1-1.3-3.91L3.69 5.6a2.92 2.92 0 0 1 3.92-1.3z" /> <path d="M2 19h3.76a2 2 0 0 0 1.8-1.1L9 15" /> <path d="M2 21v-4" /> <path d="M7 9h.01" /> </svg></div>
-          <h3 class="mt-4 font-display text-lg font-bold text-white" data-i18n="sol.4.t">Cameras &amp; Surveillance</h3>
-          <p class="mt-1.5 text-sm text-slate-400" data-i18n="sol.4.d">PoE IP cameras and recording on the same managed network as your AV — one system, one contractor.</p>
+        <div class="card-hover rounded-xl border border-white/8 bg-ink-700/60 p-6 backdrop-blur">
+          <div class="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5" /> <rect x="2" y="6" width="14" height="12" rx="2" /> </svg></div>
+          <h3 class="mt-4 font-display text-lg font-bold text-white" data-i18n="sol.4.t">PTZ Cameras &amp; Streaming</h3>
+          <p class="mt-2 text-sm text-slate-400" data-i18n="sol.4.d">Stream live entertainment and events, with automated presenter tracking for hybrid town halls.</p>
+          <p class="mt-3 label-code uppercase text-slate-500" data-i18n="sol.4.g">PTZOptics 4K · NDI / IP encoders</p>
         </div>
-        <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-6 transition-colors hover:border-brand-400/40">
-          <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M2 3h20" /> <path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3" /> <path d="m7 21 5-5 5 5" /> </svg></div>
-          <h3 class="mt-4 font-display text-lg font-bold text-white" data-i18n="sol.5.t">Conferencing &amp; Meeting Rooms</h3>
-          <p class="mt-1.5 text-sm text-slate-400" data-i18n="sol.5.d">PTZ cameras, mics and displays for boardrooms and function spaces — join a call with one touch.</p>
+        <div class="card-hover rounded-xl border border-white/8 bg-ink-700/60 p-6 backdrop-blur">
+          <div class="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M2 3h20" /> <path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3" /> <path d="m7 21 5-5 5 5" /> </svg></div>
+          <h3 class="mt-4 font-display text-lg font-bold text-white" data-i18n="sol.5.t">Boardrooms &amp; Town Halls</h3>
+          <p class="mt-2 text-sm text-slate-400" data-i18n="sol.5.d">Teams and Zoom Rooms with ceiling beamforming mics that auto-frame whoever's speaking.</p>
+          <p class="mt-3 label-code uppercase text-slate-500" data-i18n="sol.5.g">Shure MXA · Sony displays · Crestron Flex</p>
         </div>
-        <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-6 transition-colors hover:border-brand-400/40">
-          <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <line x1="21" x2="14" y1="4" y2="4" /> <line x1="10" x2="3" y1="4" y2="4" /> <line x1="21" x2="12" y1="12" y2="12" /> <line x1="8" x2="3" y1="12" y2="12" /> <line x1="21" x2="16" y1="20" y2="20" /> <line x1="12" x2="3" y1="20" y2="20" /> <line x1="14" x2="14" y1="2" y2="6" /> <line x1="8" x2="8" y1="10" y2="14" /> <line x1="16" x2="16" y1="18" y2="22" /> </svg></div>
-          <h3 class="mt-4 font-display text-lg font-bold text-white" data-i18n="sol.6.t">Control &amp; Automation</h3>
-          <p class="mt-1.5 text-sm text-slate-400" data-i18n="sol.6.d">Screens, sound, lighting scenes and sources — run the entire venue from a tablet your staff can actually use.</p>
+        <div class="card-hover rounded-xl border border-white/8 bg-ink-700/60 p-6 backdrop-blur">
+          <div class="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <line x1="21" x2="14" y1="4" y2="4" /> <line x1="10" x2="3" y1="4" y2="4" /> <line x1="21" x2="12" y1="12" y2="12" /> <line x1="8" x2="3" y1="12" y2="12" /> <line x1="21" x2="16" y1="20" y2="20" /> <line x1="12" x2="3" y1="20" y2="20" /> <line x1="14" x2="14" y1="2" y2="6" /> <line x1="8" x2="8" y1="10" y2="14" /> <line x1="16" x2="16" y1="18" y2="22" /> </svg></div>
+          <h3 class="mt-4 font-display text-lg font-bold text-white" data-i18n="sol.6.t">Venue Automation &amp; Control</h3>
+          <p class="mt-2 text-sm text-slate-400" data-i18n="sol.6.d">One tap for "Open": 40 TVs on, volumes set, sources routed. One tap for "Close": everything powers down safely.</p>
+          <p class="mt-3 label-code uppercase text-slate-500" data-i18n="sol.6.g">Crestron · Q-SYS · iPad control</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ PROCESS ============ -->
-  <section id="process" class="relative border-y border-slate-800/70 bg-slate-900/30 py-20">
+  <!-- ============ PROCESS + CRAFTSMANSHIP ============ -->
+  <section id="process" class="relative border-y border-white/8 bg-ink-800/40 py-16 sm:py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-2xl text-center">
-        <span class="text-xs font-semibold uppercase tracking-widest text-brand-400" data-i18n="pr.eyebrow">How We Work</span>
-        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl" data-i18n="pr.h2">From walkthrough to working system</h2>
+        <span class="label-code uppercase text-brand-400" data-i18n="pr.eyebrow">The Integrator Blueprint</span>
+        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl" data-i18n="pr.h2">From blank blueprints to opening night</h2>
+        <p class="mt-4 text-slate-400" data-i18n="pr.sub">We're not salespeople pushing boxes — we're your AV project department, from rough-in to opening shift.</p>
       </div>
+
       <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        <div class="rounded-2xl border border-slate-800 bg-slate-950/60 p-6">
-          <div class="flex items-center justify-between"><span class="font-display text-4xl font-black text-slate-800">01</span><svg class="h-5 w-5 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="11" cy="11" r="8" /> <path d="m21 21-4.3-4.3" /> </svg></div>
-          <h3 class="mt-2 font-display text-base font-bold text-white" data-i18n="pr.1.t">Site assessment</h3>
-          <p class="mt-1.5 text-sm text-slate-400" data-i18n="pr.1.d">We walk the space, count screens and zones, and learn how you actually use the room.</p>
+        <div class="rounded-xl border border-white/8 bg-ink-700/60 p-6">
+          <div class="flex items-center justify-between"><span class="font-display text-3xl font-black text-brand-500/40">01</span><svg class="h-5 w-5 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="11" cy="11" r="8" /> <path d="m21 21-4.3-4.3" /> </svg></div>
+          <h3 class="mt-2 font-display text-base font-bold text-white" data-i18n="pr.1.t">Site &amp; acoustic assessment</h3>
+          <p class="mt-1.5 text-sm text-slate-400" data-i18n="pr.1.d">We walk the space or review plans, map speaker coverage and noise levels, and plan clean cable paths.</p>
         </div>
-        <div class="rounded-2xl border border-slate-800 bg-slate-950/60 p-6">
-          <div class="flex items-center justify-between"><span class="font-display text-4xl font-black text-slate-800">02</span><svg class="h-5 w-5 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M13 7 8.7 2.7a2.41 2.41 0 0 0-3.4 0L2.7 5.3a2.41 2.41 0 0 0 0 3.4L7 13" /> <path d="m8 6 2-2" /> <path d="m18 16 2-2" /> <path d="m17 11 4.3 4.3c.94.94.94 2.46 0 3.4l-2.6 2.6c-.94.94-2.46.94-3.4 0L11 17" /> <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" /> <path d="m15 5 4 4" /> </svg></div>
-          <h3 class="mt-2 font-display text-base font-bold text-white" data-i18n="pr.2.t">System design</h3>
-          <p class="mt-1.5 text-sm text-slate-400" data-i18n="pr.2.d">A clear plan and fixed quote — gear, layout, cabling and control, sized to your budget.</p>
+        <div class="rounded-xl border border-white/8 bg-ink-700/60 p-6">
+          <div class="flex items-center justify-between"><span class="font-display text-3xl font-black text-brand-500/40">02</span><svg class="h-5 w-5 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M13 7 8.7 2.7a2.41 2.41 0 0 0-3.4 0L2.7 5.3a2.41 2.41 0 0 0 0 3.4L7 13" /> <path d="m8 6 2-2" /> <path d="m18 16 2-2" /> <path d="m17 11 4.3 4.3c.94.94.94 2.46 0 3.4l-2.6 2.6c-.94.94-2.46.94-3.4 0L11 17" /> <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" /> <path d="m15 5 4 4" /> </svg></div>
+          <h3 class="mt-2 font-display text-base font-bold text-white" data-i18n="pr.2.t">Design &amp; fixed quote</h3>
+          <p class="mt-1.5 text-sm text-slate-400" data-i18n="pr.2.d">You get clear schematics and an itemized fixed-price proposal — no hidden fees, no surprise extras.</p>
         </div>
-        <div class="rounded-2xl border border-slate-800 bg-slate-950/60 p-6">
-          <div class="flex items-center justify-between"><span class="font-display text-4xl font-black text-slate-800">03</span><svg class="h-5 w-5 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5" /> <path d="M14 6a6 6 0 0 1 6 6v3" /> <path d="M4 15v-3a6 6 0 0 1 6-6" /> <rect x="2" y="15" width="20" height="4" rx="1" /> </svg></div>
-          <h3 class="mt-2 font-display text-base font-bold text-white" data-i18n="pr.3.t">Professional install</h3>
-          <p class="mt-1.5 text-sm text-slate-400" data-i18n="pr.3.d">Clean cabling, tidy rack, mounted displays — done right, with minimal disruption to business.</p>
+        <div class="rounded-xl border border-white/8 bg-ink-700/60 p-6">
+          <div class="flex items-center justify-between"><span class="font-display text-3xl font-black text-brand-500/40">03</span><svg class="h-5 w-5 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5" /> <path d="M14 6a6 6 0 0 1 6 6v3" /> <path d="M4 15v-3a6 6 0 0 1 6-6" /> <rect x="2" y="15" width="20" height="4" rx="1" /> </svg></div>
+          <h3 class="mt-2 font-display text-base font-bold text-white" data-i18n="pr.3.t">Clean rack &amp; install</h3>
+          <p class="mt-1.5 text-sm text-slate-400" data-i18n="pr.3.d">Combed and labeled rack dressing, secure display mounts, concealed cabling — often during off-hours.</p>
         </div>
-        <div class="rounded-2xl border border-slate-800 bg-slate-950/60 p-6">
-          <div class="flex items-center justify-between"><span class="font-display text-4xl font-black text-slate-800">04</span><svg class="h-5 w-5 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="10" /> <path d="m4.93 4.93 4.24 4.24" /> <path d="m14.83 9.17 4.24-4.24" /> <path d="m14.83 14.83 4.24 4.24" /> <path d="m9.17 14.83-4.24 4.24" /> <circle cx="12" cy="12" r="4" /> </svg></div>
-          <h3 class="mt-2 font-display text-base font-bold text-white" data-i18n="pr.4.t">Train &amp; support</h3>
-          <p class="mt-1.5 text-sm text-slate-400" data-i18n="pr.4.d">We show your staff the tablet, then stay on call — remote help and service when you need it.</p>
+        <div class="rounded-xl border border-white/8 bg-ink-700/60 p-6">
+          <div class="flex items-center justify-between"><span class="font-display text-3xl font-black text-brand-500/40">04</span><svg class="h-5 w-5 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="10" /> <path d="m4.93 4.93 4.24 4.24" /> <path d="m14.83 9.17 4.24-4.24" /> <path d="m14.83 14.83 4.24 4.24" /> <path d="m9.17 14.83-4.24 4.24" /> <circle cx="12" cy="12" r="4" /> </svg></div>
+          <h3 class="mt-2 font-display text-base font-bold text-white" data-i18n="pr.4.t">Training &amp; support</h3>
+          <p class="mt-1.5 text-sm text-slate-400" data-i18n="pr.4.d">We train your staff in minutes, leave cheat sheets, and back you with remote help and fast dispatch.</p>
+        </div>
+      </div>
+
+      <!-- Craftsmanship band with real rack photo -->
+      <div class="mt-8 grid items-center gap-8 overflow-hidden rounded-2xl border border-white/8 bg-ink-700/40 lg:grid-cols-2">
+        <div class="relative min-h-[240px]">
+          <img src="assets/av-rack.jpg" alt="A spotless commercial AV equipment rack with neatly dressed cabling" class="h-full w-full object-cover" loading="lazy" width="1376" height="768" />
+          <div class="absolute inset-0 bg-gradient-to-r from-transparent to-ink-700/60 lg:to-ink-700"></div>
+        </div>
+        <div class="p-6 sm:p-8">
+          <span class="label-code uppercase text-brand-400" data-i18n="craft.eyebrow">Integrator Craftsmanship</span>
+          <h3 class="mt-3 font-display text-2xl font-bold text-white" data-i18n="craft.h3">The wiring behind the rack is the difference</h3>
+          <p class="mt-3 text-sm text-slate-400" data-i18n="craft.d">Most AV glitches trace back to a rat's nest of overheating consumer cables. Every line we run is shielded, dressed, labeled at both ends, and cooled by design.</p>
+          <div class="mt-5 grid grid-cols-2 gap-3 text-sm">
+            <div class="flex items-center gap-2 text-slate-300"><svg class="h-4 w-4 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="10" /> <path d="m9 12 2 2 4-4" /> </svg> <span data-i18n="craft.1">Every port labeled</span></div>
+            <div class="flex items-center gap-2 text-slate-300"><svg class="h-4 w-4 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="10" /> <path d="m9 12 2 2 4-4" /> </svg> <span data-i18n="craft.2">Remote-reboot power</span></div>
+            <div class="flex items-center gap-2 text-slate-300"><svg class="h-4 w-4 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="10" /> <path d="m9 12 2 2 4-4" /> </svg> <span data-i18n="craft.3">Thermostatic cooling</span></div>
+            <div class="flex items-center gap-2 text-slate-300"><svg class="h-4 w-4 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="10" /> <path d="m9 12 2 2 4-4" /> </svg> <span data-i18n="craft.4">Battery backup</span></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ PRODUCTS CATALOG ============ -->
-  <section id="products" class="relative py-20">
+  <!-- ============ PLAN BY ZONE ============ -->
+  <section id="zones" class="relative py-16 sm:py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-2xl text-center">
-        <span class="text-xs font-semibold uppercase tracking-widest text-brand-400" data-i18n="pd.eyebrow">Products We Supply</span>
-        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl" data-i18n="pd.h2">The right gear for the job</h2>
-        <p class="mt-4 text-slate-400" data-i18n="pd.sub">We spec from proven commercial brands and pass import pricing on to you. A sample of what we deploy:</p>
+        <span class="label-code uppercase text-brand-400" data-i18n="zn.eyebrow">Plan By Zone</span>
+        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl" data-i18n="zn.h2">Every area gets the sound &amp; vision it needs</h2>
+        <p class="mt-4 text-slate-400" data-i18n="zn.sub">We design each part of your venue on its own — then tie them together under one control system.</p>
       </div>
 
-      <div class="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        <!-- Displays -->
-        <div class="flex flex-col rounded-2xl border border-slate-800 bg-slate-900/50 p-6">
-          <div class="flex items-center gap-3"><span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="20" height="14" x="2" y="3" rx="2" /> <line x1="8" x2="16" y1="21" y2="21" /> <line x1="12" x2="12" y1="17" y2="21" /> </svg></span><h3 class="font-display text-lg font-bold text-white" data-i18n="cat.displays.t">Commercial Displays</h3></div>
-          <p class="mt-3 text-sm text-slate-400" data-i18n="cat.displays.d">Commercial-grade panels rated for all-day operation — 43" to 98", 4K, high brightness.</p>
-          <ul class="mt-4 space-y-2 text-sm text-slate-300">
-            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> Samsung QMC Series (QM65C / QM75C)</li>
-            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> LG UL3 / UL3Q signage</li>
-            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> Sony Bravia commercial</li>
-          </ul>
-          <div class="mt-4 flex flex-wrap gap-1.5 text-[11px] text-slate-400">
-            <span class="rounded-full bg-slate-800/70 px-2 py-0.5">4K UHD</span><span class="rounded-full bg-slate-800/70 px-2 py-0.5" data-i18n="chip.rated">16/7–24/7 rated</span><span class="rounded-full bg-slate-800/70 px-2 py-0.5" data-i18n="chip.bezel">Slim bezel</span>
-          </div>
-          <a href="#contact" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-300 hover:text-brand-200"><span data-i18n="req">Request a quote</span> <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></a>
+      <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="rounded-xl border border-white/8 bg-ink-700/60 p-5">
+          <div class="flex items-center gap-2 text-brand-300"><svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="20" height="15" x="2" y="7" rx="2" ry="2" /> <polyline points="17 2 12 7 7 2" /> </svg><h3 class="font-display text-base font-bold text-white" data-i18n="zn.1.t">Main Bar &amp; Tap Area</h3></div>
+          <p class="mt-2 text-sm text-slate-400" data-i18n="zn.1.d">High-energy game audio, a center video wall, and side screens with a sightline from every seat.</p>
+          <span class="mt-3 inline-block rounded-full bg-brand-500/10 px-2.5 py-0.5 label-code uppercase text-brand-300" data-i18n="zn.1.c">Game-priority audio</span>
         </div>
-
-        <!-- Video distribution -->
-        <div class="flex flex-col rounded-2xl border border-brand-400/25 bg-slate-900/50 p-6">
-          <div class="flex items-center gap-3"><span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M12 3v18" /> <path d="M3 12h18" /> <rect x="3" y="3" width="18" height="18" rx="2" /> </svg></span><h3 class="font-display text-lg font-bold text-white" data-i18n="cat.video.t">Video Distribution (AVoIP)</h3></div>
-          <p class="mt-3 text-sm text-slate-400" data-i18n="cat.video.d">Route any source to any screen over one Cat6 PoE cable — 1:1 up to 100+ displays, tablet controlled.</p>
-          <ul class="mt-4 space-y-2 text-sm text-slate-300">
-            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> <span data-i18n="cat.video.li1">PulseMatrix distributed ENC/DEC nodes</span></li>
-            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> WyreStorm NetworkHD (MultiView)</li>
-            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> ZeeVee ZyPer</li>
-          </ul>
-          <div class="mt-4 flex flex-wrap gap-1.5 text-[11px] text-slate-400">
-            <span class="rounded-full bg-slate-800/70 px-2 py-0.5">H.264/H.265</span><span class="rounded-full bg-slate-800/70 px-2 py-0.5" data-i18n="chip.feed">~30 Mbps/feed</span><span class="rounded-full bg-slate-800/70 px-2 py-0.5" data-i18n="chip.multigame">Multi-game-on-one-TV</span>
-          </div>
-          <a href="#contact" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-300 hover:text-brand-200"><span data-i18n="req">Request a quote</span> <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></a>
+        <div class="rounded-xl border border-white/8 bg-ink-700/60 p-5">
+          <div class="flex items-center gap-2 text-brand-300"><svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" /> <path d="M7 2v20" /> <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" /> </svg><h3 class="font-display text-base font-bold text-white" data-i18n="zn.2.t">Dining Room &amp; Booths</h3></div>
+          <p class="mt-2 text-sm text-slate-400" data-i18n="zn.2.d">Even, low-volume ceiling sound so guests can talk — no hot spots, no blasting over the booths.</p>
+          <span class="mt-3 inline-block rounded-full bg-brand-500/10 px-2.5 py-0.5 label-code uppercase text-brand-300" data-i18n="zn.2.c">Warm &amp; discreet</span>
         </div>
-
-        <!-- Speakers -->
-        <div class="flex flex-col rounded-2xl border border-slate-800 bg-slate-900/50 p-6">
-          <div class="flex items-center gap-3"><span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="16" height="20" x="4" y="2" rx="2" /> <path d="M12 6h.01" /> <circle cx="12" cy="14" r="4" /> <path d="M12 14h.01" /> </svg></span><h3 class="font-display text-lg font-bold text-white" data-i18n="cat.speakers.t">Speakers &amp; Audio</h3></div>
-          <p class="mt-3 text-sm text-slate-400" data-i18n="cat.speakers.d">In-ceiling, surface and pendant speakers on 70/100V lines for even, multi-zone coverage.</p>
-          <ul class="mt-4 space-y-2 text-sm text-slate-300">
-            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> JBL Control 24CT (4", 70/100V)</li>
-            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> Bose DesignMax</li>
-            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> Yamaha VXC / VXS series</li>
-          </ul>
-          <div class="mt-4 flex flex-wrap gap-1.5 text-[11px] text-slate-400">
-            <span class="rounded-full bg-slate-800/70 px-2 py-0.5">70/100V</span><span class="rounded-full bg-slate-800/70 px-2 py-0.5" data-i18n="chip.inceiling">In-ceiling &amp; surface</span><span class="rounded-full bg-slate-800/70 px-2 py-0.5" data-i18n="chip.multizone">Multi-zone</span>
-          </div>
-          <a href="#contact" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-300 hover:text-brand-200"><span data-i18n="req">Request a quote</span> <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></a>
+        <div class="rounded-xl border border-white/8 bg-ink-700/60 p-5">
+          <div class="flex items-center gap-2 text-brand-300"><svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="4" /> <path d="M12 2v2" /> <path d="M12 20v2" /> <path d="m4.93 4.93 1.41 1.41" /> <path d="m17.66 17.66 1.41 1.41" /> <path d="M2 12h2" /> <path d="M20 12h2" /> <path d="m6.34 17.66-1.41 1.41" /> <path d="m19.07 4.93-1.41 1.41" /> </svg><h3 class="font-display text-base font-bold text-white" data-i18n="zn.3.t">Patio &amp; Beer Garden</h3></div>
+          <p class="mt-2 text-sm text-slate-400" data-i18n="zn.3.d">Weather-sealed, sun-bright displays and speakers rated for prairie winters, with an auto noise curfew.</p>
+          <span class="mt-3 inline-block rounded-full bg-brand-500/10 px-2.5 py-0.5 label-code uppercase text-brand-300" data-i18n="zn.3.c">All-weather</span>
         </div>
-
-        <!-- Amps & DSP -->
-        <div class="flex flex-col rounded-2xl border border-slate-800 bg-slate-900/50 p-6">
-          <div class="flex items-center gap-3"><span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M20 7h-9" /> <path d="M14 17H5" /> <circle cx="17" cy="17" r="3" /> <circle cx="7" cy="7" r="3" /> </svg></span><h3 class="font-display text-lg font-bold text-white" data-i18n="cat.amps.t">Amplifiers &amp; DSP</h3></div>
-          <p class="mt-3 text-sm text-slate-400" data-i18n="cat.amps.d">Mixer-amps and processors that split the venue into zones, with source EQ and priority paging.</p>
-          <ul class="mt-4 space-y-2 text-sm text-slate-300">
-            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> Yamaha MA2030a / MA2120</li>
-            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> QSC Q-SYS platform</li>
-            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> Biamp Tesira</li>
-          </ul>
-          <div class="mt-4 flex flex-wrap gap-1.5 text-[11px] text-slate-400">
-            <span class="rounded-full bg-slate-800/70 px-2 py-0.5" data-i18n="chip.dualzone">Dual/multi-zone</span><span class="rounded-full bg-slate-800/70 px-2 py-0.5" data-i18n="chip.srceq">Source EQ</span><span class="rounded-full bg-slate-800/70 px-2 py-0.5" data-i18n="chip.pagingpri">Paging priority</span>
-          </div>
-          <a href="#contact" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-300 hover:text-brand-200"><span data-i18n="req">Request a quote</span> <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></a>
+        <div class="rounded-xl border border-white/8 bg-ink-700/60 p-5">
+          <div class="flex items-center gap-2 text-brand-300"><svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M10.268 21a2 2 0 0 0 3.464 0" /> <path d="M22 8c0-2.3-.8-4.3-2-6" /> <path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326" /> <path d="M4 2C2.8 3.7 2 5.7 2 8" /> </svg><h3 class="font-display text-base font-bold text-white" data-i18n="zn.4.t">Host Stand &amp; Lobby</h3></div>
+          <p class="mt-2 text-sm text-slate-400" data-i18n="zn.4.d">Digital menu boards and event signage, plus discreet paging that ducks the music automatically.</p>
+          <span class="mt-3 inline-block rounded-full bg-brand-500/10 px-2.5 py-0.5 label-code uppercase text-brand-300" data-i18n="zn.4.c">Signage &amp; paging</span>
         </div>
-
-        <!-- Cameras -->
-        <div class="flex flex-col rounded-2xl border border-slate-800 bg-slate-900/50 p-6">
-          <div class="flex items-center gap-3"><span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5" /> <rect x="2" y="6" width="14" height="12" rx="2" /> </svg></span><h3 class="font-display text-lg font-bold text-white" data-i18n="cat.cams.t">Cameras &amp; Conferencing</h3></div>
-          <p class="mt-3 text-sm text-slate-400" data-i18n="cat.cams.d">PTZ cameras with optical zoom and auto-tracking for streaming, events and meeting rooms.</p>
-          <ul class="mt-4 space-y-2 text-sm text-slate-300">
-            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> Logitech Rally (4K, 15× zoom)</li>
-            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> PTZOptics Move 4K (auto-track)</li>
-            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> AVer / Sony BRC</li>
-          </ul>
-          <div class="mt-4 flex flex-wrap gap-1.5 text-[11px] text-slate-400">
-            <span class="rounded-full bg-slate-800/70 px-2 py-0.5">4K PTZ</span><span class="rounded-full bg-slate-800/70 px-2 py-0.5" data-i18n="chip.autotrack">Auto-tracking</span><span class="rounded-full bg-slate-800/70 px-2 py-0.5">USB/HDMI/IP</span>
-          </div>
-          <a href="#contact" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-300 hover:text-brand-200"><span data-i18n="req">Request a quote</span> <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></a>
+        <div class="rounded-xl border border-white/8 bg-ink-700/60 p-5">
+          <div class="flex items-center gap-2 text-brand-300"><svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="18" height="18" x="3" y="3" rx="2" /> <path d="M12 3v18" /> </svg><h3 class="font-display text-base font-bold text-white" data-i18n="zn.5.t">Divisible Event Room</h3></div>
+          <p class="mt-2 text-sm text-slate-400" data-i18n="zn.5.d">One ballroom or two private rooms — partition sensors isolate audio, mics and screens on their own.</p>
+          <span class="mt-3 inline-block rounded-full bg-brand-500/10 px-2.5 py-0.5 label-code uppercase text-brand-300" data-i18n="zn.5.c">Auto-combining</span>
         </div>
-
-        <!-- Control & Networking -->
-        <div class="flex flex-col rounded-2xl border border-slate-800 bg-slate-900/50 p-6">
-          <div class="flex items-center gap-3"><span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect x="16" y="16" width="6" height="6" rx="1" /> <rect x="2" y="16" width="6" height="6" rx="1" /> <rect x="9" y="2" width="6" height="6" rx="1" /> <path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3" /> <path d="M12 12V8" /> </svg></span><h3 class="font-display text-lg font-bold text-white" data-i18n="cat.net.t">Control &amp; Networking</h3></div>
-          <p class="mt-3 text-sm text-slate-400" data-i18n="cat.net.d">The managed PoE backbone and control that tie every system together — one tablet to run it.</p>
-          <div class="mt-4 overflow-hidden rounded-lg ring-1 ring-white/5">
-            <img src="assets/poe-switch.png" alt="24-port managed Gigabit PoE switch" class="block w-full bg-slate-950" loading="lazy" width="1700" height="413" />
-          </div>
-          <ul class="mt-4 space-y-2 text-sm text-slate-300">
-            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> <span data-i18n="cat.net.li1">Managed L2+ PoE switches (24+4, 56 Gbps, ≤300W)</span></li>
-            <li class="flex gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m9 18 6-6-6-6" /> </svg> <span data-i18n="cat.net.li2">Tablet control app · QSC Q-SYS</span></li>
-          </ul>
-          <a href="#contact" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-300 hover:text-brand-200"><span data-i18n="req">Request a quote</span> <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></a>
-        </div>
-      </div>
-
-      <!-- Brands strip -->
-      <div class="mt-14">
-        <p class="text-center text-xs font-semibold uppercase tracking-widest text-slate-500" data-i18n="brands.title">Brands we design with</p>
-        <div class="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-semibold tracking-wide text-slate-400">
-          <span>Samsung</span><span class="text-slate-700">·</span>
-          <span>LG</span><span class="text-slate-700">·</span>
-          <span>Sony</span><span class="text-slate-700">·</span>
-          <span>Yamaha</span><span class="text-slate-700">·</span>
-          <span>JBL</span><span class="text-slate-700">·</span>
-          <span>Bose Pro</span><span class="text-slate-700">·</span>
-          <span>QSC</span><span class="text-slate-700">·</span>
-          <span>Biamp</span><span class="text-slate-700">·</span>
-          <span>WyreStorm</span><span class="text-slate-700">·</span>
-          <span>Logitech</span><span class="text-slate-700">·</span>
-          <span>PTZOptics</span><span class="text-slate-700">·</span>
-          <span>Shure</span>
-        </div>
+        <a href="#contact" class="group flex flex-col justify-center rounded-xl border border-dashed border-brand-600/50 bg-brand-500/5 p-5 transition-colors hover:bg-brand-500/10">
+          <div class="flex items-center gap-2 text-brand-300"><svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /> <path d="M12 7v6" /> <path d="M9 10h6" /> </svg><h3 class="font-display text-base font-bold text-white" data-i18n="zn.6.t">Your venue, your zones</h3></div>
+          <p class="mt-2 text-sm text-slate-400" data-i18n="zn.6.d">Tell us your layout and we'll map the zones for you. <span class="font-semibold text-brand-300">Get in touch →</span></p>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- ============ HOW MULTI-SCREEN WORKS ============ -->
-  <section class="relative border-y border-slate-800/70 bg-slate-900/30 py-20">
+  <!-- ============ GALLERY / WHAT WE BUILD ============ -->
+  <section id="gallery" class="relative border-y border-white/8 bg-ink-800/40 py-16 sm:py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-2xl text-center">
-        <span class="text-xs font-semibold uppercase tracking-widest text-brand-400" data-i18n="hm.eyebrow">Under The Hood</span>
-        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl" data-i18n="hm.h2">How multi-screen distribution works</h2>
-        <p class="mt-4 text-slate-400" data-i18n="hm.sub">Sources in, screens out, one managed network between — the same backbone carries video, audio and control.</p>
+        <span class="label-code uppercase text-brand-400" data-i18n="ga.eyebrow">What We Build</span>
+        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl" data-i18n="ga.h2">Systems built for commercial duty</h2>
+        <p class="mt-4 text-slate-400" data-i18n="ga.sub">Representative of the multi-screen, multi-zone systems we design and install.</p>
       </div>
-      <div class="mt-10 grid gap-4 sm:grid-cols-3">
-        <div class="rounded-2xl border border-slate-800 bg-slate-950/60 p-6"><h3 class="font-display text-base font-bold text-white flex items-center gap-2"><svg class="h-5 w-5 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M6.3 20.3a2.4 2.4 0 0 0 3.4 0L12 18l-6-6-2.3 2.3a2.4 2.4 0 0 0 0 3.4Z" /> <path d="m2 22 3-3" /> <path d="M7.5 13.5 10 11" /> <path d="M10.5 16.5 13 14" /> <path d="m18 3-4 4h6l-4 4" /> </svg> <span data-i18n="hm.1.t">1 · Encode</span></h3><p class="mt-2 text-sm text-slate-400" data-i18n="hm.1.d">A node at each source compresses the feed to ~30 Mbps.</p></div>
-        <div class="rounded-2xl border border-slate-800 bg-slate-950/60 p-6"><h3 class="font-display text-base font-bold text-white flex items-center gap-2"><svg class="h-5 w-5 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect x="16" y="16" width="6" height="6" rx="1" /> <rect x="2" y="16" width="6" height="6" rx="1" /> <rect x="9" y="2" width="6" height="6" rx="1" /> <path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3" /> <path d="M12 12V8" /> </svg> <span data-i18n="hm.2.t">2 · Transport</span></h3><p class="mt-2 text-sm text-slate-400" data-i18n="hm.2.d">The PoE switch carries every stream and powers each node over Cat6.</p></div>
-        <div class="rounded-2xl border border-slate-800 bg-slate-950/60 p-6"><h3 class="font-display text-base font-bold text-white flex items-center gap-2"><svg class="h-5 w-5 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M10 7.75a.75.75 0 0 1 1.142-.638l3.664 2.249a.75.75 0 0 1 0 1.278l-3.664 2.25a.75.75 0 0 1-1.142-.64z" /> <path d="M12 17v4" /> <path d="M8 21h8" /> <rect x="2" y="3" width="20" height="14" rx="2" /> </svg> <span data-i18n="hm.3.t">3 · Decode</span></h3><p class="mt-2 text-sm text-slate-400" data-i18n="hm.3.d">A node at each screen shows whatever the tablet assigns — instantly.</p></div>
+      <div class="mt-12 grid gap-5 md:grid-cols-3">
+        <figure class="overflow-hidden rounded-xl border border-white/8 bg-ink-700/60">
+          <img src="assets/venue-hero.jpg" alt="Sports-bar multi-screen video wall" class="block aspect-video w-full object-cover" loading="lazy" width="1376" height="768" />
+          <figcaption class="flex items-center justify-between px-4 py-3"><span class="text-sm font-semibold text-white" data-i18n="ga.1.t">Sports-bar video wall</span><span class="label-code uppercase text-slate-500" data-i18n="ga.1.c">AVoIP · 6 zones</span></figcaption>
+        </figure>
+        <figure class="overflow-hidden rounded-xl border border-white/8 bg-ink-700/60">
+          <img src="assets/av-rack.jpg" alt="Centralized AV equipment rack with dressed cabling" class="block aspect-video w-full object-cover" loading="lazy" width="1376" height="768" />
+          <figcaption class="flex items-center justify-between px-4 py-3"><span class="text-sm font-semibold text-white" data-i18n="ga.2.t">Central AV rack</span><span class="label-code uppercase text-slate-500" data-i18n="ga.2.c">Q-SYS · 10GbE</span></figcaption>
+        </figure>
+        <figure class="overflow-hidden rounded-xl border border-white/8 bg-ink-700/60">
+          <img src="assets/boardroom.jpg" alt="Divisible executive boardroom with dual displays and PTZ cameras" class="block aspect-video w-full object-cover" loading="lazy" width="1376" height="768" />
+          <figcaption class="flex items-center justify-between px-4 py-3"><span class="text-sm font-semibold text-white" data-i18n="ga.3.t">Divisible boardroom</span><span class="label-code uppercase text-slate-500" data-i18n="ga.3.c">Teams · dual 4K</span></figcaption>
+        </figure>
       </div>
-      <div class="mt-8 rounded-2xl border border-slate-800 bg-slate-100 p-4 shadow-xl sm:p-6">
-        <img src="assets/system-diagram.png" alt="System connection diagram: input and output nodes driving displays, speakers, lighting and control gear over a Gigabit PoE switch" class="mx-auto block w-full max-w-4xl" loading="lazy" width="1700" height="1366" />
-      </div>
+      <p class="mt-5 text-center text-xs text-slate-500" data-i18n="ga.note">Concept imagery. We'll feature your completed installs here.</p>
     </div>
   </section>
 
-  <!-- ============ ESTIMATOR ============ -->
-  <section id="specs" class="relative py-20">
+  <!-- ============ PRODUCTS ============ -->
+  <section id="products" class="relative py-16 sm:py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-2xl text-center">
-        <span class="text-xs font-semibold uppercase tracking-widest text-brand-400" data-i18n="es.eyebrow">Quick Estimator</span>
-        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl" data-i18n="es.h2">Ballpark your video system</h2>
-        <p class="mt-4 text-slate-400" data-i18n="es.sub">A rough starting point for a multi-TV distribution system — we confirm the full design on-site.</p>
+        <span class="label-code uppercase text-brand-400" data-i18n="pd.eyebrow">Enterprise Spec Only</span>
+        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl" data-i18n="pd.h2">Built for 24/7 commercial duty</h2>
+        <p class="mt-4 text-slate-400" data-i18n="pd.sub">No big-box retail TVs. We specify commercial-grade gear from proven brands and pass import pricing on to you.</p>
       </div>
 
-      <div class="mt-12 grid gap-8 lg:grid-cols-5">
-        <div class="lg:col-span-2 rounded-2xl border border-slate-800 bg-slate-900/50 p-7">
-          <div class="flex items-center gap-2 text-brand-300"><svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="16" height="20" x="4" y="2" rx="2" /> <line x1="8" x2="16" y1="6" y2="6" /> <line x1="16" x2="16" y1="14" y2="18" /> <path d="M16 10h.01" /> <path d="M12 10h.01" /> <path d="M8 10h.01" /> <path d="M12 14h.01" /> <path d="M8 14h.01" /> <path d="M12 18h.01" /> <path d="M8 18h.01" /> </svg><h3 class="font-display text-lg font-bold text-white" data-i18n="es.title">Estimator</h3></div>
-          <div class="mt-7">
-            <div class="flex items-center justify-between"><label for="inputs" class="text-sm font-medium text-slate-300 flex items-center gap-2"><svg class="h-4 w-4 text-slate-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M6.3 20.3a2.4 2.4 0 0 0 3.4 0L12 18l-6-6-2.3 2.3a2.4 2.4 0 0 0 0 3.4Z" /> <path d="m2 22 3-3" /> <path d="M7.5 13.5 10 11" /> <path d="M10.5 16.5 13 14" /> <path d="m18 3-4 4h6l-4 4" /> </svg> <span data-i18n="es.sources">Video sources</span></label><span id="inputsVal" class="font-display text-lg font-bold text-brand-300">6</span></div>
-            <input id="inputs" type="range" min="1" max="16" value="6" step="1" class="mt-3 w-full cursor-pointer accent-brand-400" />
-            <div class="mt-1 flex justify-between text-[10px] text-slate-600"><span>1</span><span>16</span></div>
-          </div>
-          <div class="mt-7">
-            <div class="flex items-center justify-between"><label for="displays" class="text-sm font-medium text-slate-300 flex items-center gap-2"><svg class="h-4 w-4 text-slate-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="20" height="15" x="2" y="7" rx="2" ry="2" /> <polyline points="17 2 12 7 7 2" /> </svg> <span data-i18n="es.displays">Displays</span></label><span id="displaysVal" class="font-display text-lg font-bold text-brand-300">24</span></div>
-            <input id="displays" type="range" min="2" max="100" value="24" step="1" class="mt-3 w-full cursor-pointer accent-brand-400" />
-            <div class="mt-1 flex justify-between text-[10px] text-slate-600"><span>2</span><span>100</span></div>
-          </div>
-          <div class="mt-7 rounded-xl border border-slate-800 bg-slate-950/60 p-4 text-xs leading-relaxed text-slate-400"><svg class="inline h-3.5 w-3.5 -mt-0.5 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="10" /> <path d="M12 16v-4" /> <path d="M12 8h.01" /> </svg> <span data-i18n="es.note">One node per source, one per display, ~30 Mbps per feed, PoE+ headroom per node.</span></div>
-          <a href="#contact" class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand-400 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-brand-300 transition-colors"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /> <path d="M14 2v4a2 2 0 0 0 2 2h4" /> <path d="M10 9H8" /> <path d="M16 13H8" /> <path d="M16 17H8" /> </svg> <span data-i18n="es.send">Send this to our team</span></a>
+      <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div class="card-hover flex flex-col rounded-xl border border-white/8 bg-ink-700/60 p-6">
+          <div class="flex items-center gap-3"><span class="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="20" height="14" x="2" y="3" rx="2" /> <line x1="8" x2="16" y1="21" y2="21" /> <line x1="12" x2="12" y1="17" y2="21" /> </svg></span><h3 class="font-display text-lg font-bold text-white" data-i18n="cat.disp.t">Commercial Displays &amp; Walls</h3></div>
+          <p class="mt-3 text-sm text-slate-400" data-i18n="cat.disp.d">Commercial panels rated for 16/7–24/7, high brightness, anti-glare, IP/RS-232 control.</p>
+          <p class="mt-3 label-code uppercase text-slate-500">Samsung · LG · Sony</p>
+          <a href="#contact" class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-300 hover:text-brand-200"><span data-i18n="req">Request specs</span> <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></a>
         </div>
+        <div class="card-hover flex flex-col rounded-xl border border-brand-400/25 bg-ink-700/60 p-6">
+          <div class="flex items-center gap-3"><span class="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M12 3v18" /> <path d="M3 12h18" /> <rect x="3" y="3" width="18" height="18" rx="2" /> </svg></span><h3 class="font-display text-lg font-bold text-white" data-i18n="cat.avoip.t">AV-over-IP Distribution</h3></div>
+          <p class="mt-3 text-sm text-slate-400" data-i18n="cat.avoip.d">Ultra-low-latency 4K matrix routing over 1/10GbE — any source to any screen, unlimited endpoints.</p>
+          <p class="mt-3 label-code uppercase text-slate-500">WyreStorm · Crestron NVX · ZeeVee</p>
+          <a href="#contact" class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-300 hover:text-brand-200"><span data-i18n="req">Request specs</span> <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></a>
+        </div>
+        <div class="card-hover flex flex-col rounded-xl border border-white/8 bg-ink-700/60 p-6">
+          <div class="flex items-center gap-3"><span class="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="16" height="20" x="4" y="2" rx="2" /> <path d="M12 6h.01" /> <circle cx="12" cy="14" r="4" /> <path d="M12 14h.01" /> </svg></span><h3 class="font-display text-lg font-bold text-white" data-i18n="cat.spk.t">Loudspeakers &amp; Subs</h3></div>
+          <p class="mt-3 text-sm text-slate-400" data-i18n="cat.spk.d">Flush ceiling, pendant and weatherproof patio speakers on 70/100V for even coverage.</p>
+          <p class="mt-3 label-code uppercase text-slate-500">JBL · Bose Pro · Yamaha</p>
+          <a href="#contact" class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-300 hover:text-brand-200"><span data-i18n="req">Request specs</span> <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></a>
+        </div>
+        <div class="card-hover flex flex-col rounded-xl border border-white/8 bg-ink-700/60 p-6">
+          <div class="flex items-center gap-3"><span class="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M20 7h-9" /> <path d="M14 17H5" /> <circle cx="17" cy="17" r="3" /> <circle cx="7" cy="7" r="3" /> </svg></span><h3 class="font-display text-lg font-bold text-white" data-i18n="cat.dsp.t">DSP &amp; Networked Amps</h3></div>
+          <p class="mt-3 text-sm text-slate-400" data-i18n="cat.dsp.d">Dante / AES67 audio with multi-zone EQ, priority paging and automatic ducking.</p>
+          <p class="mt-3 label-code uppercase text-slate-500">QSC Q-SYS · Biamp · LEA</p>
+          <a href="#contact" class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-300 hover:text-brand-200"><span data-i18n="req">Request specs</span> <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></a>
+        </div>
+        <div class="card-hover flex flex-col rounded-xl border border-white/8 bg-ink-700/60 p-6">
+          <div class="flex items-center gap-3"><span class="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5" /> <rect x="2" y="6" width="14" height="12" rx="2" /> </svg></span><h3 class="font-display text-lg font-bold text-white" data-i18n="cat.cam.t">Cameras &amp; Collaboration</h3></div>
+          <p class="mt-3 text-sm text-slate-400" data-i18n="cat.cam.d">Auto-framing PTZ cameras, beamforming mics and seamless Teams / Zoom Rooms.</p>
+          <p class="mt-3 label-code uppercase text-slate-500">PTZOptics · Shure · Logitech</p>
+          <a href="#contact" class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-300 hover:text-brand-200"><span data-i18n="req">Request specs</span> <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></a>
+        </div>
+        <div class="card-hover flex flex-col rounded-xl border border-white/8 bg-ink-700/60 p-6">
+          <div class="flex items-center gap-3"><span class="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-brand-400/10 ring-1 ring-brand-400/20"><svg class="h-6 w-6 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect x="16" y="16" width="6" height="6" rx="1" /> <rect x="2" y="16" width="6" height="6" rx="1" /> <rect x="9" y="2" width="6" height="6" rx="1" /> <path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3" /> <path d="M12 12V8" /> </svg></span><h3 class="font-display text-lg font-bold text-white" data-i18n="cat.net.t">Networking &amp; Control</h3></div>
+          <p class="mt-3 text-sm text-slate-400" data-i18n="cat.net.d">Managed PoE switches tuned for AV multicast, plus control processors and touch panels.</p>
+          <p class="mt-3 label-code uppercase text-slate-500">Crestron · Q-SYS · managed PoE</p>
+          <a href="#contact" class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-300 hover:text-brand-200"><span data-i18n="req">Request specs</span> <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></a>
+        </div>
+      </div>
 
-        <div class="lg:col-span-3 rounded-2xl border border-brand-400/20 bg-gradient-to-br from-slate-900/70 to-slate-900/30 p-7">
-          <h3 class="font-display text-lg font-bold text-white" data-i18n="es.recTitle">Recommended configuration</h3>
-          <p class="mt-1 text-sm text-slate-400" id="configSummary">A 6-source, 24-display matrix.</p>
-          <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3">
-            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4"><div class="flex items-center gap-2 text-slate-500"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /> <polyline points="17 8 12 3 7 8" /> <line x1="12" x2="12" y1="3" y2="15" /> </svg><span class="text-[11px] uppercase tracking-wide" data-i18n="lbl.enc">Encoder nodes</span></div><p class="mt-2 font-display text-3xl font-bold text-white" id="rEnc">6</p></div>
-            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4"><div class="flex items-center gap-2 text-slate-500"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /> <polyline points="7 10 12 15 17 10" /> <line x1="12" x2="12" y1="15" y2="3" /> </svg><span class="text-[11px] uppercase tracking-wide" data-i18n="lbl.dec">Decoder nodes</span></div><p class="mt-2 font-display text-3xl font-bold text-white" id="rDec">24</p></div>
-            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4"><div class="flex items-center gap-2 text-slate-500"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z" /> <path d="m7 16.5-4.74-2.85" /> <path d="m7 16.5 5-3" /> <path d="M7 16.5v5.17" /> <path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z" /> <path d="m17 16.5-5-3" /> <path d="m17 16.5 4.74-2.85" /> <path d="M17 16.5v5.17" /> <path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z" /> <path d="M12 8 7.26 5.15" /> <path d="m12 8 4.74-2.85" /> <path d="M12 13.5V8" /> </svg><span class="text-[11px] uppercase tracking-wide" data-i18n="lbl.nodes">Total nodes</span></div><p class="mt-2 font-display text-3xl font-bold text-brand-300" id="rNodes">30</p></div>
-            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4"><div class="flex items-center gap-2 text-slate-500"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m15 20 3-3h2a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h2l3 3z" /> <path d="M6 8v1" /> <path d="M10 8v1" /> <path d="M14 8v1" /> <path d="M18 8v1" /> </svg><span class="text-[11px] uppercase tracking-wide" data-i18n="lbl.ports">Switch ports</span></div><p class="mt-2 font-display text-3xl font-bold text-white" id="rPorts">32</p><p class="text-[11px] text-slate-500" id="rSwitches">1 × managed switch</p></div>
-            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4"><div class="flex items-center gap-2 text-slate-500"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" /> </svg><span class="text-[11px] uppercase tracking-wide" data-i18n="lbl.poe">PoE budget</span></div><p class="mt-2 font-display text-3xl font-bold text-white" id="rPoe">240<span class="text-base font-semibold text-slate-400">W</span></p></div>
-            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4"><div class="flex items-center gap-2 text-slate-500"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2" /> </svg><span class="text-[11px] uppercase tracking-wide" data-i18n="lbl.bw">Peak backbone</span></div><p class="mt-2 font-display text-3xl font-bold text-white" id="rBw">180<span class="text-base font-semibold text-slate-400"> Mbps</span></p></div>
-          </div>
-          <div id="uplinkNote" class="mt-5 hidden items-start gap-2 rounded-xl border border-amber-400/25 bg-amber-400/5 p-4 text-xs text-amber-200/90"><svg class="h-4 w-4 flex-none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" /> <path d="M12 9v4" /> <path d="M12 17h.01" /> </svg><span data-i18n="es.uplink">At this scale we recommend a 10 Gigabit uplink / backbone with IGMP snooping for clean multicast.</span></div>
-          <div class="mt-5 flex items-start gap-2 rounded-xl border border-slate-800 bg-slate-950/40 p-4 text-xs text-slate-400"><svg class="h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" /> <path d="m9 12 2 2 4-4" /> </svg><span data-i18n="es.disclaimer">Ballpark planning figures. We validate every system on-site before quoting.</span></div>
+      <div class="mt-12">
+        <p class="text-center label-code uppercase text-slate-500" data-i18n="brands.title">Brands we design with</p>
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-sm font-semibold tracking-wide text-slate-400">
+          <span>Samsung</span><span class="text-slate-700">·</span><span>LG Pro</span><span class="text-slate-700">·</span><span>Sony</span><span class="text-slate-700">·</span><span>Q-SYS</span><span class="text-slate-700">·</span><span>Biamp</span><span class="text-slate-700">·</span><span>JBL Pro</span><span class="text-slate-700">·</span><span>Crestron</span><span class="text-slate-700">·</span><span>Bose Pro</span><span class="text-slate-700">·</span><span>WyreStorm</span><span class="text-slate-700">·</span><span>Shure</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ CONTACT / RFP ============ -->
-  <section id="contact" class="relative overflow-hidden border-t border-slate-800/70 py-20">
+  <!-- ============ FAQ ============ -->
+  <section id="faq" class="relative py-16 sm:py-20">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <span class="label-code uppercase text-brand-400" data-i18n="faq.eyebrow">Straight Answers</span>
+        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl" data-i18n="faq.h2">Clear answers for venue owners</h2>
+      </div>
+      <div class="mt-10 space-y-3">
+        <details class="group rounded-xl border border-white/8 bg-ink-700/60 p-5">
+          <summary class="flex items-center justify-between gap-4"><span class="font-display text-base font-semibold text-white" data-i18n="faq.1.q">What does a commercial AV system cost?</span><svg class="faq-chev h-5 w-5 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m6 9 6 6 6-6" /> </svg></summary>
+          <p class="mt-3 text-sm leading-relaxed text-slate-400" data-i18n="faq.1.a">It depends on how many screens and zones you need and how the space is laid out. We work to your budget and always quote a fixed turnkey price up front, so there are no surprise overruns.</p>
+        </details>
+        <details class="group rounded-xl border border-white/8 bg-ink-700/60 p-5">
+          <summary class="flex items-center justify-between gap-4"><span class="font-display text-base font-semibold text-white" data-i18n="faq.2.q">How long does an install take? Will we lose business?</span><svg class="faq-chev h-5 w-5 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m6 9 6 6 6-6" /> </svg></summary>
+          <p class="mt-3 text-sm leading-relaxed text-slate-400" data-i18n="faq.2.a">For a working venue we pull cable and build the rack during off-hours. A typical multi-TV bar is done in a few business days without interrupting service.</p>
+        </details>
+        <details class="group rounded-xl border border-white/8 bg-ink-700/60 p-5">
+          <summary class="flex items-center justify-between gap-4"><span class="font-display text-base font-semibold text-white" data-i18n="faq.3.q">Can you use our existing TVs, speakers and wiring?</span><svg class="faq-chev h-5 w-5 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m6 9 6 6 6-6" /> </svg></summary>
+          <p class="mt-3 text-sm leading-relaxed text-slate-400" data-i18n="faq.3.a">Often, yes. During the assessment we test what you have and reuse healthy displays, speakers and cabling where it makes sense, to save you money.</p>
+        </details>
+        <details class="group rounded-xl border border-white/8 bg-ink-700/60 p-5">
+          <summary class="flex items-center justify-between gap-4"><span class="font-display text-base font-semibold text-white" data-i18n="faq.4.q">Do you support the system after install?</span><svg class="faq-chev h-5 w-5 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m6 9 6 6 6-6" /> </svg></summary>
+          <p class="mt-3 text-sm leading-relaxed text-slate-400" data-i18n="faq.4.a">Yes — a workmanship warranty plus the manufacturers' commercial warranties, and optional support plans with remote monitoring and fast dispatch.</p>
+        </details>
+        <details class="group rounded-xl border border-white/8 bg-ink-700/60 p-5">
+          <summary class="flex items-center justify-between gap-4"><span class="font-display text-base font-semibold text-white" data-i18n="faq.5.q">Do you work outside Winnipeg?</span><svg class="faq-chev h-5 w-5 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m6 9 6 6 6-6" /> </svg></summary>
+          <p class="mt-3 text-sm leading-relaxed text-slate-400" data-i18n="faq.5.a">Yes. We're based in Winnipeg and take projects across Manitoba and the rest of Canada, including multi-location rollouts.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="relative overflow-hidden border-t border-white/8 py-16 sm:py-20">
     <div class="pointer-events-none absolute -left-20 -bottom-10 h-72 w-72 rounded-full bg-teal-500/10 blur-[110px]"></div>
-    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-      <div class="grid gap-12 lg:grid-cols-5">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-10 lg:grid-cols-5">
         <div class="lg:col-span-2">
-          <span class="text-xs font-semibold uppercase tracking-widest text-brand-400" data-i18n="ct.eyebrow">Get Started</span>
-          <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl" data-i18n="ct.h2">Tell us about your space</h2>
-          <p class="mt-4 text-slate-400" data-i18n="ct.sub">Send us the basics and we'll come back with a tailored design and quote. No obligation.</p>
+          <span class="label-code uppercase text-brand-400" data-i18n="ct.eyebrow">24-Hour Response</span>
+          <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl" data-i18n="ct.h2">Request an engineered proposal</h2>
+          <p class="mt-4 text-slate-400" data-i18n="ct.sub">Tell us about your space and what you want it to do. An AV engineer will review it and send a tailored estimate.</p>
           <div class="mt-8 space-y-4 text-sm">
-            <div class="flex items-center gap-3"><span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-slate-900 ring-1 ring-slate-800"><svg class="h-4 w-4 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="20" height="16" x="2" y="4" rx="2" /> <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /> </svg></span><a href="mailto:sales@pulsematrix.ca" class="text-slate-300 hover:text-white">sales@pulsematrix.ca</a></div>
-            <div class="flex items-center gap-3"><span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-slate-900 ring-1 ring-slate-800"><svg class="h-4 w-4 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /> <circle cx="12" cy="10" r="3" /> </svg></span><span class="text-slate-300" data-i18n="ct.loc">Winnipeg, Manitoba · service Canada-wide</span></div>
-            <div class="flex items-center gap-3"><span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-slate-900 ring-1 ring-slate-800"><svg class="h-4 w-4 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="10" /> <polyline points="12 6 12 12 16 14" /> </svg></span><span class="text-slate-300" data-i18n="ct.responds">Response within 1 business day</span></div>
+            <div class="flex items-center gap-3"><span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-ink-700 ring-1 ring-white/8"><svg class="h-4 w-4 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /> </svg></span><a href="tel:+12045550100" class="text-slate-300 hover:text-white">(204) 555-0100</a></div>
+            <div class="flex items-center gap-3"><span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-ink-700 ring-1 ring-white/8"><svg class="h-4 w-4 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect width="20" height="16" x="2" y="4" rx="2" /> <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /> </svg></span><a href="mailto:pulsematrixca@gmail.com" class="text-slate-300 hover:text-white">pulsematrixca@gmail.com</a></div>
+            <div class="flex items-center gap-3"><span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-ink-700 ring-1 ring-white/8"><svg class="h-4 w-4 text-brand-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /> <circle cx="12" cy="10" r="3" /> </svg></span><span class="text-slate-300" data-i18n="ct.loc">Winnipeg, Manitoba · service Canada-wide</span></div>
           </div>
+          <div class="mt-6 flex items-start gap-2 rounded-lg border border-white/8 bg-ink-700/40 p-4 text-xs text-slate-400"><svg class="h-4 w-4 flex-none text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /> <path d="m9 12 2 2 4-4" /> </svg><span data-i18n="ct.trust">Fixed-price quoting · no high-pressure tactics · your details stay private.</span></div>
         </div>
 
         <div class="lg:col-span-3">
-          <form id="rfpForm" class="rounded-2xl border border-slate-800 bg-slate-900/50 p-6 sm:p-8">
+          <form id="rfpForm" class="rounded-2xl border border-white/8 bg-ink-700/60 p-6 backdrop-blur sm:p-8">
             <div class="grid gap-5 sm:grid-cols-2">
-              <div><label for="name" class="mb-1.5 block text-sm font-medium text-slate-300" data-i18n="f.name">Name</label><input id="name" type="text" required placeholder="Jordan Smith" data-i18n-ph="ph.name" class="w-full rounded-lg border border-slate-700 bg-slate-950/70 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20" /></div>
-              <div><label for="venue" class="mb-1.5 block text-sm font-medium text-slate-300" data-i18n="f.venue">Venue name</label><input id="venue" type="text" required placeholder="The Overtime Sports Bar" data-i18n-ph="ph.venue" class="w-full rounded-lg border border-slate-700 bg-slate-950/70 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20" /></div>
-              <div><label for="city" class="mb-1.5 block text-sm font-medium text-slate-300" data-i18n="f.city">City / Province</label><input id="city" type="text" required placeholder="Winnipeg, MB" class="w-full rounded-lg border border-slate-700 bg-slate-950/70 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20" /></div>
-              <div><label for="email" class="mb-1.5 block text-sm font-medium text-slate-300" data-i18n="f.email">Email</label><input id="email" type="email" required placeholder="you@venue.com" data-i18n-ph="ph.email" class="w-full rounded-lg border border-slate-700 bg-slate-950/70 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20" /></div>
-              <div><label for="displayCount" class="mb-1.5 block text-sm font-medium text-slate-300" data-i18n="f.displays">Approx. displays</label><input id="displayCount" type="number" min="1" max="500" placeholder="24" class="w-full rounded-lg border border-slate-700 bg-slate-950/70 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20" /></div>
-              <div><label for="interest" class="mb-1.5 block text-sm font-medium text-slate-300" data-i18n="f.interest">Interested in</label>
-                <select id="interest" class="w-full rounded-lg border border-slate-700 bg-slate-950/70 px-3.5 py-2.5 text-sm text-white outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20">
-                  <option data-i18n="opt.full">Full AV system</option><option data-i18n="opt.video">Video distribution / TVs</option><option data-i18n="opt.audio">Audio &amp; speakers</option><option data-i18n="opt.cams">Cameras / surveillance</option><option data-i18n="opt.conf">Conferencing</option><option data-i18n="opt.unsure">Not sure — need advice</option>
+              <div><label for="name" class="mb-1.5 block text-sm font-medium text-slate-300" data-i18n="f.name">Name &amp; title</label><input id="name" type="text" required placeholder="Jordan Smith" data-i18n-ph="ph.name" class="w-full rounded-md border border-slate-700 bg-base px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20" /></div>
+              <div><label for="venue" class="mb-1.5 block text-sm font-medium text-slate-300" data-i18n="f.venue">Venue / company</label><input id="venue" type="text" required placeholder="The Overtime Sports Bar" data-i18n-ph="ph.venue" class="w-full rounded-md border border-slate-700 bg-base px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20" /></div>
+              <div><label for="city" class="mb-1.5 block text-sm font-medium text-slate-300" data-i18n="f.city">City / province</label><input id="city" type="text" required placeholder="Winnipeg, MB" class="w-full rounded-md border border-slate-700 bg-base px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20" /></div>
+              <div><label for="phone" class="mb-1.5 block text-sm font-medium text-slate-300" data-i18n="f.phone">Phone</label><input id="phone" type="tel" placeholder="(204) 555-0100" class="w-full rounded-md border border-slate-700 bg-base px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20" /></div>
+              <div><label for="email" class="mb-1.5 block text-sm font-medium text-slate-300" data-i18n="f.email">Email</label><input id="email" type="email" required placeholder="you@venue.com" data-i18n-ph="ph.email" class="w-full rounded-md border border-slate-700 bg-base px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20" /></div>
+              <div><label for="displays" class="mb-1.5 block text-sm font-medium text-slate-300" data-i18n="f.displays">Display count</label>
+                <select id="displays" class="w-full rounded-md border border-slate-700 bg-base px-3.5 py-2.5 text-sm text-white outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20">
+                  <option data-i18n="opt.d1">1–6 (small bar / lounge)</option><option data-i18n="opt.d2">7–15 (medium sports bar)</option><option data-i18n="opt.d3">16–30 (large venue)</option><option data-i18n="opt.d4">31–60 (flagship / multi-tier)</option><option data-i18n="opt.d5">60+ / video wall</option><option data-i18n="opt.d6">Audio only</option>
                 </select>
               </div>
-              <div class="sm:col-span-2"><label for="message" class="mb-1.5 block text-sm font-medium text-slate-300" data-i18n="f.details">Project details</label><textarea id="message" rows="4" placeholder="Size of the space, number of rooms/zones, timeline, what you want it to do…" data-i18n-ph="ph.details" class="w-full rounded-lg border border-slate-700 bg-slate-950/70 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20"></textarea></div>
+              <div class="sm:col-span-2"><label for="scope" class="mb-1.5 block text-sm font-medium text-slate-300" data-i18n="f.scope">Primary scope</label>
+                <select id="scope" class="w-full rounded-md border border-slate-700 bg-base px-3.5 py-2.5 text-sm text-white outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20">
+                  <option data-i18n="opt.s1">Full AV system</option><option data-i18n="opt.s2">Sports video / AVoIP</option><option data-i18n="opt.s3">Zoned audio</option><option data-i18n="opt.s4">Patio sound / video</option><option data-i18n="opt.s5">Divisible room / conferencing</option><option data-i18n="opt.s6">Not sure — need advice</option>
+                </select>
+              </div>
+              <div class="sm:col-span-2"><label for="message" class="mb-1.5 block text-sm font-medium text-slate-300" data-i18n="f.details">Your venue, timeline or pain points</label><textarea id="message" rows="4" placeholder="Size of the space, number of rooms/zones, timeline, what you want it to do…" data-i18n-ph="ph.details" class="w-full rounded-md border border-slate-700 bg-base px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20"></textarea></div>
             </div>
-            <button type="submit" class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand-400 px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-brand-500/25 hover:bg-brand-300 transition-colors sm:w-auto"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" /> <path d="m21.854 2.147-10.94 10.939" /> </svg> <span data-i18n="f.submit">Request a Quote</span></button>
-            <div id="formSuccess" class="mt-5 hidden items-start gap-3 rounded-xl border border-emerald-400/30 bg-emerald-400/10 p-4 text-sm text-emerald-200"><svg class="h-5 w-5 flex-none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="10" /> <path d="m9 12 2 2 4-4" /> </svg><div><p class="font-semibold" data-i18n="ok.title">Thanks — your request is ready to send.</p><p class="mt-1 text-emerald-200/80" data-i18n="ok.body">Your email app should have opened with the details filled in. If not, email sales@pulsematrix.ca.</p></div></div>
+            <button type="submit" class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand-500 px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-brand-500/25 hover:bg-brand-400 transition-colors sm:w-auto"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" /> <path d="m21.854 2.147-10.94 10.939" /> </svg> <span data-i18n="f.submit">Request my quote</span></button>
+            <div id="formSuccess" class="mt-5 hidden items-start gap-3 rounded-xl border border-emerald-400/30 bg-emerald-400/10 p-4 text-sm text-emerald-200"><svg class="h-5 w-5 flex-none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="10" /> <path d="m9 12 2 2 4-4" /> </svg><div><p class="font-semibold" data-i18n="ok.title">Thanks — your request is ready to send.</p><p class="mt-1 text-emerald-200/80" data-i18n="ok.body">Your email app should have opened with the details filled in. If not, email pulsematrixca@gmail.com.</p></div></div>
           </form>
         </div>
       </div>
@@ -482,7 +510,7 @@
   </section>
 
   <!-- ============ FOOTER ============ -->
-  <footer class="border-t border-slate-800 bg-slate-950">
+  <footer class="border-t border-white/8 bg-ink-900">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
       <div class="grid gap-10 md:grid-cols-4">
         <div class="md:col-span-2">
@@ -490,28 +518,28 @@
             <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-brand-400 to-brand-600"><svg class="h-5 w-5 text-slate-950" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M12 3v18" /> <path d="M3 12h18" /> <rect x="3" y="3" width="18" height="18" rx="2" /> </svg></span>
             <span class="font-display text-lg font-bold tracking-tight text-white">Pulse<span class="text-brand-400">Matrix</span> <span class="align-top text-[10px] tracking-widest text-slate-400">AV</span></span>
           </a>
-          <p class="mt-4 max-w-sm text-sm leading-relaxed text-slate-400" data-i18n="ft.desc">Commercial AV systems integrator — design, supply, installation and support for hotels, bars, restaurants and entertainment venues.</p>
-          <div class="mt-5 inline-flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900/60 px-3.5 py-1.5 text-xs font-semibold text-slate-300"><svg class="h-4 w-4 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /> <circle cx="12" cy="10" r="3" /> </svg> <span data-i18n="ft.canada">Integrated &amp; supported in Canada</span></div>
+          <p class="mt-4 max-w-sm text-sm leading-relaxed text-slate-400" data-i18n="ft.desc">Winnipeg-based commercial AV integrator — design, supply, installation and support for venues across Canada.</p>
+          <div class="mt-5 inline-flex items-center gap-2 rounded-full border border-white/8 bg-ink-700/60 px-3.5 py-1.5 text-xs font-semibold text-slate-300"><svg class="h-4 w-4 text-brand-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /> <circle cx="12" cy="10" r="3" /> </svg> <span data-i18n="ft.canada">Integrated &amp; supported in Canada</span></div>
         </div>
         <div>
           <h4 class="font-display text-sm font-bold uppercase tracking-wide text-slate-200" data-i18n="ft.explore">Explore</h4>
           <ul class="mt-4 space-y-2.5 text-sm">
             <li><a href="#solutions" class="text-slate-400 hover:text-brand-300" data-i18n="nav.solutions">Solutions</a></li>
             <li><a href="#process" class="text-slate-400 hover:text-brand-300" data-i18n="nav.process">How We Work</a></li>
+            <li><a href="#zones" class="text-slate-400 hover:text-brand-300" data-i18n="nav.zones">Plan by Zone</a></li>
             <li><a href="#products" class="text-slate-400 hover:text-brand-300" data-i18n="nav.products">Products</a></li>
-            <li><a href="#specs" class="text-slate-400 hover:text-brand-300" data-i18n="nav.estimator">Estimator</a></li>
           </ul>
         </div>
         <div>
-          <h4 class="font-display text-sm font-bold uppercase tracking-wide text-slate-200" data-i18n="ft.getintouch">Get in touch</h4>
+          <h4 class="font-display text-sm font-bold uppercase tracking-wide text-slate-200" data-i18n="ft.contact">Direct contact</h4>
           <ul class="mt-4 space-y-2.5 text-sm">
-            <li><a href="mailto:sales@pulsematrix.ca" class="text-slate-400 hover:text-brand-300">sales@pulsematrix.ca</a></li>
-            <li><a href="#contact" class="text-slate-400 hover:text-brand-300" data-i18n="cta.quote2">Request a Quote</a></li>
-            <li><span class="text-slate-500">pulsematrix.ca</span></li>
+            <li><a href="tel:+12045550100" class="text-slate-400 hover:text-brand-300">(204) 555-0100</a></li>
+            <li><a href="mailto:pulsematrixca@gmail.com" class="text-slate-400 hover:text-brand-300">pulsematrixca@gmail.com</a></li>
+            <li><span class="text-slate-500">Winnipeg, MB · Canada-wide</span></li>
           </ul>
         </div>
       </div>
-      <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-800 pt-6 text-xs text-slate-500 sm:flex-row">
+      <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/8 pt-6 text-xs text-slate-500 sm:flex-row">
         <p>© <span id="year">2026</span> <span data-i18n="ft.rights">PulseMatrix AV. All rights reserved.</span></p>
         <p><a href="#top" class="hover:text-slate-300" data-i18n="ft.backtop">Back to top ↑</a></p>
       </div>
@@ -519,117 +547,120 @@
   </footer>
 
   <script>
-    /* ---------- i18n dictionary ---------- */
     const I18N = {
       en: {
-        'nav.solutions':'Solutions','nav.process':'How We Work','nav.products':'Products','nav.estimator':'Estimator','nav.contact':'Contact',
-        'cta.quote':'Request Quote','cta.quote2':'Request a Quote','cta.see':'See What We Do',
-        'hero.badge':'AV Systems Integrator · Canadian','hero.h1a':'Commercial AV systems ','hero.h1b':'that just work.',
-        'hero.sub':"Hotels, bars, restaurants and entertainment venues trust us to design, install and run their screens, sound and control — from a handful of TVs to 100+, all from one tablet.",
-        'stat.screens':'Screens / system','stat.zone':'Multi-Zone','stat.zoneSub':'Audio & video','stat.tablet':'1 Tablet','stat.tabletSub':'Runs it all',
-        'chip.tablet':'One-tablet control','chip.vac':'Video · Audio · Control',
-        'chain.design':'Design','chain.supply':'Supply','chain.install':'Install','chain.support':'Support',
-        'builtfor':'Built for','bf.bars':'Sports Bars & Pubs','bf.hotels':'Hotels & Resorts','bf.rest':'Restaurants','bf.gyms':'Gyms & Rec','bf.ent':'Entertainment Venues',
-        'sol.eyebrow':'What We Do','sol.h2':'One team for the whole venue','sol.sub':"You don't need to know the tech. Tell us the space and what you want it to do — we handle the rest.",
-        'sol.1.t':'Multi-TV Video & Sports','sol.1.d':'Any game on any screen, video walls, and multiple games on one TV — switch the whole floor from a tablet.',
-        'sol.2.t':'Zoned & Event Audio','sol.2.d':'Different music in the bar, patio and dining room — plus paging and event sound, all independently controlled.',
-        'sol.3.t':'Divisible Rooms','sol.3.d':'Split a 10,000 sq ft hall into separate rooms — audio and video follow the partitions, combine at the touch of a button.',
-        'sol.4.t':'Cameras & Surveillance','sol.4.d':'PoE IP cameras and recording on the same managed network as your AV — one system, one contractor.',
-        'sol.5.t':'Conferencing & Meeting Rooms','sol.5.d':'PTZ cameras, mics and displays for boardrooms and function spaces — join a call with one touch.',
-        'sol.6.t':'Control & Automation','sol.6.d':'Screens, sound, lighting scenes and sources — run the entire venue from a tablet your staff can actually use.',
-        'pr.eyebrow':'How We Work','pr.h2':'From walkthrough to working system',
-        'pr.1.t':'Site assessment','pr.1.d':'We walk the space, count screens and zones, and learn how you actually use the room.',
-        'pr.2.t':'System design','pr.2.d':'A clear plan and fixed quote — gear, layout, cabling and control, sized to your budget.',
-        'pr.3.t':'Professional install','pr.3.d':'Clean cabling, tidy rack, mounted displays — done right, with minimal disruption to business.',
-        'pr.4.t':'Train & support','pr.4.d':'We show your staff the tablet, then stay on call — remote help and service when you need it.',
-        'pd.eyebrow':'Products We Supply','pd.h2':'The right gear for the job','pd.sub':'We spec from proven commercial brands and pass import pricing on to you. A sample of what we deploy:',
-        'cat.displays.t':'Commercial Displays','cat.displays.d':'Commercial-grade panels rated for all-day operation — 43" to 98", 4K, high brightness.',
-        'chip.rated':'16/7–24/7 rated','chip.bezel':'Slim bezel','req':'Request a quote',
-        'cat.video.t':'Video Distribution (AVoIP)','cat.video.d':'Route any source to any screen over one Cat6 PoE cable — 1:1 up to 100+ displays, tablet controlled.',
-        'cat.video.li1':'PulseMatrix distributed ENC/DEC nodes','chip.feed':'~30 Mbps/feed','chip.multigame':'Multi-game-on-one-TV',
-        'cat.speakers.t':'Speakers & Audio','cat.speakers.d':'In-ceiling, surface and pendant speakers on 70/100V lines for even, multi-zone coverage.',
-        'chip.inceiling':'In-ceiling & surface','chip.multizone':'Multi-zone',
-        'cat.amps.t':'Amplifiers & DSP','cat.amps.d':'Mixer-amps and processors that split the venue into zones, with source EQ and priority paging.',
-        'chip.dualzone':'Dual/multi-zone','chip.srceq':'Source EQ','chip.pagingpri':'Paging priority',
-        'cat.cams.t':'Cameras & Conferencing','cat.cams.d':'PTZ cameras with optical zoom and auto-tracking for streaming, events and meeting rooms.',
-        'chip.autotrack':'Auto-tracking',
-        'cat.net.t':'Control & Networking','cat.net.d':'The managed PoE backbone and control that tie every system together — one tablet to run it.',
-        'cat.net.li1':'Managed L2+ PoE switches (24+4, 56 Gbps, ≤300W)','cat.net.li2':'Tablet control app · QSC Q-SYS',
-        'brands.title':'Brands we design with',
-        'hm.eyebrow':'Under The Hood','hm.h2':'How multi-screen distribution works','hm.sub':'Sources in, screens out, one managed network between — the same backbone carries video, audio and control.',
-        'hm.1.t':'1 · Encode','hm.1.d':'A node at each source compresses the feed to ~30 Mbps.',
-        'hm.2.t':'2 · Transport','hm.2.d':'The PoE switch carries every stream and powers each node over Cat6.',
-        'hm.3.t':'3 · Decode','hm.3.d':'A node at each screen shows whatever the tablet assigns — instantly.',
-        'es.eyebrow':'Quick Estimator','es.h2':'Ballpark your video system','es.sub':'A rough starting point for a multi-TV distribution system — we confirm the full design on-site.',
-        'es.title':'Estimator','es.sources':'Video sources','es.displays':'Displays','es.note':'One node per source, one per display, ~30 Mbps per feed, PoE+ headroom per node.','es.send':'Send this to our team',
-        'es.recTitle':'Recommended configuration','es.summary':'A {i}-source, {d}-display matrix.',
-        'lbl.enc':'Encoder nodes','lbl.dec':'Decoder nodes','lbl.nodes':'Total nodes','lbl.ports':'Switch ports','lbl.poe':'PoE budget','lbl.bw':'Peak backbone',
-        'es.sw.one':'1 × managed PoE switch','es.sw.multi':'{n} × 48-port switches (stacked)',
-        'es.uplink':'At this scale we recommend a 10 Gigabit uplink / backbone with IGMP snooping for clean multicast.',
-        'es.disclaimer':'Ballpark planning figures. We validate every system on-site before quoting.',
-        'ct.eyebrow':'Get Started','ct.h2':'Tell us about your space','ct.sub':"Send us the basics and we'll come back with a tailored design and quote. No obligation.",
-        'ct.loc':'Winnipeg, Manitoba · service Canada-wide','ct.responds':'Response within 1 business day',
-        'f.name':'Name','f.venue':'Venue name','f.city':'City / Province','f.email':'Email','f.displays':'Approx. displays','f.interest':'Interested in','f.details':'Project details','f.submit':'Request a Quote',
-        'opt.full':'Full AV system','opt.video':'Video distribution / TVs','opt.audio':'Audio & speakers','opt.cams':'Cameras / surveillance','opt.conf':'Conferencing','opt.unsure':'Not sure — need advice',
+        'nav.solutions':'Solutions','nav.process':'How We Work','nav.zones':'Plan by Zone','nav.products':'Products','nav.contact':'Contact',
+        'cta.quote':'Request a Quote','cta.quoteConsult':'Request a Quote','cta.explore':'Explore Solutions',
+        'hero.badge':'Commercial AV Integration · Winnipeg & Canada-wide','hero.h1a':'Commercial AV systems ','hero.h1b':'that just work.',
+        'hero.sub':'We engineer, wire, install and support multi-display video, zoned sound and automated control for commercial venues. From 6 screens to 100+ — all run from a single tablet.',
+        'hero.c1':'Custom engineering','hero.c2':'Supply & staging','hero.c3':'Professional install','hero.c4':'Ongoing support',
+        'hero.tagLive':'Live · 16 feeds · 8 audio zones','hero.tagCtrl':'4K AVoIP matrix · one-tablet control','hero.tagVenue':'Sports lounge',
+        'stat.1':'Displays per venue','stat.2v':'Multi-zone','stat.2':'Audio & video','stat.3v':'Fixed-price','stat.3':'Quotes, no surprises','stat.4':'Response commitment',
+        'bf.title':'Engineered for Canadian commercial venues','bf.bars':'Sports Bars & Taprooms','bf.hotels':'Hotels & Hospitality','bf.rest':'Restaurants & Lounges','bf.gyms':'Gyms & Athletics','bf.events':'Event Spaces & Arenas',
+        'sol.eyebrow':'Turnkey Capabilities','sol.h2':'Everything engineered to run seamlessly','sol.sub':'No consumer splitters or tangled cords. Every screen, speaker, mic and source is orchestrated from one touchscreen.',
+        'sol.1.t':'Multi-TV Video & Sports','sol.1.d':'Route any cable box, decoder or camera to any screen or full video wall in 4K, with no perceptible delay.','sol.1.g':'WyreStorm · Crestron NVX · 10GbE core',
+        'sol.2.t':'Zoned Architectural Sound','sol.2.d':'Game audio in the bar, quiet music in the dining room, background tracks on the patio — each its own zone.','sol.2.g':'Q-SYS · Dante amps · JBL / Bose',
+        'sol.3.t':'Divisible Rooms','sol.3.d':'Close the partition and audio and screens split into separate rooms; open it and the system merges automatically.','sol.3.g':'Air-wall logic · Biamp Tesira · Shure',
+        'sol.4.t':'PTZ Cameras & Streaming','sol.4.d':'Stream live entertainment and events, with automated presenter tracking for hybrid town halls.','sol.4.g':'PTZOptics 4K · NDI / IP encoders',
+        'sol.5.t':'Boardrooms & Town Halls','sol.5.d':'Teams and Zoom Rooms with ceiling beamforming mics that auto-frame whoever’s speaking.','sol.5.g':'Shure MXA · Sony displays · Crestron Flex',
+        'sol.6.t':'Venue Automation & Control','sol.6.d':'One tap for “Open”: 40 TVs on, volumes set, sources routed. One tap for “Close”: everything powers down safely.','sol.6.g':'Crestron · Q-SYS · iPad control',
+        'pr.eyebrow':'The Integrator Blueprint','pr.h2':'From blank blueprints to opening night','pr.sub':'We’re not salespeople pushing boxes — we’re your AV project department, from rough-in to opening shift.',
+        'pr.1.t':'Site & acoustic assessment','pr.1.d':'We walk the space or review plans, map speaker coverage and noise levels, and plan clean cable paths.',
+        'pr.2.t':'Design & fixed quote','pr.2.d':'You get clear schematics and an itemized fixed-price proposal — no hidden fees, no surprise extras.',
+        'pr.3.t':'Clean rack & install','pr.3.d':'Combed and labeled rack dressing, secure display mounts, concealed cabling — often during off-hours.',
+        'pr.4.t':'Training & support','pr.4.d':'We train your staff in minutes, leave cheat sheets, and back you with remote help and fast dispatch.',
+        'craft.eyebrow':'Integrator Craftsmanship','craft.h3':'The wiring behind the rack is the difference','craft.d':'Most AV glitches trace back to a rat’s nest of overheating consumer cables. Every line we run is shielded, dressed, labeled at both ends, and cooled by design.',
+        'craft.1':'Every port labeled','craft.2':'Remote-reboot power','craft.3':'Thermostatic cooling','craft.4':'Battery backup',
+        'zn.eyebrow':'Plan By Zone','zn.h2':'Every area gets the sound & vision it needs','zn.sub':'We design each part of your venue on its own — then tie them together under one control system.',
+        'zn.1.t':'Main Bar & Tap Area','zn.1.d':'High-energy game audio, a center video wall, and side screens with a sightline from every seat.','zn.1.c':'Game-priority audio',
+        'zn.2.t':'Dining Room & Booths','zn.2.d':'Even, low-volume ceiling sound so guests can talk — no hot spots, no blasting over the booths.','zn.2.c':'Warm & discreet',
+        'zn.3.t':'Patio & Beer Garden','zn.3.d':'Weather-sealed, sun-bright displays and speakers rated for prairie winters, with an auto noise curfew.','zn.3.c':'All-weather',
+        'zn.4.t':'Host Stand & Lobby','zn.4.d':'Digital menu boards and event signage, plus discreet paging that ducks the music automatically.','zn.4.c':'Signage & paging',
+        'zn.5.t':'Divisible Event Room','zn.5.d':'One ballroom or two private rooms — partition sensors isolate audio, mics and screens on their own.','zn.5.c':'Auto-combining',
+        'zn.6.t':'Your venue, your zones','zn.6.d':'Tell us your layout and we’ll map the zones for you. Get in touch →',
+        'ga.eyebrow':'What We Build','ga.h2':'Systems built for commercial duty','ga.sub':'Representative of the multi-screen, multi-zone systems we design and install.',
+        'ga.1.t':'Sports-bar video wall','ga.1.c':'AVoIP · 6 zones','ga.2.t':'Central AV rack','ga.2.c':'Q-SYS · 10GbE','ga.3.t':'Divisible boardroom','ga.3.c':'Teams · dual 4K',
+        'ga.note':'Concept imagery. We’ll feature your completed installs here.',
+        'pd.eyebrow':'Enterprise Spec Only','pd.h2':'Built for 24/7 commercial duty','pd.sub':'No big-box retail TVs. We specify commercial-grade gear from proven brands and pass import pricing on to you.',
+        'cat.disp.t':'Commercial Displays & Walls','cat.disp.d':'Commercial panels rated for 16/7–24/7, high brightness, anti-glare, IP/RS-232 control.',
+        'cat.avoip.t':'AV-over-IP Distribution','cat.avoip.d':'Ultra-low-latency 4K matrix routing over 1/10GbE — any source to any screen, unlimited endpoints.',
+        'cat.spk.t':'Loudspeakers & Subs','cat.spk.d':'Flush ceiling, pendant and weatherproof patio speakers on 70/100V for even coverage.',
+        'cat.dsp.t':'DSP & Networked Amps','cat.dsp.d':'Dante / AES67 audio with multi-zone EQ, priority paging and automatic ducking.',
+        'cat.cam.t':'Cameras & Collaboration','cat.cam.d':'Auto-framing PTZ cameras, beamforming mics and seamless Teams / Zoom Rooms.',
+        'cat.net.t':'Networking & Control','cat.net.d':'Managed PoE switches tuned for AV multicast, plus control processors and touch panels.',
+        'req':'Request specs','brands.title':'Brands we design with',
+        'faq.eyebrow':'Straight Answers','faq.h2':'Clear answers for venue owners',
+        'faq.1.q':'What does a commercial AV system cost?','faq.1.a':'It depends on how many screens and zones you need and how the space is laid out. We work to your budget and always quote a fixed turnkey price up front, so there are no surprise overruns.',
+        'faq.2.q':'How long does an install take? Will we lose business?','faq.2.a':'For a working venue we pull cable and build the rack during off-hours. A typical multi-TV bar is done in a few business days without interrupting service.',
+        'faq.3.q':'Can you use our existing TVs, speakers and wiring?','faq.3.a':'Often, yes. During the assessment we test what you have and reuse healthy displays, speakers and cabling where it makes sense, to save you money.',
+        'faq.4.q':'Do you support the system after install?','faq.4.a':'Yes — a workmanship warranty plus the manufacturers’ commercial warranties, and optional support plans with remote monitoring and fast dispatch.',
+        'faq.5.q':'Do you work outside Winnipeg?','faq.5.a':'Yes. We’re based in Winnipeg and take projects across Manitoba and the rest of Canada, including multi-location rollouts.',
+        'ct.eyebrow':'24-Hour Response','ct.h2':'Request an engineered proposal','ct.sub':'Tell us about your space and what you want it to do. An AV engineer will review it and send a tailored estimate.',
+        'ct.loc':'Winnipeg, Manitoba · service Canada-wide','ct.trust':'Fixed-price quoting · no high-pressure tactics · your details stay private.',
+        'f.name':'Name & title','f.venue':'Venue / company','f.city':'City / province','f.phone':'Phone','f.email':'Email','f.displays':'Display count','f.scope':'Primary scope','f.details':'Your venue, timeline or pain points','f.submit':'Request my quote',
+        'opt.d1':'1–6 (small bar / lounge)','opt.d2':'7–15 (medium sports bar)','opt.d3':'16–30 (large venue)','opt.d4':'31–60 (flagship / multi-tier)','opt.d5':'60+ / video wall','opt.d6':'Audio only',
+        'opt.s1':'Full AV system','opt.s2':'Sports video / AVoIP','opt.s3':'Zoned audio','opt.s4':'Patio sound / video','opt.s5':'Divisible room / conferencing','opt.s6':'Not sure — need advice',
         'ph.name':'Jordan Smith','ph.venue':'The Overtime Sports Bar','ph.email':'you@venue.com','ph.details':'Size of the space, number of rooms/zones, timeline, what you want it to do…',
-        'ok.title':'Thanks — your request is ready to send.','ok.body':'Your email app should have opened with the details filled in. If not, email sales@pulsematrix.ca.',
-        'ft.desc':'Commercial AV systems integrator — design, supply, installation and support for hotels, bars, restaurants and entertainment venues.',
-        'ft.explore':'Explore','ft.getintouch':'Get in touch','ft.canada':'Integrated & supported in Canada','ft.rights':'PulseMatrix AV. All rights reserved.','ft.backtop':'Back to top ↑',
+        'ok.title':'Thanks — your request is ready to send.','ok.body':'Your email app should have opened with the details filled in. If not, email pulsematrixca@gmail.com.',
+        'ft.desc':'Winnipeg-based commercial AV integrator — design, supply, installation and support for venues across Canada.',
+        'ft.canada':'Integrated & supported in Canada','ft.explore':'Explore','ft.contact':'Direct contact','ft.rights':'PulseMatrix AV. All rights reserved.','ft.backtop':'Back to top ↑',
       },
       fr: {
-        'nav.solutions':'Solutions','nav.process':'Notre méthode','nav.products':'Produits','nav.estimator':'Estimateur','nav.contact':'Contact',
-        'cta.quote':'Demander un devis','cta.quote2':'Demander un devis','cta.see':'Voir nos services',
-        'hero.badge':'Intégrateur de systèmes AV · Canadien','hero.h1a':'Des systèmes AV commerciaux ','hero.h1b':'qui fonctionnent, tout simplement.',
-        'hero.sub':"Hôtels, bars, restaurants et lieux de divertissement nous confient la conception, l'installation et la gestion de leurs écrans, de leur son et de leurs commandes — de quelques téléviseurs à plus de 100, le tout depuis une seule tablette.",
-        'stat.screens':'Écrans / système','stat.zone':'Multizone','stat.zoneSub':'Audio et vidéo','stat.tablet':'1 tablette','stat.tabletSub':'Contrôle tout',
-        'chip.tablet':'Contrôle sur tablette','chip.vac':'Vidéo · Audio · Contrôle',
-        'chain.design':'Conception','chain.supply':'Fourniture','chain.install':'Installation','chain.support':'Soutien',
-        'builtfor':'Conçu pour','bf.bars':'Bars sportifs et pubs','bf.hotels':'Hôtels et complexes','bf.rest':'Restaurants','bf.gyms':'Gyms et loisirs','bf.ent':'Lieux de divertissement',
-        'sol.eyebrow':'Ce que nous faisons','sol.h2':"Une seule équipe pour tout l'établissement",'sol.sub':"Pas besoin de connaître la technologie. Décrivez-nous l'espace et vos objectifs — nous nous occupons du reste.",
-        'sol.1.t':'Vidéo multi-écrans et sports','sol.1.d':"N'importe quel match sur n'importe quel écran, murs vidéo et plusieurs matchs sur un même téléviseur — changez toute la salle depuis une tablette.",
-        'sol.2.t':'Audio par zones et événementiel','sol.2.d':"Une musique différente au bar, sur la terrasse et dans la salle à manger — plus l'appel et le son événementiel, contrôlés indépendamment.",
-        'sol.3.t':'Salles divisibles','sol.3.d':"Divisez une salle de 10 000 pi² en pièces distinctes — l'audio et la vidéo suivent les cloisons et se regroupent d'une simple touche.",
-        'sol.4.t':'Caméras et surveillance','sol.4.d':"Caméras IP PoE et enregistrement sur le même réseau géré que votre AV — un seul système, un seul fournisseur.",
-        'sol.5.t':'Conférence et salles de réunion','sol.5.d':"Caméras PTZ, micros et écrans pour salles de conseil et espaces événementiels — rejoignez un appel d'une seule touche.",
-        'sol.6.t':'Contrôle et automatisation','sol.6.d':"Écrans, son, scènes d'éclairage et sources — gérez tout l'établissement depuis une tablette que votre personnel saura utiliser.",
-        'pr.eyebrow':'Notre méthode','pr.h2':'De la visite au système fonctionnel',
-        'pr.1.t':'Évaluation du site','pr.1.d':"Nous visitons les lieux, comptons les écrans et les zones, et comprenons votre utilisation réelle de l'espace.",
-        'pr.2.t':'Conception du système','pr.2.d':'Un plan clair et un devis ferme — équipement, disposition, câblage et contrôle, adaptés à votre budget.',
-        'pr.3.t':'Installation professionnelle','pr.3.d':"Câblage soigné, baie ordonnée, écrans installés — du travail bien fait, avec un minimum d'interruption.",
-        'pr.4.t':'Formation et soutien','pr.4.d':'Nous formons votre personnel à la tablette, puis restons disponibles — aide à distance et service au besoin.',
-        'pd.eyebrow':'Produits que nous fournissons','pd.h2':"L'équipement adapté à chaque projet",'pd.sub':"Nous sélectionnons des marques commerciales éprouvées et vous faisons profiter de prix d'importation. Un aperçu de ce que nous déployons :",
-        'cat.displays.t':'Écrans commerciaux','cat.displays.d':'Écrans de qualité commerciale conçus pour un fonctionnement continu — 43 à 98 po, 4K, haute luminosité.',
-        'chip.rated':'Certifié 16/7–24/7','chip.bezel':'Cadre mince','req':'Demander un devis',
-        'cat.video.t':'Distribution vidéo (AVoIP)','cat.video.d':"Acheminez n'importe quelle source vers n'importe quel écran sur un seul câble Cat6 PoE — de 1:1 à plus de 100 écrans, contrôlé par tablette.",
-        'cat.video.li1':'Nœuds ENC/DEC distribués PulseMatrix','chip.feed':'~30 Mbps/flux','chip.multigame':'Plusieurs matchs sur un écran',
-        'cat.speakers.t':'Haut-parleurs et audio','cat.speakers.d':'Haut-parleurs encastrés, en surface et suspendus sur lignes 70/100 V pour une couverture uniforme et multizone.',
-        'chip.inceiling':'Encastrés et en surface','chip.multizone':'Multizone',
-        'cat.amps.t':'Amplificateurs et DSP','cat.amps.d':"Amplis-mélangeurs et processeurs qui divisent l'établissement en zones, avec égalisation par source et appel prioritaire.",
-        'chip.dualzone':'Bi/multizone','chip.srceq':'Égalisation par source','chip.pagingpri':'Appel prioritaire',
-        'cat.cams.t':'Caméras et conférence','cat.cams.d':'Caméras PTZ à zoom optique et suivi automatique pour diffusion, événements et salles de réunion.',
-        'chip.autotrack':'Suivi automatique',
-        'cat.net.t':'Contrôle et réseau','cat.net.d':"La dorsale PoE gérée et le contrôle qui relient tous les systèmes — une seule tablette pour tout gérer.",
-        'cat.net.li1':'Commutateurs PoE gérés L2+ (24+4, 56 Gbps, ≤300 W)','cat.net.li2':'Application de contrôle sur tablette · QSC Q-SYS',
-        'brands.title':'Marques avec lesquelles nous concevons',
-        'hm.eyebrow':'Sous le capot','hm.h2':'Comment fonctionne la distribution multi-écrans','hm.sub':'Les sources entrent, les écrans sortent, un seul réseau géré au centre — la même dorsale transporte vidéo, audio et contrôle.',
-        'hm.1.t':'1 · Encodage','hm.1.d':'Un nœud à chaque source compresse le flux à ~30 Mbps.',
-        'hm.2.t':'2 · Transport','hm.2.d':'Le commutateur PoE transporte chaque flux et alimente chaque nœud via Cat6.',
-        'hm.3.t':'3 · Décodage','hm.3.d':'Un nœud à chaque écran affiche ce que la tablette lui attribue — instantanément.',
-        'es.eyebrow':'Estimateur rapide','es.h2':'Estimez votre système vidéo','es.sub':'Un point de départ approximatif pour un système de distribution multi-écrans — nous confirmons la conception complète sur place.',
-        'es.title':'Estimateur','es.sources':'Sources vidéo','es.displays':'Écrans','es.note':'Un nœud par source, un par écran, ~30 Mbps par flux, marge PoE+ par nœud.','es.send':'Envoyer à notre équipe',
-        'es.recTitle':'Configuration recommandée','es.summary':'Une matrice de {i} sources et {d} écrans.',
-        'lbl.enc':'Nœuds encodeurs','lbl.dec':'Nœuds décodeurs','lbl.nodes':'Nœuds au total','lbl.ports':'Ports du commutateur','lbl.poe':'Budget PoE','lbl.bw':'Débit dorsale max',
-        'es.sw.one':'1 × commutateur PoE géré','es.sw.multi':'{n} × commutateurs 48 ports (empilés)',
-        'es.uplink':'À cette échelle, nous recommandons une liaison montante / dorsale 10 Gigabit avec IGMP snooping pour un multicast propre.',
-        'es.disclaimer':'Chiffres de planification approximatifs. Nous validons chaque système sur place avant de faire un devis.',
-        'ct.eyebrow':'Commencer','ct.h2':'Parlez-nous de votre espace','ct.sub':'Envoyez-nous les grandes lignes et nous reviendrons avec une conception et un devis sur mesure. Sans engagement.',
-        'ct.loc':'Winnipeg, Manitoba · service partout au Canada','ct.responds':'Réponse sous 1 jour ouvrable',
-        'f.name':'Nom','f.venue':"Nom de l'établissement",'f.city':'Ville / Province','f.email':'Courriel','f.displays':"Nombre d'écrans (approx.)",'f.interest':'Intérêt pour','f.details':'Détails du projet','f.submit':'Demander un devis',
-        'opt.full':'Système AV complet','opt.video':'Distribution vidéo / téléviseurs','opt.audio':'Audio et haut-parleurs','opt.cams':'Caméras / surveillance','opt.conf':'Conférence','opt.unsure':'Incertain — besoin de conseils',
-        'ph.name':'Jean Tremblay','ph.venue':'Bar sportif Le Prolongation','ph.email':'vous@etablissement.com','ph.details':"Superficie de l'espace, nombre de pièces/zones, échéancier, objectifs…",
-        'ok.title':'Merci — votre demande est prête à envoyer.','ok.body':"Votre application de courriel devrait s'être ouverte avec les détails remplis. Sinon, écrivez à sales@pulsematrix.ca.",
-        'ft.desc':'Intégrateur de systèmes AV commerciaux — conception, fourniture, installation et soutien pour hôtels, bars, restaurants et lieux de divertissement.',
-        'ft.explore':'Explorer','ft.getintouch':'Nous joindre','ft.canada':'Intégré et soutenu au Canada','ft.rights':'PulseMatrix AV. Tous droits réservés.','ft.backtop':'Haut de page ↑',
+        'nav.solutions':'Solutions','nav.process':'Notre méthode','nav.zones':'Par zone','nav.products':'Produits','nav.contact':'Contact',
+        'cta.quote':'Demander un devis','cta.quoteConsult':'Demander un devis','cta.explore':'Voir nos solutions',
+        'hero.badge':'Intégration AV commerciale · Winnipeg et partout au Canada','hero.h1a':'Des systèmes AV commerciaux ','hero.h1b':'qui fonctionnent, tout simplement.',
+        'hero.sub':'Nous concevons, câblons, installons et soutenons la vidéo multi-écrans, le son par zones et le contrôle automatisé pour les établissements commerciaux. De 6 écrans à plus de 100 — le tout depuis une seule tablette.',
+        'hero.c1':'Ingénierie sur mesure','hero.c2':'Fourniture et préparation','hero.c3':'Installation professionnelle','hero.c4':'Soutien continu',
+        'hero.tagLive':'En direct · 16 flux · 8 zones audio','hero.tagCtrl':'Matrice AVoIP 4K · contrôle sur tablette','hero.tagVenue':'Bar sportif',
+        'stat.1':'Écrans par établissement','stat.2v':'Multizone','stat.2':'Audio et vidéo','stat.3v':'Prix fixe','stat.3':'Devis sans surprise','stat.4':'Engagement de réponse',
+        'bf.title':'Conçu pour les établissements commerciaux canadiens','bf.bars':'Bars sportifs et pubs','bf.hotels':'Hôtels et hôtellerie','bf.rest':'Restaurants et lounges','bf.gyms':'Gyms et sports','bf.events':'Salles et arénas',
+        'sol.eyebrow':'Capacités clés en main','sol.h2':'Tout est conçu pour fonctionner sans accroc','sol.sub':'Pas de séparateurs grand public ni de câbles emmêlés. Chaque écran, haut-parleur, micro et source est piloté depuis un seul écran tactile.',
+        'sol.1.t':'Vidéo multi-écrans et sports','sol.1.d':'Acheminez n’importe quel décodeur, boîtier ou caméra vers n’importe quel écran ou mur vidéo en 4K, sans délai perceptible.','sol.1.g':'WyreStorm · Crestron NVX · cœur 10GbE',
+        'sol.2.t':'Son architectural par zones','sol.2.d':'Le son du match au bar, une musique douce dans la salle à manger, une ambiance sur la terrasse — chacun sa zone.','sol.2.g':'Q-SYS · amplis Dante · JBL / Bose',
+        'sol.3.t':'Salles divisibles','sol.3.d':'Fermez la cloison et le son et les écrans se séparent; ouvrez-la et le système se regroupe automatiquement.','sol.3.g':'Logique de cloison · Biamp Tesira · Shure',
+        'sol.4.t':'Caméras PTZ et diffusion','sol.4.d':'Diffusez spectacles et événements en direct, avec suivi automatique du présentateur pour les réunions hybrides.','sol.4.g':'PTZOptics 4K · encodeurs NDI / IP',
+        'sol.5.t':'Salles de conseil et town halls','sol.5.d':'Salles Teams et Zoom avec micros de plafond à faisceaux qui cadrent automatiquement la personne qui parle.','sol.5.g':'Shure MXA · écrans Sony · Crestron Flex',
+        'sol.6.t':'Automatisation et contrôle','sol.6.d':'Une touche « Ouverture » : 40 téléviseurs allumés, volumes réglés, sources acheminées. Une touche « Fermeture » : tout s’éteint en toute sécurité.','sol.6.g':'Crestron · Q-SYS · contrôle iPad',
+        'pr.eyebrow':'Le plan de l’intégrateur','pr.h2':'Du plan vierge au soir d’ouverture','pr.sub':'Nous ne sommes pas des vendeurs de boîtes — nous sommes votre département AV, du gros œuvre au premier service.',
+        'pr.1.t':'Évaluation du site et acoustique','pr.1.d':'Nous visitons les lieux ou étudions les plans, cartographions la couverture et le bruit, et planifions des chemins de câbles propres.',
+        'pr.2.t':'Conception et devis fixe','pr.2.d':'Vous recevez des schémas clairs et une proposition à prix fixe détaillée — sans frais cachés ni extras surprises.',
+        'pr.3.t':'Baie soignée et installation','pr.3.d':'Câblage peigné et étiqueté, supports d’écrans sécurisés, câbles dissimulés — souvent hors des heures d’ouverture.',
+        'pr.4.t':'Formation et soutien','pr.4.d':'Nous formons votre personnel en quelques minutes, laissons des aide-mémoire et assurons aide à distance et intervention rapide.',
+        'craft.eyebrow':'Savoir-faire d’intégrateur','craft.h3':'Le câblage derrière la baie fait toute la différence','craft.d':'La plupart des pannes AV viennent d’un fouillis de câbles grand public en surchauffe. Chaque ligne que nous posons est blindée, peignée, étiquetée aux deux bouts et refroidie par conception.',
+        'craft.1':'Chaque port étiqueté','craft.2':'Redémarrage à distance','craft.3':'Refroidissement thermostaté','craft.4':'Onduleur de secours',
+        'zn.eyebrow':'Par zone','zn.h2':'Chaque espace reçoit le son et l’image qu’il lui faut','zn.sub':'Nous concevons chaque partie de votre établissement séparément — puis les relions sous un seul système de contrôle.',
+        'zn.1.t':'Bar principal','zn.1.d':'Son de match énergique, mur vidéo central et écrans latéraux offrant une vue depuis chaque siège.','zn.1.c':'Audio prioritaire au match',
+        'zn.2.t':'Salle à manger et banquettes','zn.2.d':'Son de plafond uniforme et à faible volume pour que les clients puissent parler — sans zones fortes.','zn.2.c':'Chaleureux et discret',
+        'zn.3.t':'Terrasse et jardin','zn.3.d':'Écrans lumineux et haut-parleurs étanches, conçus pour les hivers des Prairies, avec couvre-feu sonore automatique.','zn.3.c':'Toutes saisons',
+        'zn.4.t':'Accueil et hall','zn.4.d':'Menus numériques et affichage d’événements, plus un appel discret qui atténue la musique automatiquement.','zn.4.c':'Affichage et appel',
+        'zn.5.t':'Salle d’événement divisible','zn.5.d':'Une salle de bal ou deux salles privées — les capteurs de cloison isolent le son, les micros et les écrans tout seuls.','zn.5.c':'Regroupement automatique',
+        'zn.6.t':'Votre établissement, vos zones','zn.6.d':'Décrivez-nous votre aménagement et nous cartographierons les zones. Nous joindre →',
+        'ga.eyebrow':'Ce que nous réalisons','ga.h2':'Des systèmes conçus pour un usage commercial','ga.sub':'Représentatif des systèmes multi-écrans et multizones que nous concevons et installons.',
+        'ga.1.t':'Mur vidéo de bar sportif','ga.1.c':'AVoIP · 6 zones','ga.2.t':'Baie AV centrale','ga.2.c':'Q-SYS · 10GbE','ga.3.t':'Salle de conseil divisible','ga.3.c':'Teams · double 4K',
+        'ga.note':'Images conceptuelles. Vos installations réalisées figureront ici.',
+        'pd.eyebrow':'Spécification professionnelle','pd.h2':'Conçu pour un usage commercial 24/7','pd.sub':'Pas de téléviseurs grand public. Nous spécifions du matériel de qualité commerciale de marques éprouvées et vous faisons profiter de prix d’importation.',
+        'cat.disp.t':'Écrans et murs commerciaux','cat.disp.d':'Écrans commerciaux certifiés 16/7–24/7, haute luminosité, antireflet, contrôle IP/RS-232.',
+        'cat.avoip.t':'Distribution AV sur IP','cat.avoip.d':'Routage matriciel 4K à très faible latence sur 1/10GbE — toute source vers tout écran, points d’accès illimités.',
+        'cat.spk.t':'Haut-parleurs et caissons','cat.spk.d':'Haut-parleurs encastrés, suspendus et de terrasse étanches sur 70/100 V pour une couverture uniforme.',
+        'cat.dsp.t':'DSP et amplis réseau','cat.dsp.d':'Audio Dante / AES67 avec égalisation multizone, appel prioritaire et atténuation automatique.',
+        'cat.cam.t':'Caméras et collaboration','cat.cam.d':'Caméras PTZ à cadrage automatique, micros à faisceaux et salles Teams / Zoom transparentes.',
+        'cat.net.t':'Réseau et contrôle','cat.net.d':'Commutateurs PoE gérés optimisés pour le multicast AV, plus processeurs de contrôle et écrans tactiles.',
+        'req':'Demander les specs','brands.title':'Marques avec lesquelles nous concevons',
+        'faq.eyebrow':'Réponses claires','faq.h2':'Des réponses claires pour les propriétaires',
+        'faq.1.q':'Combien coûte un système AV commercial ?','faq.1.a':'Cela dépend du nombre d’écrans et de zones et de l’aménagement des lieux. Nous travaillons selon votre budget et donnons toujours un prix clés en main fixe d’avance, sans dépassement surprise.',
+        'faq.2.q':'Combien de temps dure une installation ? Perdrons-nous des revenus ?','faq.2.a':'Pour un établissement en activité, nous tirons les câbles et montons la baie hors des heures d’ouverture. Un bar multi-écrans typique est terminé en quelques jours ouvrables sans interrompre le service.',
+        'faq.3.q':'Pouvez-vous réutiliser nos téléviseurs, haut-parleurs et câblage ?','faq.3.a':'Souvent, oui. Lors de l’évaluation, nous testons votre matériel et réutilisons les écrans, haut-parleurs et câbles en bon état lorsque c’est pertinent, pour vous faire économiser.',
+        'faq.4.q':'Assurez-vous le soutien après l’installation ?','faq.4.a':'Oui — une garantie de main-d’œuvre en plus des garanties commerciales des fabricants, et des forfaits de soutien optionnels avec surveillance à distance et intervention rapide.',
+        'faq.5.q':'Travaillez-vous en dehors de Winnipeg ?','faq.5.a':'Oui. Nous sommes basés à Winnipeg et réalisons des projets partout au Manitoba et dans le reste du Canada, y compris des déploiements multisites.',
+        'ct.eyebrow':'Réponse sous 24 h','ct.h2':'Demandez une proposition sur mesure','ct.sub':'Parlez-nous de votre espace et de vos objectifs. Un ingénieur AV l’étudiera et vous enverra une estimation adaptée.',
+        'ct.loc':'Winnipeg, Manitoba · service partout au Canada','ct.trust':'Devis à prix fixe · aucune pression · vos renseignements restent privés.',
+        'f.name':'Nom et titre','f.venue':'Établissement / entreprise','f.city':'Ville / province','f.phone':'Téléphone','f.email':'Courriel','f.displays':'Nombre d’écrans','f.scope':'Portée principale','f.details':'Votre établissement, échéancier ou irritants','f.submit':'Demander mon devis',
+        'opt.d1':'1–6 (petit bar / lounge)','opt.d2':'7–15 (bar sportif moyen)','opt.d3':'16–30 (grand établissement)','opt.d4':'31–60 (vaisseau amiral / multiniveaux)','opt.d5':'60+ / mur vidéo','opt.d6':'Audio seulement',
+        'opt.s1':'Système AV complet','opt.s2':'Vidéo sportive / AVoIP','opt.s3':'Audio par zones','opt.s4':'Son / vidéo de terrasse','opt.s5':'Salle divisible / conférence','opt.s6':'Incertain — besoin de conseils',
+        'ph.name':'Jean Tremblay','ph.venue':'Bar sportif Le Prolongation','ph.email':'vous@etablissement.com','ph.details':'Superficie de l’espace, nombre de pièces/zones, échéancier, objectifs…',
+        'ok.title':'Merci — votre demande est prête à envoyer.','ok.body':'Votre application de courriel devrait s’être ouverte avec les détails remplis. Sinon, écrivez à pulsematrixca@gmail.com.',
+        'ft.desc':'Intégrateur AV commercial basé à Winnipeg — conception, fourniture, installation et soutien pour les établissements partout au Canada.',
+        'ft.canada':'Intégré et soutenu au Canada','ft.explore':'Explorer','ft.contact':'Contact direct','ft.rights':'PulseMatrix AV. Tous droits réservés.','ft.backtop':'Haut de page ↑',
       }
     };
     let lang = 'en';
@@ -641,12 +672,9 @@
       document.querySelectorAll('[data-i18n-ph]').forEach(el => { const v = t(el.getAttribute('data-i18n-ph')); if (v) el.setAttribute('placeholder', v); });
       document.querySelectorAll('[data-lang-btn]').forEach(b => {
         const on = b.getAttribute('data-lang-btn') === lang;
-        b.classList.toggle('bg-brand-400', on);
-        b.classList.toggle('text-slate-950', on);
-        b.classList.toggle('text-slate-300', !on);
+        b.classList.toggle('bg-brand-500', on); b.classList.toggle('text-slate-950', on); b.classList.toggle('text-slate-300', !on);
       });
       try { localStorage.setItem('pmav-lang', lang); } catch (e) {}
-      if (window.__estUpdate) window.__estUpdate();
     }
 
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -654,58 +682,18 @@
     const nav = document.querySelector('[data-nav]');
     const onScroll = () => {
       const on = window.scrollY > 20;
-      nav.classList.toggle('bg-slate-950/80', on);
-      nav.classList.toggle('backdrop-blur', on);
-      nav.classList.toggle('border-b', on);
-      nav.classList.toggle('border-slate-800', on);
-      nav.classList.toggle('shadow-lg', on);
+      nav.classList.toggle('bg-ink-900/80', on); nav.classList.toggle('backdrop-blur', on);
+      nav.classList.toggle('border-b', on); nav.classList.toggle('border-white/8', on); nav.classList.toggle('shadow-lg', on);
     };
     window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const iconMenu = document.getElementById('iconMenu');
-    const iconX = document.getElementById('iconX');
-    function setMenu(open) {
-      mobileMenu.classList.toggle('hidden', !open);
-      menuBtn.setAttribute('aria-expanded', String(open));
-      iconMenu.classList.toggle('hidden', open);
-      iconX.classList.toggle('hidden', !open);
-    }
+    const menuBtn = document.getElementById('menuBtn'), mobileMenu = document.getElementById('mobileMenu');
+    const iconMenu = document.getElementById('iconMenu'), iconX = document.getElementById('iconX');
+    function setMenu(open) { mobileMenu.classList.toggle('hidden', !open); menuBtn.setAttribute('aria-expanded', String(open)); iconMenu.classList.toggle('hidden', open); iconX.classList.toggle('hidden', !open); }
     let menuOpen = false;
     menuBtn.addEventListener('click', () => { menuOpen = !menuOpen; setMenu(menuOpen); });
     mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { menuOpen = false; setMenu(false); }));
 
-    // Estimator
-    (function () {
-      const $ = id => document.getElementById(id);
-      const inputsEl = $('inputs'), displaysEl = $('displays');
-      const WATTS = 7.5, MBPS = 30, MAXPORTS = 48;
-      const nextSize = p => { for (const s of [8,16,24,48]) if (p <= s) return s; return Math.ceil(p/MAXPORTS)*MAXPORTS; };
-      function update() {
-        const inputs = +inputsEl.value, displays = +displaysEl.value;
-        $('inputsVal').textContent = inputs; $('displaysVal').textContent = displays;
-        const nodes = inputs + displays;
-        const portsNeeded = nodes + 1;
-        const switches = Math.ceil(portsNeeded / MAXPORTS);
-        const ports = switches === 1 ? nextSize(portsNeeded) : switches * MAXPORTS;
-        const poe = Math.ceil((nodes * WATTS) / 10) * 10;
-        const bw = inputs * MBPS;
-        $('rEnc').textContent = inputs; $('rDec').textContent = displays; $('rNodes').textContent = nodes;
-        $('rPorts').textContent = ports;
-        $('rSwitches').textContent = switches === 1 ? t('es.sw.one') : t('es.sw.multi').replace('{n}', switches);
-        $('rPoe').innerHTML = poe + '<span class="text-base font-semibold text-slate-400">W</span>';
-        $('rBw').innerHTML = bw + '<span class="text-base font-semibold text-slate-400"> Mbps</span>';
-        $('configSummary').textContent = t('es.summary').replace('{i}', inputs).replace('{d}', displays);
-        const needs = displays >= 40 || switches > 1;
-        $('uplinkNote').classList.toggle('hidden', !needs);
-        $('uplinkNote').classList.toggle('flex', needs);
-      }
-      window.__estUpdate = update;
-      inputsEl.addEventListener('input', update); displaysEl.addEventListener('input', update); update();
-    })();
-
-    // RFP form → mailto + confirmation
     (function () {
       const form = document.getElementById('rfpForm'), success = document.getElementById('formSuccess');
       if (!form) return;
@@ -715,17 +703,16 @@
         const venue = g('venue');
         const subject = `Quote request — PulseMatrix AV — ${venue || 'New venue'}`;
         const body = [
-          `Name: ${g('name')}`, `Venue: ${venue}`, `City / Province: ${g('city')}`,
-          `Email: ${g('email')}`, `Displays: ${g('displayCount') || '—'}`, `Interested in: ${g('interest')}`,
-          '', 'Project details:', g('message') || '—', '', '— Sent from pulsematrix.ca'
+          `Name: ${g('name')}`, `Venue: ${venue}`, `City / Province: ${g('city')}`, `Phone: ${g('phone') || '—'}`,
+          `Email: ${g('email')}`, `Displays: ${g('displays')}`, `Scope: ${g('scope')}`,
+          '', 'Details:', g('message') || '—', '', '— Sent from pulsematrix.ca'
         ].join('\n');
-        window.location.href = `mailto:sales@pulsematrix.ca?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = `mailto:pulsematrixca@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         success.classList.remove('hidden'); success.classList.add('flex');
         success.scrollIntoView({ behavior: 'smooth', block: 'center' });
       });
     })();
 
-    // Language init + wiring
     document.querySelectorAll('[data-lang-btn]').forEach(b => b.addEventListener('click', () => applyLang(b.getAttribute('data-lang-btn'))));
     let savedLang = 'en';
     try { savedLang = localStorage.getItem('pmav-lang') || (navigator.language && navigator.language.toLowerCase().startsWith('fr') ? 'fr' : 'en'); } catch (e) {}
