@@ -124,6 +124,25 @@
               <input type="email" id="custEmail" placeholder="john@acme.com" class="w-full" />
             </div>
           </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-400 mb-1">Province / Territory</label>
+            <select id="custProvince" class="w-full">
+              <option value="">— Select —</option>
+              <option value="Alberta">Alberta</option>
+              <option value="British Columbia">British Columbia</option>
+              <option value="Manitoba" selected>Manitoba</option>
+              <option value="New Brunswick">New Brunswick</option>
+              <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+              <option value="Northwest Territories">Northwest Territories</option>
+              <option value="Nova Scotia">Nova Scotia</option>
+              <option value="Nunavut">Nunavut</option>
+              <option value="Ontario">Ontario</option>
+              <option value="Prince Edward Island">Prince Edward Island</option>
+              <option value="Quebec">Quebec</option>
+              <option value="Saskatchewan">Saskatchewan</option>
+              <option value="Yukon">Yukon</option>
+            </select>
+          </div>
         </div>
       </section>
 
@@ -389,9 +408,10 @@ function generatePDF() {
   const custName = document.getElementById('custName').value || '';
   const custContact = document.getElementById('custContact').value || '';
   const custEmail = document.getElementById('custEmail').value || '';
+  const custProvince = document.getElementById('custProvince').value || '';
   if (custName || custContact || custEmail) {
     doc.setFillColor(245, 247, 250);
-    doc.roundedRect(margin, y, pageW - 2 * margin, 22, 2, 2, 'F');
+    doc.roundedRect(margin, y, pageW - 2 * margin, custProvince ? 27 : 22, 2, 2, 'F');
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(8);
     doc.setTextColor(100, 116, 139);
@@ -405,7 +425,8 @@ function generatePDF() {
     doc.setTextColor(71, 85, 105);
     const contactLine = [custContact, custEmail].filter(Boolean).join('  |  ');
     if (contactLine) doc.text(contactLine, margin + 5, y + 18);
-    y += 30;
+    if (custProvince) doc.text(custProvince, margin + 5, y + 23);
+    y += custProvince ? 35 : 30;
   }
 
   // ── Products table
