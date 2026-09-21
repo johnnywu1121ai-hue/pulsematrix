@@ -126,7 +126,7 @@
           </div>
           <div>
             <label class="block text-xs font-medium text-slate-400 mb-1">Province / Territory</label>
-            <select id="custProvince" class="w-full">
+            <select id="custProvince" class="w-full" onchange="recalc()">
               <option value="">— Select —</option>
               <option value="Alberta">Alberta</option>
               <option value="British Columbia">British Columbia</option>
@@ -197,10 +197,20 @@
         <textarea id="quoteNotes" rows="3" class="w-full" placeholder="Any additional notes, terms, or conditions for this quote..."></textarea>
       </section>
 
-      <!-- Grand Total -->
-      <section class="rounded-xl border border-brand-400/30 bg-brand-500/5 p-5 flex items-center justify-between">
-        <span class="font-display text-lg font-bold text-white">Grand Total</span>
-        <span class="font-display text-2xl font-bold text-brand-400" id="grandTotal">$0.00</span>
+      <!-- Tax & Grand Total -->
+      <section class="rounded-xl border border-brand-400/30 bg-brand-500/5 p-5 space-y-3">
+        <div class="flex items-center justify-between text-sm text-slate-300">
+          <span>Subtotal</span>
+          <span class="text-white font-medium" id="preTotal">$0.00</span>
+        </div>
+        <div class="flex items-center justify-between text-sm text-slate-300">
+          <span id="taxLabel">GST (5%)</span>
+          <span class="text-white font-medium" id="taxAmount">$0.00</span>
+        </div>
+        <div class="border-t border-white/10 pt-3 flex items-center justify-between">
+          <span class="font-display text-lg font-bold text-white">Grand Total</span>
+          <span class="font-display text-2xl font-bold text-brand-400" id="grandTotal">$0.00</span>
+        </div>
       </section>
 
       <!-- PDF Download -->
@@ -268,12 +278,40 @@ function removeRow(id, section) {
   recalc();
 }
 
+// Canadian tax rates by province
+const TAX_RATES = {
+  'Alberta':                      { label: 'GST (5%)',              rate: 0.05 },
+  'British Columbia':             { label: 'GST+PST (12%)',         rate: 0.12 },
+  'Manitoba':                     { label: 'GST+RST (12%)',         rate: 0.12 },
+  'New Brunswick':                { label: 'HST (15%)',             rate: 0.15 },
+  'Newfoundland and Labrador':    { label: 'HST (15%)',             rate: 0.15 },
+  'Northwest Territories':        { label: 'GST (5%)',              rate: 0.05 },
+  'Nova Scotia':                  { label: 'HST (14%)',             rate: 0.14 },
+  'Nunavut':                      { label: 'GST (5%)',              rate: 0.05 },
+  'Ontario':                      { label: 'HST (13%)',             rate: 0.13 },
+  'Prince Edward Island':         { label: 'HST (15%)',             rate: 0.15 },
+  'Quebec':                       { label: 'GST+QST (14.975%)',    rate: 0.14975 },
+  'Saskatchewan':                 { label: 'GST+PST (11%)',         rate: 0.11 },
+  'Yukon':                        { label: 'GST (5%)',              rate: 0.05 },
+};
+
+function getTax() {
+  const prov = document.getElementById('custProvince').value;
+  return TAX_RATES[prov] || { label: 'Tax (0%)', rate: 0 };
+}
+
 function recalc() {
   let productTotal = calcSection('products');
   let serviceTotal = calcSection('services');
+  const subtotal = productTotal + serviceTotal;
+  const tax = getTax();
+  const taxAmt = subtotal * tax.rate;
   document.getElementById('productSubtotal').textContent = fmt(productTotal);
   document.getElementById('serviceSubtotal').textContent = fmt(serviceTotal);
-  document.getElementById('grandTotal').textContent = fmt(productTotal + serviceTotal);
+  document.getElementById('preTotal').textContent = fmt(subtotal);
+  document.getElementById('taxLabel').textContent = tax.label;
+  document.getElementById('taxAmount').textContent = fmt(taxAmt);
+  document.getElementById('grandTotal').textContent = fmt(subtotal + taxAmt);
 }
 
 function calcSection(sectionId) {
@@ -542,24 +580,41 @@ function generatePDF() {
     y = doc.lastAutoTable.finalY + 10;
   }
 
-  // ── Grand Total box
-  const grandTotal = (products.reduce((s, r) => s + r.total, 0)) + (services.reduce((s, r) => s + r.total, 0));
-  if (y > pageH - 50) { doc.addPage(); y = 20; }
+  // ── Tax & Grand Total
+  const subtotalAll = (products.reduce((s, r) => s + r.total, 0)) + (services.reduce((s, r) => s + r.total, 0));
+  const tax = getTax();
+  const taxAmt = subtotalAll * tax.rate;
+  const grandTotal = subtotalAll + taxAmt;
+  if (y > pageH - 60) { doc.addPage(); y = 20; }
 
   // Divider line
   doc.setDrawColor(200, 200, 200);
   doc.setLineWidth(0.5);
   doc.line(margin, y, pageW - margin, y);
+  y += 7;
+
+  // Subtotal row
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(10);
+  doc.setTextColor(71, 85, 105);
+  doc.text('Subtotal', margin, y);
+  doc.text(fmt(subtotalAll), pageW - margin, y, { align: 'right' });
+  y += 6;
+
+  // Tax row
+  doc.text(tax.label, margin, y);
+  doc.text(fmt(taxAmt), pageW - margin, y, { align: 'right' });
   y += 8;
-  // Label
+
+  // Grand total row
+  doc.setDrawColor(200, 200, 200);
+  doc.setLineWidth(0.3);
+  doc.line(margin, y - 2, pageW - margin, y - 2);
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(12);
+  doc.setFontSize(13);
   doc.setTextColor(15, 23, 42);
-  doc.text('Grand Total', margin, y + 1);
-  // Amount
-  doc.setFontSize(14);
-  doc.setTextColor(15, 23, 42);
-  doc.text(fmt(grandTotal), pageW - margin, y + 1, { align: 'right' });
+  doc.text('Grand Total', margin, y + 4);
+  doc.text(fmt(grandTotal), pageW - margin, y + 4, { align: 'right' });
   y += 14;
 
   // ── Notes
