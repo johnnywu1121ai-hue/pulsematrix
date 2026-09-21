@@ -124,24 +124,6 @@
               <input type="email" id="custEmail" placeholder="john@acme.com" class="w-full" />
             </div>
           </div>
-          <div>
-            <label class="block text-xs font-medium text-slate-400 mb-1">Province / Territory</label>
-            <select id="custProvince" class="w-full" onchange="recalc()">
-              <option value="AB">Alberta</option>
-              <option value="BC">British Columbia</option>
-              <option value="MB" selected>Manitoba</option>
-              <option value="NB">New Brunswick</option>
-              <option value="NL">Newfoundland &amp; Labrador</option>
-              <option value="NS">Nova Scotia</option>
-              <option value="NT">Northwest Territories</option>
-              <option value="NU">Nunavut</option>
-              <option value="ON">Ontario</option>
-              <option value="PE">Prince Edward Island</option>
-              <option value="QC">Quebec</option>
-              <option value="SK">Saskatchewan</option>
-              <option value="YT">Yukon</option>
-            </select>
-          </div>
         </div>
       </section>
 
@@ -196,36 +178,9 @@
         <textarea id="quoteNotes" rows="3" class="w-full" placeholder="Any additional notes, terms, or conditions for this quote..."></textarea>
       </section>
 
-      <!-- Tax Breakdown -->
-      <section class="rounded-xl border border-white/10 bg-ink-700/60 p-5">
-        <h2 class="font-display text-base font-bold text-white mb-3">Tax Summary</h2>
-        <div class="space-y-2">
-          <div class="flex justify-between text-sm text-slate-300">
-            <span>Subtotal</span>
-            <span class="text-white font-medium" id="taxSubtotal">$0.00</span>
-          </div>
-          <div id="taxLineGST" class="flex justify-between text-sm text-slate-300">
-            <span>GST (5%)</span>
-            <span class="text-white font-medium" id="taxGSTAmount">$0.00</span>
-          </div>
-          <div id="taxLinePST" class="flex justify-between text-sm text-slate-300">
-            <span id="taxPSTLabel">PST (7%)</span>
-            <span class="text-white font-medium" id="taxPSTAmount">$0.00</span>
-          </div>
-          <div id="taxLineHST" class="flex justify-between text-sm text-slate-300 hidden">
-            <span id="taxHSTLabel">HST (13%)</span>
-            <span class="text-white font-medium" id="taxHSTAmount">$0.00</span>
-          </div>
-          <div class="border-t border-white/10 pt-2 mt-2 flex justify-between text-sm text-slate-300">
-            <span>Total Tax</span>
-            <span class="text-white font-semibold" id="taxTotalAmount">$0.00</span>
-          </div>
-        </div>
-      </section>
-
       <!-- Grand Total -->
       <section class="rounded-xl border border-brand-400/30 bg-brand-500/5 p-5 flex items-center justify-between">
-        <span class="font-display text-lg font-bold text-white">Grand Total <span class="text-sm font-normal text-slate-400">(incl. tax)</span></span>
+        <span class="font-display text-lg font-bold text-white">Grand Total</span>
         <span class="font-display text-2xl font-bold text-brand-400" id="grandTotal">$0.00</span>
       </section>
 
@@ -294,82 +249,12 @@ function removeRow(id, section) {
   recalc();
 }
 
-// ─── CANADIAN TAX RATES ───
-const TAX_RATES = {
-  AB: { gst: 5, pst: 0,     type: 'gst',  label: '' },
-  BC: { gst: 5, pst: 7,     type: 'gst+pst', label: 'PST' },
-  MB: { gst: 5, pst: 7,     type: 'gst+pst', label: 'RST' },
-  NB: { gst: 0, pst: 0, hst: 15, type: 'hst', label: 'HST' },
-  NL: { gst: 0, pst: 0, hst: 15, type: 'hst', label: 'HST' },
-  NS: { gst: 0, pst: 0, hst: 15, type: 'hst', label: 'HST' },
-  NT: { gst: 5, pst: 0,     type: 'gst',  label: '' },
-  NU: { gst: 5, pst: 0,     type: 'gst',  label: '' },
-  ON: { gst: 0, pst: 0, hst: 13, type: 'hst', label: 'HST' },
-  PE: { gst: 0, pst: 0, hst: 15, type: 'hst', label: 'HST' },
-  QC: { gst: 5, pst: 9.975, type: 'gst+pst', label: 'QST' },
-  SK: { gst: 5, pst: 6,     type: 'gst+pst', label: 'PST' },
-  YT: { gst: 5, pst: 0,     type: 'gst',  label: '' },
-};
-
-function getTax(subtotal) {
-  const prov = document.getElementById('custProvince').value;
-  const rates = TAX_RATES[prov] || TAX_RATES['MB'];
-  let gst = 0, pst = 0, hst = 0;
-
-  if (rates.type === 'hst') {
-    hst = subtotal * (rates.hst / 100);
-  } else {
-    gst = subtotal * (rates.gst / 100);
-    pst = subtotal * (rates.pst / 100);
-  }
-
-  return { gst, pst, hst, rates, totalTax: gst + pst + hst };
-}
-
 function recalc() {
   let productTotal = calcSection('products');
   let serviceTotal = calcSection('services');
-  const subtotal = productTotal + serviceTotal;
-
   document.getElementById('productSubtotal').textContent = fmt(productTotal);
   document.getElementById('serviceSubtotal').textContent = fmt(serviceTotal);
-  document.getElementById('taxSubtotal').textContent = fmt(subtotal);
-
-  const tax = getTax(subtotal);
-
-  // Update tax UI
-  const gstLine = document.getElementById('taxLineGST');
-  const pstLine = document.getElementById('taxLinePST');
-  const hstLine = document.getElementById('taxLineHST');
-
-  if (tax.rates.type === 'hst') {
-    gstLine.classList.add('hidden');
-    pstLine.classList.add('hidden');
-    hstLine.classList.remove('hidden');
-    document.getElementById('taxHSTLabel').textContent = tax.rates.label + ' (' + tax.rates.hst + '%)';
-    document.getElementById('taxHSTAmount').textContent = fmt(tax.hst);
-  } else {
-    hstLine.classList.add('hidden');
-    // GST
-    if (tax.rates.gst > 0) {
-      gstLine.classList.remove('hidden');
-      gstLine.querySelector('span').textContent = 'GST (' + tax.rates.gst + '%)';
-      document.getElementById('taxGSTAmount').textContent = fmt(tax.gst);
-    } else {
-      gstLine.classList.add('hidden');
-    }
-    // PST / RST / QST
-    if (tax.rates.pst > 0) {
-      pstLine.classList.remove('hidden');
-      document.getElementById('taxPSTLabel').textContent = tax.rates.label + ' (' + tax.rates.pst + '%)';
-      document.getElementById('taxPSTAmount').textContent = fmt(tax.pst);
-    } else {
-      pstLine.classList.add('hidden');
-    }
-  }
-
-  document.getElementById('taxTotalAmount').textContent = fmt(tax.totalTax);
-  document.getElementById('grandTotal').textContent = fmt(subtotal + tax.totalTax);
+  document.getElementById('grandTotal').textContent = fmt(productTotal + serviceTotal);
 }
 
 function calcSection(sectionId) {
@@ -398,7 +283,6 @@ function resetAll() {
   document.getElementById('custContact').value = '';
   document.getElementById('custEmail').value = '';
   document.getElementById('quoteNotes').value = '';
-  document.getElementById('custProvince').value = 'MB';
   document.getElementById('products').innerHTML = '';
   document.getElementById('services').innerHTML = '';
   addRow('products');
@@ -490,9 +374,7 @@ function generatePDF() {
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(9);
     doc.setTextColor(71, 85, 105);
-    const provSelect = document.getElementById('custProvince');
-    const provName = provSelect.options[provSelect.selectedIndex].text;
-    const contactLine = [custContact, custEmail, provName].filter(Boolean).join('  |  ');
+    const contactLine = [custContact, custEmail].filter(Boolean).join('  |  ');
     if (contactLine) doc.text(contactLine, margin + 5, y + 18);
     y += 30;
   }
@@ -610,76 +492,19 @@ function generatePDF() {
     y = doc.lastAutoTable.finalY + 10;
   }
 
-  // ── Tax & Grand Total
-  const subtotalAll = (products.reduce((s, r) => s + r.total, 0)) + (services.reduce((s, r) => s + r.total, 0));
-  const tax = getTax(subtotalAll);
-  const grandTotal = subtotalAll + tax.totalTax;
+  // ── Grand Total box
+  const grandTotal = (products.reduce((s, r) => s + r.total, 0)) + (services.reduce((s, r) => s + r.total, 0));
+  if (y > pageH - 50) { doc.addPage(); y = 20; }
 
-  if (y > pageH - 70) { doc.addPage(); y = 20; }
-
-  // Tax summary box
-  const taxBoxX = pageW - margin - 80;
-  const taxBoxW = 80;
-  let taxY = y;
-
-  doc.setFillColor(241, 245, 249);
-  const taxBoxH = tax.rates.type === 'hst' ? 34 : (tax.rates.pst > 0 ? 40 : 28);
-  doc.roundedRect(taxBoxX, taxY, taxBoxW, taxBoxH, 2, 2, 'F');
-
-  doc.setFont('helvetica', 'normal');
-  doc.setFontSize(8);
-  doc.setTextColor(71, 85, 105);
-
-  doc.text('Subtotal', taxBoxX + 4, taxY + 6);
-  doc.text(fmt(subtotalAll), taxBoxX + taxBoxW - 4, taxY + 6, { align: 'right' });
-
-  if (tax.rates.type === 'hst') {
-    doc.text(tax.rates.label + ' (' + tax.rates.hst + '%)', taxBoxX + 4, taxY + 12);
-    doc.text(fmt(tax.hst), taxBoxX + taxBoxW - 4, taxY + 12, { align: 'right' });
-    // Separator line
-    doc.setDrawColor(200, 210, 220);
-    doc.line(taxBoxX + 4, taxY + 16, taxBoxX + taxBoxW - 4, taxY + 16);
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(8);
-    doc.setTextColor(15, 23, 42);
-    doc.text('Total Tax', taxBoxX + 4, taxY + 22);
-    doc.text(fmt(tax.totalTax), taxBoxX + taxBoxW - 4, taxY + 22, { align: 'right' });
-    taxY += taxBoxH + 4;
-  } else {
-    let lineY = taxY + 12;
-    if (tax.rates.gst > 0) {
-      doc.text('GST (' + tax.rates.gst + '%)', taxBoxX + 4, lineY);
-      doc.text(fmt(tax.gst), taxBoxX + taxBoxW - 4, lineY, { align: 'right' });
-      lineY += 6;
-    }
-    if (tax.rates.pst > 0) {
-      doc.text(tax.rates.label + ' (' + tax.rates.pst + '%)', taxBoxX + 4, lineY);
-      doc.text(fmt(tax.pst), taxBoxX + taxBoxW - 4, lineY, { align: 'right' });
-      lineY += 6;
-    }
-    // Separator line
-    doc.setDrawColor(200, 210, 220);
-    doc.line(taxBoxX + 4, lineY - 2, taxBoxX + taxBoxW - 4, lineY - 2);
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(8);
-    doc.setTextColor(15, 23, 42);
-    doc.text('Total Tax', taxBoxX + 4, lineY + 4);
-    doc.text(fmt(tax.totalTax), taxBoxX + taxBoxW - 4, lineY + 4, { align: 'right' });
-    taxY += taxBoxH + 4;
-  }
-
-  y = taxY;
-
-  // Grand Total box
   doc.setFillColor(...darkBg);
-  doc.roundedRect(taxBoxX, y, taxBoxW, 16, 2, 2, 'F');
+  doc.roundedRect(pageW - margin - 70, y, 70, 16, 2, 2, 'F');
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(9);
   doc.setTextColor(148, 163, 184);
-  doc.text('GRAND TOTAL', taxBoxX + 4, y + 6);
+  doc.text('GRAND TOTAL', pageW - margin - 65, y + 6);
   doc.setFontSize(14);
   doc.setTextColor(...cyan);
-  doc.text(fmt(grandTotal), taxBoxX + taxBoxW - 4, y + 13, { align: 'right' });
+  doc.text(fmt(grandTotal), pageW - margin - 5, y + 13, { align: 'right' });
   y += 24;
 
   // ── Notes
