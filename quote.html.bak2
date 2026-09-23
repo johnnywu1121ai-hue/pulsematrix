@@ -99,10 +99,6 @@
             </div>
           </div>
           <div>
-            <label class="block text-xs font-medium text-slate-400 mb-1">Project Title</label>
-            <input type="text" id="projTitle" placeholder="e.g. Main Bar AV Upgrade" class="w-full" />
-          </div>
-          <div>
             <label class="block text-xs font-medium text-slate-400 mb-1">Valid For</label>
             <select id="validFor" class="w-full">
               <option value="30 days">30 days</option>
@@ -340,7 +336,6 @@ function resetAll() {
   if (!confirm('Start a new quote? This will clear everything.')) return;
   document.getElementById('quoteNum').value = 'PM-' + String(Date.now()).slice(-4);
   document.getElementById('quoteDate').value = new Date().toISOString().split('T')[0];
-  document.getElementById('projTitle').value = '';
   document.getElementById('custName').value = '';
   document.getElementById('custContact').value = '';
   document.getElementById('custEmail').value = '';
@@ -446,16 +441,6 @@ function generatePDF() {
   doc.text(`Valid for ${validFor}`, pageW - margin, 34, { align: 'right' });
 
   y = 52;
-
-  // ── Project title
-  const projTitle = document.getElementById('projTitle').value?.trim();
-  if (projTitle) {
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(13);
-    doc.setTextColor(15, 23, 42);
-    doc.text(projTitle, margin, y);
-    y += 9;
-  }
 
   // ── Customer info
   const custName = document.getElementById('custName').value || '';
